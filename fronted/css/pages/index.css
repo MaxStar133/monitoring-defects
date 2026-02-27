@@ -1,0 +1,130 @@
+/* ========== СТАТИСТИКА ========== */
+.stats-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    gap: 15px;
+}
+
+.stats-header__title {
+    font-size: 24px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.stats-header__date {
+    background-color: white;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #64748b;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.stats-card {
+    background-color: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat-item {
+    background-color: #f8fafc;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    transition: transform 0.3s ease;
+    border: 1px solid #e2e8f0;
+}
+
+.stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.stat-item__label {
+    font-size: 14px;
+    color: #64748b;
+    margin-bottom: 8px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.stat-item__value {
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.stat-item--total .stat-item__value { color: #3b82f6; }
+.stat-item--cracks .stat-item__value { color: #ef4444; }
+.stat-item--delamination .stat-item__value { color: #f59e0b; }
+.stat-item--rivets .stat-item__value { color: #10b981; }
+
+/* ========== ВИДЕО ========== */
+.video-section {
+    background-color: white;
+    border-radius: 16px;
+    padding: 25px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    border: 1px solid #e2e8f0;
+}
+
+.video-section__title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #0f172a;
+    margin-bottom: 20px;
+}
+
+.video-placeholder {
+    background: linear-gradient(145deg, #1e293b, #0f172a);
+    border-radius: 12px;
+    padding: 60px 20px;
+    text-align: center;
+    border: 1px solid #3b82f6;
+}
+
+.video-placeholder__inner {
+    position: relative;
+    z-index: 2;
+}
+
+.video-placeholder__camera {
+    font-size: 64px;
+    display: block;
+    margin-bottom: 15px;
+}
+
+.video-placeholder__status {
+    display: inline-block;
+    background-color: #ef4444;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+
+.video-placeholder__message {
+    color: white;
+    font-size: 18px;
+    margin-bottom: 8px;
+}
+
+.video-placeholder__time {
+    color: #94a3b8;
+    font-size: 14px;
+}

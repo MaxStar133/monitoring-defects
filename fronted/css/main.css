@@ -1,0 +1,337 @@
+/* ========== ПОДКЛЮЧЕНИЯ ========== */
+@import url('abstracts/colors.css');
+
+/* ========== ШРИФТЫ ========== */
+@font-face {
+    font-family: 'Gotham Pro';
+    src: url('../fonts/gothampro_bold.ttf') format('truetype');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Gotham Pro';
+    src: url('../fonts/gothampro_regular.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* ========== ОБНУЛЕНИЕ ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========== БАЗОВЫЕ СТИЛИ ========== */
+body {
+    font-family: 'Gotham Pro', 'Segoe UI', Arial, sans-serif;
+    background-color: var(--color-bg);
+    min-height: 100vh;
+    padding: 20px;
+}
+
+/* ========== ШАПКА ========== */
+.header {
+    max-width: 1420px;
+    margin: 0 auto;
+}
+
+.header__container {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 8px 8px 20px;
+    gap: 10px;
+
+    width: 1380px;
+    height: 60px;
+
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    box-shadow: 0px 0px 20px rgba(29, 59, 255, 0.1);
+    border-radius: 20px;
+
+    margin: 0 auto;
+}
+
+/* ===== ЛЕВАЯ ЧАСТЬ ===== */
+.header__logo-block {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+    
+    width: 304px;
+    height: 43px;
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.header__logo {
+    width: 54px;
+    height: 43px;
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.header__logo-text {
+    width: 250px;
+    height: 30px;
+    
+    font-family: 'Gotham Pro', sans-serif;
+    font-style: normal;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 15px;
+    color: var(--color-blue-dark);
+    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+    white-space: normal;
+    word-break: break-word;
+    
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+/* ===== ПРАВАЯ ЧАСТЬ ===== */
+.header__nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 12px;
+    
+    width: 330px;
+    height: 44px;
+    
+    flex: none;
+    order: 1;
+    align-self: stretch;
+    flex-grow: 0;
+}
+
+/* Кнопка уведомлений */
+.header__notifications {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px;
+    gap: 10px;
+    
+    width: 32px;
+    height: 32px;
+    
+    background: var(--color-notification-bg);
+    border-radius: 50px;
+    
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.header__icon-wrapper {
+    position: relative;
+    width: 24px;
+    height: 24px;
+}
+
+.header__icon {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+/* Красный бейдж */
+.header__badge {
+    position: absolute;
+    width: 14px;
+    height: 14px;
+    right: -4px;
+    top: -4px;
+    
+    background: var(--color-crack);
+    border-radius: 50%;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    z-index: 1;
+}
+
+.header__badge::after {
+    content: '+1';
+    position: absolute;
+    
+    font-family: 'Inter', sans-serif;
+    font-weight: 700;
+    font-size: 8px;
+    line-height: 10px;
+    text-align: center;
+    
+    color: var(--color-white);
+    
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Общие стили для кнопок */
+.header__button {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 12px;
+    gap: 8px;
+    
+    height: 44px;
+    
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.1);
+    border-radius: 12px;
+    
+    text-decoration: none;
+    flex: none;
+    flex-grow: 0;
+}
+
+.header__button:first-of-type {
+    width: 147px;
+    order: 1;
+}
+
+.header__button:last-of-type {
+    width: 127px;
+    order: 2;
+}
+
+.header__button-icon {
+    width: 24px;
+    height: 24px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.header__button-text {
+    font-family: 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    
+    color: var(--color-dark);
+    
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+/* Активная кнопка */
+.header__button--active {
+    background: var(--color-blue);
+    border-color: var(--color-blue);
+}
+
+.header__button--active .header__button-text {
+    color: var(--color-white);
+}
+
+.header__button--active .header__button-icon {
+    filter: brightness(0) invert(1);
+}
+
+/* ========== АДАПТИВНОСТЬ ========== */
+@media (max-width: 1440px) {
+    .header__container {
+        width: 100%;
+        max-width: 1380px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .header__logo-text {
+        font-size: 14px;
+        width: auto;
+        min-width: 200px;
+    }
+
+    .header__logo-block {
+        width: auto;
+        min-width: 280px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .header__container {
+        height: auto;
+        min-height: 60px;
+        padding: 8px 12px;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+
+    .header__logo-block {
+        height: auto;
+    }
+
+    .header__logo {
+        width: 44px;
+        height: 35px;
+    }
+
+    .header__logo-text {
+        font-size: 13px;
+        line-height: 14px;
+        height: auto;
+        white-space: normal;
+    }
+
+    .header__nav {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .header__container {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .header__logo-block {
+        width: 100%;
+        justify-content: flex-start;
+    }
+
+    .header__nav {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .header__button {
+        padding: 8px 12px;
+        font-size: 13px;
+    }
+}
