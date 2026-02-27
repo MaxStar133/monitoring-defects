@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/main.css" />
-    <link rel="stylesheet" href="css/pages/index.css" />
-  
+    <link rel="stylesheet" href="css/index.css" />
+
     <title>Мониторинг дефектов</title>
   </head>
   <body>
@@ -19,67 +19,99 @@
             Система мониторинга<br />дефектов конвейерных лент
           </div>
         </div>
-      
-      <div class="header__nav">
-    <!-- Кнопка уведомлений -->
-    <a href="#" class="header__notifications">
-        <div class="header__icon-wrapper">
-            <img src="images/bell-icon.svg" alt="Уведомления" class="header__icon">
-            <span class="header__badge">+1</span>
+
+        <div class="header__nav">
+          <!-- Кнопка уведомлений -->
+          <a href="#" class="header__notifications">
+            <div class="header__icon-wrapper">
+              <img
+                src="images/bell-icon.svg"
+                alt="Уведомления"
+                class="header__icon"
+              />
+              <span class="header__badge">+1</span>
+            </div>
+          </a>
+
+          <!-- Кнопка Статистика -->
+          <a
+            href="pages/statistics.html"
+            class="header__button header__button--statistics"
+          >
+            <img
+              src="images/statistics-icon.svg"
+              alt=""
+              class="header__button-icon"
+            />
+            <span class="header__button-text">Статистика</span>
+          </a>
+
+          <!-- Кнопка Дефекты -->
+          <a href="pages/defects.html" class="header__button header__button--defects">
+            <img
+              src="images/defects-icon.svg"
+              alt=""
+              class="header__button-icon"
+            />
+            <span class="header__button-text">Дефекты</span>
+          </a>
         </div>
-      </a>
-
-    <!-- Кнопка Статистика -->
-    <a href="statistics.html" class="header__button header__button--statistics">
-        <img src="images/statistics-icon.svg" alt="" class="header__button-icon">
-        <span class="header__button-text">Статистика</span>
-    </a>
-
-    <!-- Кнопка Дефекты -->
-    <a href="defects.html" class="header__button header__button--defects">
-        <img src="images/defects-icon.svg" alt="" class="header__button-icon">
-        <span class="header__button-text">Дефекты</span>
-    </a>
-</div>
+      </div>
     </header>
 
     <!-- Основной контент -->
     <main class="main">
-      <!-- Видеотрансляция -->
-      <div class="video-placeholder">
-        <div class="video-placeholder__content">
-          <span class="video-placeholder__icon"></span>
-          <p>Трансляция скоро начнется</p>
-        </div>
+      <!-- Видеопоток -->
+      <div class="video-frame">
+        <div class="camera-frame"></div>
       </div>
 
-      <!-- Заголовок секции статистики -->
-      <div class="stats-header">
-        <h2 class="stats-header__title">Статистика за 24 часа</h2>
-        <span class="stats-header__date">01.01.2026</span>
-      </div>
-
-      <!-- Карточка со статистикой -->
-      <div class="stats-card">
-        <div class="stat-item stat-item--total">
-          <span class="stat-item__label">Всего дефектов:</span>
-          <span class="stat-item__value">24</span>
+      <!-- Статистика за 24 часа -->
+      <div class="stats-frame">
+        <!-- Верхняя строка -->
+        <div class="stats-header">
+          <h2 class="stats-header__title">Статистика за 24 часа</h2>
+          <!-- Блок с датой -->
+          <a href="#" class="stats-header__date-wrapper">
+            <!-- Иконка календаря -->
+            <img
+              src="images/calendar-icon.svg"
+              alt="Календарь"
+              class="stats-header__date-icon"
+            />
+            <!-- Дата -->
+            <span class="stats-header__date-text">01.01.2026</span>
+          </a>
         </div>
 
-        <div class="stat-item stat-item--cracks">
-          <span class="stat-item__label">Трещины:</span>
-          <span class="stat-item__value">8</span>
-        </div>
+        <!-- Здесь будут карточки статистики -->
+        <div class="stats-grid">
 
-        <div class="stat-item stat-item--delamination">
-          <span class="stat-item__label">Отслоения:</span>
-          <span class="stat-item__value">5</span>
+          <!-- Всего дефектов -->
+    <div class="stat-card stat-card--total">
+      <span class="stat-card__value">24</span>
+      <span class="stat-card__label">Всего дефектов</span>
+    </div>
+    
+    <!-- Трещины -->
+    <div class="stat-card stat-card--cracks">
+      <span class="stat-card__value">8</span>
+      <span class="stat-card__label">Трещины</span>
+    </div>
+    
+    <!-- Отслоения -->
+    <div class="stat-card stat-card--delamination">
+      <span class="stat-card__value">5</span>
+      <span class="stat-card__label">Отслоения</span>
+    </div>
+    
+    <!-- Заклепки -->
+    <div class="stat-card stat-card--rivets">
+      <span class="stat-card__value">11</span>
+      <span class="stat-card__label">Заклепки</span>
+    </div>
         </div>
-
-        <div class="stat-item stat-item--rivets">
-          <span class="stat-item__label">Заклепки:</span>
-          <span class="stat-item__value">11</span>
-        </div>
+        
       </div>
     </main>
   </body>
