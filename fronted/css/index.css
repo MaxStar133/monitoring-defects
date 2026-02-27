@@ -1,0 +1,258 @@
+@import url('abstracts/colors.css');
+
+/* ========== ОСНОВНОЙ КОНТЕЙНЕР ========== */
+.main {
+    max-width: 1420px;
+    margin: 30px auto;
+    padding: 0 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;  
+    margin-top: 10px;
+}
+/* ========== VIDEO FRAME  ========== */
+.video-frame {
+    box-sizing: border-box;
+    
+    /* Auto layout */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px;
+    gap: 16px;
+    
+    width: 1380px;
+    height: 673px;
+    
+    background: #FFFFFF;
+    border: 1px solid var(--color-border);
+    box-shadow: 0px 0px 20px rgba(29, 59, 255, 0.1);
+    border-radius: 20px;
+    
+    /* Inside auto layout */
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    
+    position: relative; /* Для позиционирования info блока */
+}
+
+.camera-frame {
+    width: 1364px;
+    height: 657px;
+    
+    background: linear-gradient(145deg, #2c3e50, #1a2634);
+    border-radius: 16px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ========== STATS FRAME ========== */
+.stats-frame {
+  box-sizing: border-box;
+  
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 8px 20px;
+  gap: 14px;
+  
+  width: 1380px;
+  height: 183px;
+  
+  background: #FFFFFF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 20px rgba(29, 59, 255, 0.1);
+  border-radius: 20px;
+  
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+.stats-header {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 0px;
+  gap: 16px;
+  
+  width: 1340px;
+  height: 56px;
+  
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+.stats-header__title {
+  width: 228px;
+  height: 24px;
+  
+  font-family: 'Inter', sans-serif;
+  font-style: bold;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: right;
+  
+  color: var(--color-dark);  
+  
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  
+  margin: 0;
+}
+
+.stats-header__date-wrapper {
+text-decoration: none; 
+
+box-sizing: border-box;
+
+/* Auto layout */
+display: flex;
+flex-direction: row;
+justify-content: center;
+align-items: center;
+padding: 12px 24px;
+gap: 8px;
+
+width: 182px;
+height: 48px;
+
+/* Bg */
+background: var(--color-bg);
+border: 1px solid var(--color-border);
+border-radius: 12px;
+
+/* Inside auto layout */    
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+
+.stats-header__date-text {
+width: 102px;
+height: 24px;
+
+font-family: 'Inter', sans-serif;
+font-style: normal;
+font-weight: 400;
+font-size: 20px;
+line-height: 24px;
+text-align: right;
+color: var(--color-dark);
+
+
+/* Inside auto layout */
+flex: none;
+order: 1;
+flex-grow: 0;
+}
+
+/* ===== СЕТКА КАРТОЧЕК ===== */
+.stats-grid {
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 16px;
+  
+  width: 1340px;
+  height: 95px;
+  
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+/* ===== КАРТОЧКА СТАТИСТИКИ ===== */
+.stat-card {
+  box-sizing: border-box;
+  
+  /* Auto layout */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 8px;
+  gap: 8px;
+  
+  width: 323px;
+  height: 95px;
+  
+  background: rgba(59, 106, 207, 0.1);
+  border: 1px solid #3B6ACF;
+  box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.1);
+  border-radius: 20px;
+  
+  /* Inside auto layout */
+  flex: none;
+  flex-grow: 1;
+}
+
+.stat-card__value {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 32px;
+  line-height: 39px;
+  text-align: right;
+  
+  color: #333333;
+  
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+.stat-card__label {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: right;
+  
+  color: #333333;
+  
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+/* ===== МОДИФИКАТОРЫ ДЛЯ РАЗНЫХ ТИПОВ ===== */
+.stat-card--total {
+  background: rgba(59, 106, 207, 0.1);
+  border-color: #3B6ACF;
+}
+
+.stat-card--cracks {
+  background: rgba(255, 0, 0, 0.1);
+  border-color: #FF0000;
+}
+
+.stat-card--delamination {
+  background: rgba(255, 142, 12, 0.1);
+  border-color: #FF8E0C;
+}
+
+.stat-card--rivets {
+  background: rgba(33, 166, 0, 0.1);
+  border-color: #21A600;
+}
