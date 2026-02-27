@@ -110,6 +110,7 @@ body {
 .header__nav {
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
     align-items: center;
     padding: 0px;
     gap: 12px;
@@ -164,6 +165,18 @@ body {
     width: 127px;
     order: 2;
 }
+/* Кнопка ГЛАВНАЯ До */
+.header__button--home-before {
+    width: 120px;
+    order: 1;
+}
+
+/* Кнопка ГЛАВНАЯ ПОСЛЕ*/
+.header__button--home-after {
+    width: 120px;
+    order: 3;
+}
+
 
 /* Иконка внутри кнопки - принудительно 24x24 */
 .header__button-icon {
@@ -178,7 +191,19 @@ body {
 
 /* Для кнопки СТАТИСТИКА */
 .header__button--statistics:hover .header__button-icon {
-    content: url('../images/statics-icon-active.svg');
+    content: url('../images/statistics-icon-active.svg');
+    width: 24px;
+    height: 24px;
+}
+/* Для кнопки ГЛАВНАЯ */
+.header__button--home-before:hover .header__button-icon {
+    content: url('../images/home-icon-active.svg');
+    width: 24px;
+    height: 24px;
+}
+
+.header__button--home-after:hover .header__button-icon {
+    content: url('../images/home-icon-active.svg');
     width: 24px;
     height: 24px;
 }
@@ -201,7 +226,7 @@ body {
     color: var(--color-blue);
 }
 
-/* Убираем изменение цвета через stroke, так как используем content */
+/* Убираем изменение цвета через stroke, так как используем content!!!!!!!! */
 .header__button-icon path,
 .header__button-icon circle {
     transition: none;
@@ -368,3 +393,4 @@ body {
         font-size: 13px;
     }
 }
+
