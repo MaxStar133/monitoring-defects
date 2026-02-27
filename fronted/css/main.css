@@ -123,7 +123,98 @@ body {
     flex-grow: 0;
 }
 
-/* Кнопка уведомлений */
+/* ===== КНОПКИ СТАТИСТИКА И ДЕФЕКТЫ ===== */
+
+/* Базовые стили для всех кнопок */
+.header__button {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 12px;
+    gap: 8px;
+    
+    height: 44px; 
+    
+    background: var(--color-white);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.1);
+    border-radius: 12px;
+    
+    text-decoration: none;
+    transition: all 0.2s ease;
+    
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: var(--color-dark);
+}
+
+/* Кнопка СТАТИСТИКА */
+.header__button--statistics {
+    width: 147px;
+    order: 1;
+}
+
+/* Кнопка ДЕФЕКТЫ */
+.header__button--defects {
+    width: 127px;
+    order: 2;
+}
+
+/* Иконка внутри кнопки - принудительно 24x24 */
+.header__button-icon {
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px;
+    max-width: 24px;
+    object-fit: contain; /* Сохраняет пропорции */
+}
+
+/* ===== СМЕНА ИКОНОК ПРИ НАВЕДЕНИИ ===== */
+
+/* Для кнопки СТАТИСТИКА */
+.header__button--statistics:hover .header__button-icon {
+    content: url('../images/statics-icon-active.svg');
+    width: 24px;
+    height: 24px;
+}
+
+/* Для кнопки ДЕФЕКТЫ */
+.header__button--defects:hover .header__button-icon {
+    content: url('../images/defects-icon-active.svg');
+    width: 24px;
+    height: 24px;
+}
+
+/* ===== ЭФФЕКТЫ ПРИ НАВЕДЕНИИ ===== */
+.header__button:hover {
+    background: var(--color-white);  
+    border-color: var(--color-blue);
+    box-shadow: 0px 0px 12px rgba(59, 106, 207, 0.2);
+}
+
+.header__button:hover .header__button-text {
+    color: var(--color-blue);
+}
+
+/* Убираем изменение цвета через stroke, так как используем content */
+.header__button-icon path,
+.header__button-icon circle {
+    transition: none;
+}
+
+/* Эффект нажатия */
+.header__button:active {
+    transform: scale(0.98);
+}
+
+/* ===== КОЛОКОЛЬЧИК ===== */
+
+/* Контейнер колокольчика */
 .header__notifications {
     display: flex;
     flex-direction: row;
@@ -137,10 +228,22 @@ body {
     
     background: var(--color-notification-bg);
     border-radius: 50px;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
     
     flex: none;
     order: 0;
     flex-grow: 0;
+    transition: background 0.2s ease;
+}
+
+.header__notifications:hover {
+    background: rgba(59, 106, 207, 0.15);
+}
+
+.header__notifications:active {
+    transform: scale(0.95);
 }
 
 .header__icon-wrapper {
@@ -149,10 +252,18 @@ body {
     height: 24px;
 }
 
+/* Иконка колокольчика */
 .header__icon {
     width: 24px;
     height: 24px;
     display: block;
+}
+
+/* Смена иконки при наведении */
+.header__notifications:hover .header__icon {
+    content: url('../images/bell-icon-active.svg');
+    width: 24px;
+    height: 24px;
 }
 
 /* Красный бейдж */
@@ -170,94 +281,16 @@ body {
     align-items: center;
     justify-content: center;
     
-    z-index: 1;
-}
-
-.header__badge::after {
-    content: '+1';
-    position: absolute;
-    
     font-family: 'Inter', sans-serif;
     font-weight: 700;
     font-size: 8px;
     line-height: 10px;
-    text-align: center;
-    
     color: var(--color-white);
     
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
+    z-index: 1;
 }
 
-/* Общие стили для кнопок */
-.header__button {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 12px;
-    gap: 8px;
-    
-    height: 44px;
-    
-    background: var(--color-white);
-    border: 1px solid var(--color-border);
-    box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.1);
-    border-radius: 12px;
-    
-    text-decoration: none;
-    flex: none;
-    flex-grow: 0;
-}
-
-.header__button:first-of-type {
-    width: 147px;
-    order: 1;
-}
-
-.header__button:last-of-type {
-    width: 127px;
-    order: 2;
-}
-
-.header__button-icon {
-    width: 24px;
-    height: 24px;
-    flex: none;
-    order: 0;
-    flex-grow: 0;
-}
-
-.header__button-text {
-    font-family: 'Inter', sans-serif;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    
-    color: var(--color-dark);
-    
-    flex: none;
-    order: 1;
-    flex-grow: 0;
-}
-
-/* Активная кнопка */
-.header__button--active {
-    background: var(--color-blue);
-    border-color: var(--color-blue);
-}
-
-.header__button--active .header__button-text {
-    color: var(--color-white);
-}
-
-.header__button--active .header__button-icon {
-    filter: brightness(0) invert(1);
-}
-
-/* ========== АДАПТИВНОСТЬ ========== */
+/* ===== АДАПТИВНОСТЬ ===== */
 @media (max-width: 1440px) {
     .header__container {
         width: 100%;
