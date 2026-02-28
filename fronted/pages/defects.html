@@ -63,14 +63,17 @@
     <!-- Основной контент -->
     <main class="main">
       <!-- Верхняя панель с кнопками -->
-      <div class="defects-frame">
+      <div class="defects-top-frame">
         <!-- Заголовок "Обнаруженные дефекты" -->
         <h1 class="defects-frame__title">Обнаруженные дефекты</h1>
 
         <!-- Левая группа кнопок -->
         <div class="defects-actions-left">
           <!-- Кнопка "Назад" -->
-          <a href="javascript:history.back()" class="action-btn action-btn--back">
+          <a
+            href="javascript:history.back()"
+            class="action-btn action-btn--back"
+          >
             <img
               src="../images/back-icon.svg"
               alt="Назад"
@@ -98,7 +101,6 @@
               <a href="#" class="csv-link">CSV</a>
             </div>
           </div>
-
           <!-- Кнопка "Фильтр" -->
           <a href="#" class="action-btn action-btn--filter">
             <img
@@ -108,6 +110,335 @@
             />
             <span class="action-btn-text">Фильтры</span>
           </a>
+        </div>
+      </div>
+
+      <!-- Таблица дефектов -->
+      <div class="defects-table">
+        <!-- Заголовок таблицы -->
+        <div class="table-header">
+          <div class="table-header__cell table-header__cell--id">Дефект</div>
+          <div class="table-header__cell table-header__cell--date">
+            Дата и время первого обнаружения
+          </div>
+
+          <!-- Блок координат в заголовке -->
+          <div class="table-header__coordinates">
+            <div class="coordinates-title">Координаты</div>
+            <div class="coordinates-sub">
+              <span class="coord-label">Длина (м)</span>
+              <span class="coord-divider"></span>
+              <span class="coord-label">Ширина (мм)</span>
+            </div>
+          </div>
+
+          <div class="table-header__cell table-header__cell--type">Тип</div>
+          <div class="table-header__cell table-header__cell--status">
+            Статус
+          </div>
+          <div class="table-header__cell table-header__cell--actions">
+            Действия
+          </div>
+        </div>
+
+        <!-- Строка 1 -->
+        <div class="table-row">
+          <div class="table-row__cell table-row__cell--id">D-015</div>
+          <div class="table-row__cell table-row__cell--date">
+            <span class="date">01.01.2026</span>
+            <span class="time">14:30:12</span>
+          </div>
+          <div class="table-row__coordinates">
+            <span class="table-row__coord-value">150</span>
+            <span class="table-row__coord-value">250</span>
+          </div>
+          <div class="table-row__cell table-row__cell--type">Отслоение</div>
+          <div class="table-row__cell table-row__cell--status status--critical">
+            Критичный
+          </div>
+          <div class="table-row__action">
+            <a href="#" class="table-row__action-link">Подробнее</a>
+          </div>
+        </div>
+
+        <!-- Строка 2 -->
+        <div class="table-row">
+          <div class="table-row__cell table-row__cell--id">D-014</div>
+          <div class="table-row__cell table-row__cell--date">
+            <span class="date">01.01.2026</span>
+            <span class="time">14:11:11</span>
+          </div>
+          <div class="table-row__coordinates">
+            <span class="table-row__coord-value">150</span>
+            <span class="table-row__coord-value">250</span>
+          </div>
+          <div class="table-row__cell table-row__cell--type">Трещина</div>
+          <div class="table-row__cell table-row__cell--status status--warning">
+            Внимание
+          </div>
+          <div class="table-row__action">
+            <a href="#" class="table-row__action-link">Подробнее</a>
+          </div>
+        </div>
+
+        <!-- Строка 3 -->
+        <div class="table-row">
+          <div class="table-row__cell table-row__cell--id">D-013</div>
+          <div class="table-row__cell table-row__cell--date">
+            <span class="date">01.01.2026</span>
+            <span class="time">14:08:12</span>
+          </div>
+          <div class="table-row__coordinates">
+            <span class="table-row__coord-value">150</span>
+            <span class="table-row__coord-value">250</span>
+          </div>
+          <div class="table-row__cell table-row__cell--type">Заклепка</div>
+          <div class="table-row__cell table-row__cell--status status--normal">
+            Наблюдение
+          </div>
+          <div class="table-row__action">
+            <a href="#" class="table-row__action-link">Подробнее</a>
+          </div>
+        </div>
+
+        <!-- Строка 4 -->
+        <div class="table-row">
+          <div class="table-row__cell table-row__cell--id">D-012</div>
+          <div class="table-row__cell table-row__cell--date">
+            <span class="date">01.01.2026</span>
+            <span class="time">12:30:17</span>
+          </div>
+          <div class="table-row__coordinates">
+            <span class="table-row__coord-value">150</span>
+            <span class="table-row__coord-value">250</span>
+          </div>
+          <div class="table-row__cell table-row__cell--type">Отслоение</div>
+          <div class="table-row__cell table-row__cell--status status--normal">
+            Наблюдение
+          </div>
+          <div class="table-row__action">
+            <a href="#" class="table-row__action-link">Подробнее</a>
+          </div>
+        </div>
+
+        <!-- Строка 5 -->
+        <div class="table-row">
+          <div class="table-row__cell table-row__cell--id">D-011</div>
+          <div class="table-row__cell table-row__cell--date">
+            <span class="date">01.01.2026</span>
+            <span class="time">11:30:15</span>
+          </div>
+          <div class="table-row__coordinates">
+            <span class="table-row__coord-value">150</span>
+            <span class="table-row__coord-value">250</span>
+          </div>
+          <div class="table-row__cell table-row__cell--type">Отслоение</div>
+          <div class="table-row__cell table-row__cell--status status--normal">
+            Наблюдение
+          </div>
+          <div class="table-row__action">
+            <a href="#" class="table-row__action-link">Подробнее</a>
+          </div>
+        </div>
+
+        <!-- Строка 6 -->
+        <div class="table-row">
+          <div class="table-row__cell table-row__cell--id">D-010</div>
+          <div class="table-row__cell table-row__cell--date">
+            <span class="date">01.01.2026</span>
+            <span class="time">08:30:17</span>
+          </div>
+          <div class="table-row__coordinates">
+            <span class="table-row__coord-value">150</span>
+            <span class="table-row__coord-value">250</span>
+          </div>
+          <div class="table-row__cell table-row__cell--type">Заклепка</div>
+          <div class="table-row__cell table-row__cell--status status--normal">
+            Наблюдение
+          </div>
+          <div class="table-row__action">
+            <a href="#" class="table-row__action-link">Подробнее</a>
+          </div>
+        </div>
+
+        <!-- Строка 7 -->
+        <div class="table-row">
+          <div class="table-row__cell table-row__cell--id">D-009</div>
+          <div class="table-row__cell table-row__cell--date">
+            <span class="date">01.01.2026</span>
+            <span class="time">05:26:16</span>
+          </div>
+          <div class="table-row__coordinates">
+            <span class="table-row__coord-value">150</span>
+            <span class="table-row__coord-value">250</span>
+          </div>
+          <div class="table-row__cell table-row__cell--type">Трещина</div>
+          <div class="table-row__cell table-row__cell--status status--normal">
+            Наблюдение
+          </div>
+          <div class="table-row__action">
+            <a href="#" class="table-row__action-link">Подробнее</a>
+          </div>
+        </div>
+
+        <!-- Строка 8 -->
+        <div class="table-row">
+          <div class="table-row__cell table-row__cell--id">D-008</div>
+          <div class="table-row__cell table-row__cell--date">
+            <span class="date">01.01.2026</span>
+            <span class="time">03:30:17</span>
+          </div>
+          <div class="table-row__coordinates">
+            <span class="table-row__coord-value">150</span>
+            <span class="table-row__coord-value">250</span>
+          </div>
+          <div class="table-row__cell table-row__cell--type">Заклепка</div>
+          <div class="table-row__cell table-row__cell--status status--normal">
+            Наблюдение
+          </div>
+          <div class="table-row__action">
+            <a href="#" class="table-row__action-link">Подробнее</a>
+          </div>
+        </div>
+
+        <!-- Строка 9 -->
+        <div class="table-row">
+          <div class="table-row__cell table-row__cell--id">D-007</div>
+          <div class="table-row__cell table-row__cell--date">
+            <span class="date">01.01.2026</span>
+            <span class="time">01:30:15</span>
+          </div>
+          <div class="table-row__coordinates">
+            <span class="table-row__coord-value">150</span>
+            <span class="table-row__coord-value">250</span>
+          </div>
+          <div class="table-row__cell table-row__cell--type">Отслоение</div>
+          <div class="table-row__cell table-row__cell--status status--normal">
+            Наблюдение
+          </div>
+          <div class="table-row__action">
+            <a href="#" class="table-row__action-link">Подробнее</a>
+          </div>
+        </div>
+
+        <!-- Строка 10 -->
+        <div class="table-row">
+          <div class="table-row__cell table-row__cell--id">D-006</div>
+          <div class="table-row__cell table-row__cell--date">
+            <span class="date">01.01.2026</span>
+            <span class="time">00:32:15</span>
+          </div>
+          <div class="table-row__coordinates">
+            <span class="table-row__coord-value">150</span>
+            <span class="table-row__coord-value">250</span>
+          </div>
+          <div class="table-row__cell table-row__cell--type">Отслоение</div>
+          <div class="table-row__cell table-row__cell--status status--normal">
+            Наблюдение
+          </div>
+          <div class="table-row__action">
+            <a href="#" class="table-row__action-link">Подробнее</a>
+          </div>
+        </div>
+
+        <!-- Строка 11 -->
+        <div class="table-row">
+          <div class="table-row__cell table-row__cell--id">D-005</div>
+          <div class="table-row__cell table-row__cell--date">
+            <span class="date">01.01.2026</span>
+            <span class="time">00:26:15</span>
+          </div>
+          <div class="table-row__coordinates">
+            <span class="table-row__coord-value">150</span>
+            <span class="table-row__coord-value">250</span>
+          </div>
+          <div class="table-row__cell table-row__cell--type">Трещина</div>
+          <div class="table-row__cell table-row__cell--status status--normal">
+            Наблюдение
+          </div>
+          <div class="table-row__action">
+            <a href="#" class="table-row__action-link">Подробнее</a>
+          </div>
+        </div>
+
+        <!-- Строка 12 -->
+        <div class="table-row">
+          <div class="table-row__cell table-row__cell--id">D-004</div>
+          <div class="table-row__cell table-row__cell--date">
+            <span class="date">01.01.2026</span>
+            <span class="time">00:22:55</span>
+          </div>
+          <div class="table-row__coordinates">
+            <span class="table-row__coord-value">150</span>
+            <span class="table-row__coord-value">250</span>
+          </div>
+          <div class="table-row__cell table-row__cell--type">Отслоение</div>
+          <div class="table-row__cell table-row__cell--status status--normal">
+            Наблюдение
+          </div>
+          <div class="table-row__action">
+            <a href="#" class="table-row__action-link">Подробнее</a>
+          </div>
+        </div>
+
+        <!-- Строка 13 -->
+        <div class="table-row">
+          <div class="table-row__cell table-row__cell--id">D-003</div>
+          <div class="table-row__cell table-row__cell--date">
+            <span class="date">01.01.2026</span>
+            <span class="time">00:12:25</span>
+          </div>
+          <div class="table-row__coordinates">
+            <span class="table-row__coord-value">150</span>
+            <span class="table-row__coord-value">250</span>
+          </div>
+          <div class="table-row__cell table-row__cell--type">Заклепка</div>
+          <div class="table-row__cell table-row__cell--status status--normal">
+            Наблюдение
+          </div>
+          <div class="table-row__action">
+            <a href="#" class="table-row__action-link">Подробнее</a>
+          </div>
+        </div>
+
+        <!-- Строка 14 -->
+        <div class="table-row">
+          <div class="table-row__cell table-row__cell--id">D-002</div>
+          <div class="table-row__cell table-row__cell--date">
+            <span class="date">01.01.2026</span>
+            <span class="time">00:07:35</span>
+          </div>
+          <div class="table-row__coordinates">
+            <span class="table-row__coord-value">150</span>
+            <span class="table-row__coord-value">250</span>
+          </div>
+          <div class="table-row__cell table-row__cell--type">Отслоение</div>
+          <div class="table-row__cell table-row__cell--status status--normal">
+            Наблюдение
+          </div>
+          <div class="table-row__action">
+            <a href="#" class="table-row__action-link">Подробнее</a>
+          </div>
+        </div>
+
+        <!-- Строка 15 -->
+        <div class="table-row table-row--last">
+          <div class="table-row__cell table-row__cell--id">D-001</div>
+          <div class="table-row__cell table-row__cell--date">
+            <span class="date">01.01.2026</span>
+            <span class="time">00:01:55</span>
+          </div>
+          <div class="table-row__coordinates">
+            <span class="table-row__coord-value">150</span>
+            <span class="table-row__coord-value">250</span>
+          </div>
+          <div class="table-row__cell table-row__cell--type">Отслоение</div>
+          <div class="table-row__cell table-row__cell--status status--normal">
+            Наблюдение
+          </div>
+          <div class="table-row__action">
+            <a href="#" class="table-row__action-link">Подробнее</a>
+          </div>
         </div>
       </div>
     </main>

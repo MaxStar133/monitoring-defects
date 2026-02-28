@@ -24,7 +24,7 @@
   margin-top: 20px;
 }
 
-.defects-frame {
+.defects-top-frame {
   position: relative;
   display: flex;
   flex-direction: row;
@@ -232,4 +232,365 @@
 .divider {
   color: rgba(0, 0, 0, 0.2);
   font-size: 16px;
+}
+
+/* ===== ТАБЛИЦА ДЕФЕКТОВ ===== */
+.defects-table {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 0px;
+  gap: 12px;
+
+  width: 1340px;
+  height: 729px;
+  margin-top: 20px;
+}
+
+/* Frame 36 - заголовок таблицы */
+.table-header {
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 0px;
+  gap: 0;
+
+  width: 1340px;
+  height: 69px;
+
+  /* Dark с прозрачностью как в colors.css для light */
+  border-bottom: 1px solid var(--color-light);  /* Используем переменную light */
+
+  /* Inside auto layout */
+  flex: none;
+  order: 0;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+/* Дефект - Inter Medium */
+.table-header__cell--id {
+  width: 120px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;  /* Medium */
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--color-dark);
+  
+  margin: 0;
+}
+
+/* Дата и время первого обнаружения - Inter Medium */
+.table-header__cell--date {
+  width: 240px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;  /* Medium */
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--color-dark);
+  
+  /* Для двух строк */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  white-space: normal;
+  word-break: break-word;
+  
+  margin: 0;
+}
+
+/* Блок координат */
+.table-header__coordinates {
+  width: 260px;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+/* Координаты - Inter Medium */
+.coordinates-title {
+  width: 100%;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;  /* Medium */
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--color-dark);
+}
+
+/* Подписи под координатами - Inter Regular */
+.coordinates-sub {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 19px;
+}
+
+.coord-label {
+  width: 129.5px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;  /* Regular */
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--color-dark);
+}
+
+.coord-divider {
+  width: 1px;
+  height: 19px;
+  background: var(--color-light);  /* Используем переменную light */
+  opacity: 0.2;  /* Прозрачность 20% */
+}
+
+/* Тип - Inter Medium */
+.table-header__cell--type {
+  width: 240px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;  /* Medium */
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--color-dark);
+  margin: 0;
+}
+
+/* Статус - Inter Medium */
+.table-header__cell--status {
+  width: 240px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;  /* Medium */
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--color-dark);
+  margin: 0;
+}
+
+/* Действия - Inter Medium */
+.table-header__cell--actions {
+  width: 240px;
+  text-align: center;
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;  /* Medium */
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--color-dark);
+  margin: 0;
+}
+
+
+/* Frame 35 - строка таблицы */
+.table-row {
+  box-sizing: border-box;
+
+  /* Auto layout */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 0px 8px;
+  gap: 0; /* Убираем gap, используем фиксированные ширины */
+
+  width: 1340px;
+  height: 32px;
+
+  border-bottom: 1px solid rgba(51, 51, 51, 0.2);
+
+  /* Inside auto layout */
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+/* ID дефекта (D-015) */
+.table-row__cell--id {
+  margin: 0 auto;
+  width: 120px;
+  height: 24px;
+
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+
+  color: var(--color-dark);
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+/* Дата и время */
+.table-row__cell--date {
+  margin: 0 auto;
+  width: 240px;
+  height: 24px;
+
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+
+  /* Весь текст пока серый */
+  color: rgba(51, 51, 51, 0.5);
+
+  flex: none;
+  order: 1;
+  flex-grow: 1;
+}
+
+/* Время делаем черным */
+.table-row__cell--date .time {
+  color: #333333;  /* или var(--color-dark) */
+  font-weight: 400;
+}
+
+/* Frame 691316213 - блок координат */
+.table-row__coordinates {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;  /* Это расстояние между 150 и 250 */
+
+  margin: 0 auto;
+  width: 260px;
+  height: 24px;
+
+  flex: none;
+  order: 2;
+  flex-grow: 0;
+}
+
+/* Значение координат (150) */
+.table-row__coord-value {
+  width: 125px;
+  height: 24px;
+
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;  /* Regular */
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+
+  color: var(--color-dark);
+
+  flex: none;
+  order: 0;
+  flex-grow: 1;
+}
+
+/* Второе значение координат (250) */
+.table-row__coord-value:last-child {
+  order: 1;
+}
+
+/* Тип дефекта */
+.table-row__cell--type {
+  margin: 0 auto;
+  width: 240px;
+  height: 24px;
+
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+
+  color: var(--color-dark);
+
+  flex: none;
+  order: 3;
+  flex-grow: 1;
+}
+
+/* Статус */
+.table-row__cell--status {
+  margin: 0 auto;
+  width: 240px;
+  height: 24px;
+
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+
+  flex: none;
+  order: 4;
+  flex-grow: 1;
+}
+
+/* Цвета статусов */
+.status--critical {
+  color: var(--color-crack); /* #FF0000 */
+}
+
+.status--warning {
+  color: var(--color-peeling); /* #FF8E0C */
+}
+
+.status--normal {
+  color: var(--color-rivet); /* #21A600 */
+}
+
+/* Frame 691316173 - действие */
+.table-row__action {
+  display: flex;
+  flex-direction: row;  
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+
+  margin: 0 auto;
+  width: 240px;
+  height: 24px;
+
+  flex: none;
+  order: 5;
+  flex-grow: 1;
+}
+
+/* Ссылка "Подробнее" */
+.table-row__action-link {
+  width: 100%;
+  height: 24px;
+
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  text-decoration-line: underline;
+
+  color: var(--color-blue);
+  
+  display: block;
+  cursor: pointer;
+}
+
+.table-row__action-link:hover {
+  opacity: 0.8;
 }
