@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/main.css" />
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/pages/defects.css" />
+    <title>Дефекты - Мониторинг</title>
   </head>
   <body>
     <!-- Шапка -->
@@ -31,7 +32,10 @@
             </div>
           </a>
           <!-- Кнопка Статистика -->
-          <a href="statistics.html" class="header__button header__button--statistics">
+          <a
+            href="statistics.html"
+            class="header__button header__button--statistics"
+          >
             <img
               src="../images/statistics-icon.svg"
               alt=""
@@ -41,7 +45,10 @@
           </a>
 
           <!-- Кнопка Главная -->
-          <a href="../index.html" class="header__button header__button--home-after">
+          <a
+            href="../index.html"
+            class="header__button header__button--home-after"
+          >
             <img
               src="../images/home-icon.svg"
               alt=""
@@ -52,5 +59,57 @@
         </div>
       </div>
     </header>
+
+    <!-- Основной контент -->
+    <main class="main">
+      <!-- Верхняя панель с кнопками -->
+      <div class="defects-frame">
+        <!-- Заголовок "Обнаруженные дефекты" -->
+        <h1 class="defects-frame__title">Обнаруженные дефекты</h1>
+
+        <!-- Левая группа кнопок -->
+        <div class="defects-actions-left">
+          <!-- Кнопка "Назад" -->
+          <a href="javascript:history.back()" class="action-btn action-btn--back">
+            <img
+              src="../images/back-icon.svg"
+              alt="Назад"
+              class="action-btn__icon"
+            />
+            <span class="action-btn-text">Назад</span>
+          </a>
+
+          <!-- Кнопка "Изменить параметры" -->
+          <a href="#" class="action-btn action-btn--parameters">
+            <span class="action-btn-text">Изменить параметры</span>
+          </a>
+        </div>
+
+        <!-- Правая группа кнопок -->
+        <div class="defects-actions-right">
+          <!-- Блок "Скачать" со ссылками -->
+          <div class="download-block">
+            <span class="download-text">Скачать</span>
+            <div class="download-links">
+              <a href="#" class="excel-link">Excel</a>
+              <span class="divider">|</span>
+              <a href="#" class="pdf-link">PDF</a>
+              <span class="divider">|</span>
+              <a href="#" class="csv-link">CSV</a>
+            </div>
+          </div>
+
+          <!-- Кнопка "Фильтр" -->
+          <a href="#" class="action-btn action-btn--filter">
+            <img
+              src="../images/filter-icon.svg"
+              alt="Фильтр"
+              class="action-btn__icon"
+            />
+            <span class="action-btn-text">Фильтры</span>
+          </a>
+        </div>
+      </div>
+    </main>
   </body>
 </html>
