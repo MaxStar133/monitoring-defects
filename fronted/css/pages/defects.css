@@ -11,8 +11,8 @@
   width: 1380px;
   min-height: 877px;
 
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
   box-shadow: 0px 0px 20px rgba(29, 59, 255, 0.1);
   border-radius: 20px;
 
@@ -21,7 +21,7 @@
   align-self: stretch;
   flex-grow: 0;
   margin: 0 auto;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .defects-top-frame {
@@ -36,7 +36,7 @@
   width: 1340px;
   height: 44px;
 
-  background: #ffffff;
+  background: var(--color-white);
 
   flex: none;
   order: 0;
@@ -51,13 +51,13 @@
   left: 50%;
   transform: translateX(-50%);
 
-  font-family: "Inter", sans-serif;
+  font-family: "Inter", normal;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
 
-  color: #333333;
+  color: var(--color-dark);
 
   flex: none;
   order: 2;
@@ -111,8 +111,8 @@
   gap: 8px;
   height: 44px;
 
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
   box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.1);
   border-radius: 12px;
 
@@ -127,12 +127,12 @@
 }
 
 .action-btn:hover {
-  border-color: #3B6ACF;
+  border-color: var(--color-blue);
   box-shadow: 0px 0px 12px rgba(59, 106, 207, 0.2);
 }
 
 .action-btn:hover .action-btn-text {
-  color: #3B6ACF;
+  color: var(--color-blue);
 }
 
 .action-btn:hover .action-btn__icon {
@@ -156,11 +156,11 @@
 }
 
 .action-btn-text {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-  color: #333333;
+  color: var(--color-dark);
 
   flex: none;
   order: 1;
@@ -188,8 +188,8 @@
   width: 281px;
   height: 44px;
 
-  background: #FFFFFF;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
   box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.1);
   border-radius: 12px;
 
@@ -199,11 +199,11 @@
 }
 
 .download-text {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-  color: #333333;
+  color: var(--color-dark);
   white-space: nowrap;
   width: 65px;
   min-width: 65px;
@@ -220,12 +220,12 @@
 .excel-link,
 .pdf-link,
 .csv-link {
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', normal;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
   text-decoration-line: underline;
-  color: #3B6ACF;
+  color: var(--color-blue);
   white-space: nowrap;
 }
 
@@ -244,14 +244,11 @@
 
   width: 1340px;
   height: 729px;
-  margin-top: 20px;
 }
 
 /* Frame 36 - заголовок таблицы */
 .table-header {
   box-sizing: border-box;
-
-  /* Auto layout */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -262,10 +259,8 @@
   width: 1340px;
   height: 69px;
 
-  /* Dark с прозрачностью как в colors.css для light */
-  border-bottom: 1px solid var(--color-light);  /* Используем переменную light */
+  border-bottom: 1px solid var(--color-light);
 
-  /* Inside auto layout */
   flex: none;
   order: 0;
   align-self: stretch;
@@ -276,8 +271,8 @@
 .table-header__cell--id {
   width: 120px;
   text-align: center;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;  /* Medium */
+  font-family: 'Inter', normal;
+  font-weight: 500;
   font-size: 20px;
   line-height: 24px;
   color: var(--color-dark);
@@ -289,13 +284,12 @@
 .table-header__cell--date {
   width: 240px;
   text-align: center;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;  /* Medium */
+  font-family: 'Inter', normal;
+  font-weight: 500;
   font-size: 20px;
   line-height: 24px;
   color: var(--color-dark);
   
-  /* Для двух строк */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -319,8 +313,8 @@
 .coordinates-title {
   width: 100%;
   text-align: center;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;  /* Medium */
+  font-family: 'Inter', normal;
+  font-weight: 500;
   font-size: 20px;
   line-height: 24px;
   color: var(--color-dark);
@@ -339,8 +333,8 @@
 .coord-label {
   width: 129.5px;
   text-align: center;
-  font-family: 'Inter', sans-serif;
-  font-weight: 400;  /* Regular */
+  font-family: 'Inter', normal;
+  font-weight: 400;
   font-size: 16px;
   line-height: 19px;
   color: var(--color-dark);
@@ -349,16 +343,16 @@
 .coord-divider {
   width: 1px;
   height: 19px;
-  background: var(--color-light);  /* Используем переменную light */
-  opacity: 0.2;  /* Прозрачность 20% */
+  background: var(--color-light);
+  opacity: 0.2;
 }
 
 /* Тип - Inter Medium */
 .table-header__cell--type {
   width: 240px;
   text-align: center;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;  /* Medium */
+  font-family: 'Inter', normal;
+  font-weight: 500;
   font-size: 20px;
   line-height: 24px;
   color: var(--color-dark);
@@ -369,8 +363,8 @@
 .table-header__cell--status {
   width: 240px;
   text-align: center;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;  /* Medium */
+  font-family: 'Inter', normal;
+  font-weight: 500;
   font-size: 20px;
   line-height: 24px;
   color: var(--color-dark);
@@ -381,33 +375,29 @@
 .table-header__cell--actions {
   width: 240px;
   text-align: center;
-  font-family: 'Inter', sans-serif;
-  font-weight: 500;  /* Medium */
+  font-family: 'Inter', normal;
+  font-weight: 500;
   font-size: 20px;
   line-height: 24px;
   color: var(--color-dark);
   margin: 0;
 }
 
-
 /* Frame 35 - строка таблицы */
 .table-row {
   box-sizing: border-box;
-
-  /* Auto layout */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 0px 0px 8px;
-  gap: 0; /* Убираем gap, используем фиксированные ширины */
+  gap: 0;
 
   width: 1340px;
   height: 32px;
 
   border-bottom: 1px solid rgba(51, 51, 51, 0.2);
 
-  /* Inside auto layout */
   flex: none;
   order: 1;
   align-self: stretch;
@@ -420,7 +410,7 @@
   width: 120px;
   height: 24px;
 
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', normal;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -440,14 +430,13 @@
   width: 240px;
   height: 24px;
 
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', normal;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
 
-  /* Весь текст пока серый */
   color: rgba(51, 51, 51, 0.5);
 
   flex: none;
@@ -457,7 +446,7 @@
 
 /* Время делаем черным */
 .table-row__cell--date .time {
-  color: #333333;  /* или var(--color-dark) */
+  color: var(--color-dark);
   font-weight: 400;
 }
 
@@ -468,7 +457,7 @@
   justify-content: center;
   align-items: center;
   padding: 0px;
-  gap: 10px;  /* Это расстояние между 150 и 250 */
+  gap: 10px;
 
   margin: 0 auto;
   width: 260px;
@@ -484,9 +473,9 @@
   width: 125px;
   height: 24px;
 
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', normal;
   font-style: normal;
-  font-weight: 400;  /* Regular */
+  font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
@@ -509,7 +498,7 @@
   width: 240px;
   height: 24px;
 
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', normal;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -529,7 +518,7 @@
   width: 240px;
   height: 24px;
 
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', normal;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -543,15 +532,15 @@
 
 /* Цвета статусов */
 .status--critical {
-  color: var(--color-crack); /* #FF0000 */
+  color: var(--color-crack);
 }
 
 .status--warning {
-  color: var(--color-peeling); /* #FF8E0C */
+  color: var(--color-peeling);
 }
 
 .status--normal {
-  color: var(--color-rivet); /* #21A600 */
+  color: var(--color-rivet);
 }
 
 /* Frame 691316173 - действие */
@@ -572,12 +561,12 @@
   flex-grow: 1;
 }
 
-/* Ссылка "Подробнее" */
-.table-row__action-link {
+/* Кнопка "Подробнее" */
+.table-row__action-btn {
   width: 100%;
   height: 24px;
 
-  font-family: 'Inter', sans-serif;
+  font-family: 'Inter', normal;
   font-style: normal;
   font-weight: 400;
   font-size: 20px;
@@ -587,10 +576,157 @@
 
   color: var(--color-blue);
   
-  display: block;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.table-row__action-btn:hover {
+  opacity: 0.8;
+}
+
+.table-row--last {
+  border-bottom: none;
+}
+
+/* ===== ПАГИНАЦИЯ ===== */
+/* Основной контейнер пагинации */
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px;
+  gap: 16px;
+
+  width: 1340px;
+  height: 32px;
+  
+  flex: none;
+  order: 2;
+  align-self: stretch;
+  flex-grow: 0;
+}
+
+/* Результаты слева */
+.pagination__info {
+  width: 263px;
+  height: 24px;
+
+  font-family: 'Inter', sans-serif;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+
+  color: rgba(51, 51, 51, 0.8);
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+}
+
+/* Блок с кнопками справа */
+.pagination__controls {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 8px;
+
+  width: 379px;
+  height: 32px;
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
+}
+
+/* Кнопки навигации */
+.pagination__nav-btn {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+
+  width: 44px;
+  height: 32px;
+
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  box-shadow: 0px 0px 20px rgba(29, 59, 255, 0.1);
+  border-radius: 8px;
+
+  flex: none;
   cursor: pointer;
 }
 
-.table-row__action-link:hover {
-  opacity: 0.8;
+.pagination__nav-btn svg {
+  width: 24px;
+  height: 24px;
+}
+
+.pagination__nav-btn--prev svg {
+  stroke: var(--color-light);
+}
+
+.pagination__nav-btn--next svg {
+  stroke: var(--color-dark);
+}
+
+/* Номера страниц */
+.pagination__page {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 24px;
+  height: 24px;
+
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+
+  color: var(--color-blue);
+  
+  background: none;
+  border: none;
+  cursor: pointer;
+  
+  flex: none;
+}
+
+.pagination__page--active {
+  font-weight: 500;
+}
+
+.pagination__page--last {
+  width: 51px;
+}
+
+/* Многоточие */
+.pagination__dots {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  width: 24px;
+  height: 24px;
+
+  font-family: 'Inter', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+
+  color: var(--color-dark);
+
+  flex: none;
 }

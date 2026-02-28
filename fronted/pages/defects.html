@@ -5,6 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="../css/main.css" />
     <link rel="stylesheet" href="../css/pages/defects.css" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
     <title>Дефекты - Мониторинг</title>
   </head>
   <body>
@@ -67,9 +74,9 @@
         <!-- Заголовок "Обнаруженные дефекты" -->
         <h1 class="defects-frame__title">Обнаруженные дефекты</h1>
 
-        <!-- Левая группа кнопок -->
+        <!-- Левая группа -->
         <div class="defects-actions-left">
-          <!-- Кнопка "Назад" -->
+          <!-- Кнопка "Назад" (ссылка) -->
           <a
             href="javascript:history.back()"
             class="action-btn action-btn--back"
@@ -82,13 +89,13 @@
             <span class="action-btn-text">Назад</span>
           </a>
 
-          <!-- Кнопка "Изменить параметры" -->
-          <a href="#" class="action-btn action-btn--parameters">
+          <!-- Кнопка "Изменить параметры" (кнопка) -->
+          <button class="action-btn action-btn--parameters" id="params-btn">
             <span class="action-btn-text">Изменить параметры</span>
-          </a>
+          </button>
         </div>
 
-        <!-- Правая группа кнопок -->
+        <!-- Правая группа -->
         <div class="defects-actions-right">
           <!-- Блок "Скачать" со ссылками -->
           <div class="download-block">
@@ -101,15 +108,15 @@
               <a href="#" class="csv-link">CSV</a>
             </div>
           </div>
-          <!-- Кнопка "Фильтр" -->
-          <a href="#" class="action-btn action-btn--filter">
+          <!-- Кнопка "Фильтры" (кнопка) -->
+          <button class="action-btn action-btn--filter" id="filter-btn">
             <img
               src="../images/filter-icon.svg"
               alt="Фильтр"
               class="action-btn__icon"
             />
             <span class="action-btn-text">Фильтры</span>
-          </a>
+          </button>
         </div>
       </div>
 
@@ -121,8 +128,6 @@
           <div class="table-header__cell table-header__cell--date">
             Дата и время первого обнаружения
           </div>
-
-          <!-- Блок координат в заголовке -->
           <div class="table-header__coordinates">
             <div class="coordinates-title">Координаты</div>
             <div class="coordinates-sub">
@@ -131,7 +136,6 @@
               <span class="coord-label">Ширина (мм)</span>
             </div>
           </div>
-
           <div class="table-header__cell table-header__cell--type">Тип</div>
           <div class="table-header__cell table-header__cell--status">
             Статус
@@ -157,7 +161,9 @@
             Критичный
           </div>
           <div class="table-row__action">
-            <a href="#" class="table-row__action-link">Подробнее</a>
+            <button class="table-row__action-btn" data-id="D-015">
+              Подробнее
+            </button>
           </div>
         </div>
 
@@ -177,7 +183,9 @@
             Внимание
           </div>
           <div class="table-row__action">
-            <a href="#" class="table-row__action-link">Подробнее</a>
+            <button class="table-row__action-btn" data-id="D-014">
+              Подробнее
+            </button>
           </div>
         </div>
 
@@ -197,7 +205,9 @@
             Наблюдение
           </div>
           <div class="table-row__action">
-            <a href="#" class="table-row__action-link">Подробнее</a>
+            <button class="table-row__action-btn" data-id="D-013">
+              Подробнее
+            </button>
           </div>
         </div>
 
@@ -217,7 +227,9 @@
             Наблюдение
           </div>
           <div class="table-row__action">
-            <a href="#" class="table-row__action-link">Подробнее</a>
+            <button class="table-row__action-btn" data-id="D-012">
+              Подробнее
+            </button>
           </div>
         </div>
 
@@ -237,7 +249,9 @@
             Наблюдение
           </div>
           <div class="table-row__action">
-            <a href="#" class="table-row__action-link">Подробнее</a>
+            <button class="table-row__action-btn" data-id="D-011">
+              Подробнее
+            </button>
           </div>
         </div>
 
@@ -257,7 +271,9 @@
             Наблюдение
           </div>
           <div class="table-row__action">
-            <a href="#" class="table-row__action-link">Подробнее</a>
+            <button class="table-row__action-btn" data-id="D-010">
+              Подробнее
+            </button>
           </div>
         </div>
 
@@ -277,7 +293,9 @@
             Наблюдение
           </div>
           <div class="table-row__action">
-            <a href="#" class="table-row__action-link">Подробнее</a>
+            <button class="table-row__action-btn" data-id="D-009">
+              Подробнее
+            </button>
           </div>
         </div>
 
@@ -297,7 +315,9 @@
             Наблюдение
           </div>
           <div class="table-row__action">
-            <a href="#" class="table-row__action-link">Подробнее</a>
+            <button class="table-row__action-btn" data-id="D-008">
+              Подробнее
+            </button>
           </div>
         </div>
 
@@ -317,7 +337,9 @@
             Наблюдение
           </div>
           <div class="table-row__action">
-            <a href="#" class="table-row__action-link">Подробнее</a>
+            <button class="table-row__action-btn" data-id="D-007">
+              Подробнее
+            </button>
           </div>
         </div>
 
@@ -337,7 +359,9 @@
             Наблюдение
           </div>
           <div class="table-row__action">
-            <a href="#" class="table-row__action-link">Подробнее</a>
+            <button class="table-row__action-btn" data-id="D-006">
+              Подробнее
+            </button>
           </div>
         </div>
 
@@ -357,7 +381,9 @@
             Наблюдение
           </div>
           <div class="table-row__action">
-            <a href="#" class="table-row__action-link">Подробнее</a>
+            <button class="table-row__action-btn" data-id="D-005">
+              Подробнее
+            </button>
           </div>
         </div>
 
@@ -377,7 +403,9 @@
             Наблюдение
           </div>
           <div class="table-row__action">
-            <a href="#" class="table-row__action-link">Подробнее</a>
+            <button class="table-row__action-btn" data-id="D-004">
+              Подробнее
+            </button>
           </div>
         </div>
 
@@ -397,7 +425,9 @@
             Наблюдение
           </div>
           <div class="table-row__action">
-            <a href="#" class="table-row__action-link">Подробнее</a>
+            <button class="table-row__action-btn" data-id="D-003">
+              Подробнее
+            </button>
           </div>
         </div>
 
@@ -417,7 +447,9 @@
             Наблюдение
           </div>
           <div class="table-row__action">
-            <a href="#" class="table-row__action-link">Подробнее</a>
+            <button class="table-row__action-btn" data-id="D-002">
+              Подробнее
+            </button>
           </div>
         </div>
 
@@ -437,8 +469,62 @@
             Наблюдение
           </div>
           <div class="table-row__action">
-            <a href="#" class="table-row__action-link">Подробнее</a>
+            <button class="table-row__action-btn" data-id="D-001">
+              Подробнее
+            </button>
           </div>
+        </div>
+      </div>
+
+      <!-- Пагинация -->
+      <div class="pagination">
+        <!-- Результаты -->
+        <div class="pagination__info">Результаты 1-15 из 30 420</div>
+
+        <!-- Блок с кнопками пагинации  -->
+        <div class="pagination__controls">
+          <!-- Кнопка "Назад" -->
+          <button class="pagination__nav-btn pagination__nav-btn--prev">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M15 18L9 12L15 6"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+
+          <!-- Страница 1 -->
+          <button class="pagination__page pagination__page--active">1</button>
+          <!-- Страница 2 -->
+          <button class="pagination__page">2</button>
+          <!-- Страница 3 -->
+          <button class="pagination__page">3</button>
+          <!-- Страница 4 -->
+          <button class="pagination__page">4</button>
+          <!-- Страница 5 -->
+          <button class="pagination__page">5</button>
+          <!-- Страница 6 -->
+          <button class="pagination__page">6</button>
+          <!-- Многоточие -->
+          <span class="pagination__dots">...</span>
+          <!-- Страница 3042 -->
+          <button class="pagination__page pagination__page--last">3042</button>
+
+          <!-- Кнопка "Вперед" -->
+          <button class="pagination__nav-btn pagination__nav-btn--next">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M9 18L15 12L9 6"
+                stroke="currentColor"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
         </div>
       </div>
     </main>
