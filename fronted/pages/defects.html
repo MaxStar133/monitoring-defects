@@ -530,7 +530,7 @@
     </main>
 
     <!-- ========== МОДАЛЬНОЕ ОКНО ФИЛЬТРОВ ========== -->
-    <div class="modal-overlay" id="filter-modal">
+    <div class="filter-overlay" id="filter-modal">
       <div class="filter-modal">
         <div class="filter-modal__content">
           <!-- Тип дефекта -->
@@ -689,6 +689,165 @@
             <button class="filter-btn filter-btn--reset">Сбросить</button>
             <button class="filter-btn filter-btn--apply">Применить</button>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ПАРАМЕТРОВ -->
+    <div class="params-overlay" id="params-modal">
+      <div class="params-modal">
+        <!-- Заголовок -->
+        <div class="params-modal__header">
+          <h2 class="params-modal__title">Параметры статусов</h2>
+        </div>
+
+        <!-- Три колонки в ряд -->
+        <div class="params-row">
+          <!-- Колонка 1: Критичный -->
+          <div class="params-col params-col--left">
+            <div class="params-col__title status-critical">Критичный</div>
+
+            <div class="params-field">
+              <div class="params-field__label">Длина</div>
+              <div class="params-input-wrapper">
+                <span class="params-input-prefix">От</span>
+                <div class="params-input-container">
+                  <input type="text" value="400" class="params-input" />
+                  <span class="params-unit">мм</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="params-field">
+              <div class="params-field__label">Ширина</div>
+              <div class="params-input-wrapper">
+                <span class="params-input-prefix">От</span>
+                <div class="params-input-container">
+                  <input type="text" value="300" class="params-input" />
+                  <span class="params-unit">мм</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="params-field">
+              <div class="params-field__label">Площадь</div>
+              <div class="params-input-wrapper">
+                <span class="params-input-prefix">От</span>
+                <div class="params-input-container">
+                  <input type="text" value="0" class="params-input" />
+                  <span class="params-unit">мм²</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Разделитель -->
+          <div class="params-divider"></div>
+
+          <!-- Колонка 2: Внимание -->
+          <div class="params-col params-col--center">
+            <div class="params-col--wide__title status-warning">Внимание</div>
+
+            <!-- Длина -->
+            <div class="params-field params-field--range">
+              <div class="params-range-headers">
+                <span class="params-range-header">От</span>
+                <span class="params-range-header">До</span>
+              </div>
+              <div class="params-field__label params-field--widle__label-position">Длина</div>
+              <div class="params-range-inputs">
+                <div class="params-input-container">
+                  <input type="text" value="0" class="params-input" />
+                  <span class="params-unit">мм</span>
+                </div>
+                <div class="params-input-container">
+                  <input type="text" value="200" class="params-input" />
+                  <span class="params-unit">мм</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Ширина -->
+            <div class="params-field params-field--range">
+              <div class="params-range-headers">
+              </div>
+              <div class="params-field__label params-field--widle__label-position">Ширина</div>
+              <div class="params-range-inputs">
+                <div class="params-input-container">
+                  <input type="text" value="0" class="params-input" />
+                  <span class="params-unit">мм</span>
+                </div>
+                <div class="params-input-container">
+                  <input type="text" value="200" class="params-input" />
+                  <span class="params-unit">мм</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Площадь -->
+            <div class="params-field params-field--range">
+              <div class="params-range-headers">
+              </div>
+              <div class="params-field__label params-field--widle__label-position">Площадь</div>
+              <div class="params-range-inputs">
+                <div class="params-input-container">
+                  <input type="text" value="0" class="params-input" />
+                  <span class="params-unit">мм²</span>
+                </div>
+                <div class="params-input-container">
+                  <input type="text" value="200" class="params-input" />
+                  <span class="params-unit">мм²</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Разделитель -->
+          <div class="params-divider"></div>
+
+          <!-- Колонка 3: Наблюдение -->
+          <div class="params-col params-col--right">
+            <div class="params-col__title status-normal">Наблюдение</div>
+
+            <div class="params-field">
+              <div class="params-field__label">Длина</div>
+              <div class="params-input-wrapper">
+                <span class="params-input-prefix">До</span>
+                <div class="params-input-container">
+                  <input type="text" value="200" class="params-input" />
+                  <span class="params-unit">мм</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="params-field">
+              <div class="params-field__label">Ширина</div>
+              <div class="params-input-wrapper">
+                <span class="params-input-prefix">До</span>
+                <div class="params-input-container">
+                  <input type="text" value="200" class="params-input" />
+                  <span class="params-unit">мм</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="params-field">
+              <div class="params-field__label">Площадь</div>
+              <div class="params-input-wrapper">
+                <span class="params-input-prefix">До</span>
+                <div class="params-input-container">
+                  <input type="text" value="200" class="params-input" />
+                  <span class="params-unit">мм²</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Кнопки -->
+        <div class="params-actions">
+          <button class="params-btn params-btn--cancel">Отменить</button>
+          <button class="params-btn params-btn--confirm">Подтвердить</button>
         </div>
       </div>
     </div>

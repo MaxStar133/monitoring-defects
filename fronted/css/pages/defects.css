@@ -334,7 +334,7 @@
 
 .coord-label {
   width: 129.5px;
-  text-align: left;
+  text-align: center;
   font-family: "Inter", normal;
   font-weight: 400;
   font-size: 16px;
@@ -735,14 +735,13 @@
 
 /* =========ФИЛЬТРЫ============= */
 
-/* Затемнение фона */
-.modal-overlay {
+.filter-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.25); /* Затемнение */
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: flex-end; /* Модалка справа */
   align-items: flex-start; /* Сверху */
@@ -752,14 +751,9 @@
   transition: all 0.3s ease;
 }
 
-.modal-overlay.active {
+.filter-overlay.active {
   opacity: 1;
   visibility: visible;
-}
-
-/* Блокируем прокрутку страницы при открытой модалке */
-body.modal-open {
-  overflow: hidden;
 }
 
 /* Модальное окно фильтров */
@@ -774,12 +768,45 @@ body.modal-open {
   width: 400px;
   background: var(--color-white);
   border: 1px solid var(--color-border);
+  box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.25);
+  border-radius: 12px;
+
+  transform: scale(0.9) translateX(20px);
+  transition: transform 0.3s ease;
+
+  /* Позиционирование под кнопкой */
+  position: absolute;
+  top: 170px;
+  right: 258px;
+}
+
+.filter-overlay.active .filter-modal {
+  transform: scale(1) translateX(0);
+}
+
+/* Блокируем прокрутку страницы при открытой модалке */
+body.modal-open {
+  overflow: hidden;
+}
+
+/* ================Модальное окно фильтров============== */
+.filter-modal {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 16px;
+  gap: 16px;
+
+  width: 400px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
   box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.1);
   border-radius: 12px;
-  
+
   transform: scale(0.9) translateX(20px); /* Эффект появления */
   transition: transform 0.3s ease;
-  
+
   /* Позиционирование под кнопкой */
   position: absolute;
   top: 170px; /* Отступ сверху */
@@ -789,7 +816,6 @@ body.modal-open {
 .modal-overlay.active .filter-modal {
   transform: scale(1) translateX(0);
 }
-
 
 /* Основной контент */
 .filter-modal__content {
@@ -950,7 +976,6 @@ body.modal-open {
   box-shadow: none;
 }
 
-/* Рисуем галочку - синяя */
 .checkbox-label input[type="checkbox"]:checked + .checkbox-custom::after {
   content: "";
   position: absolute;
@@ -1229,4 +1254,275 @@ body.modal-open {
 
 .filter-btn--apply:hover {
   background: #2d5acf;
+}
+
+/* =============Модальное окно параметров============= */
+.params-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+}
+
+.params-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.params-modal {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px 30px;
+  gap: 20px;
+  width: 628px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.1);
+  border-radius: 12px;
+  transform: scale(0.9);
+  transition: transform 0.3s ease;
+}
+
+.params-overlay.active .params-modal {
+  transform: scale(1);
+}
+
+.params-modal__header {
+  width: 100%;
+  text-align: center;
+}
+
+.params-modal__title {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+  color: var(--color-dark);
+  margin: 0;
+}
+
+/* Ряд с колонками */
+.params-row {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  width: 100%;
+  gap: 0;
+}
+
+/* Базовые стили колонки */
+.params-col {
+  width: 220px;
+}
+
+.params-col--left {
+  padding-right: 24px;
+}
+
+.params-col--center {
+  padding-left: 24px;
+  padding-right: 24px;
+  width: 300px;
+}
+
+.params-col--right {
+  padding-left: 24px;
+}
+
+/* Разделители */
+.params-divider {
+  width: 1px;
+  height: 272px;
+  background: #d9d9d9;
+  align-self: stretch;
+  margin: 0; /* Убираем внешние отступы */
+  flex-shrink: 0;
+}
+
+.params-col--wide {
+  width: 220px;
+}
+
+.params-col__title {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  margin-bottom: 29px;
+}
+
+.params-col--wide__title {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 24px;
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.status-critical {
+  color: var(--color-crack);
+}
+
+.status-warning {
+  color: var(--color-peeling);
+}
+
+.status-normal {
+  color: var(--color-rivet);
+}
+
+/* Поле с параметром */
+.params-field {
+  margin-bottom: 24px;
+}
+
+.params-field--range {
+  margin-bottom: 24px;
+}
+
+.params-field__label {
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--color-dark);
+  margin-bottom: 8px;
+}
+
+.params-field--widle__label-position {
+  text-align: center;
+}
+
+/* Для левой и правой колонки */
+.params-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.params-input-prefix {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--color-dark);
+  min-width: 19px;
+}
+
+/* Для средней колонки */
+.params-range-headers {
+  display: flex;
+  gap: 16px;
+}
+
+.params-range-header {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--color-dark);
+  width: 100px;
+  text-align: center;
+}
+
+.params-range-inputs {
+  display: flex;
+  gap: 16px;
+  margin-top: 4px;
+}
+
+/* Поле ввода */
+.params-input-container {
+  position: relative;
+  width: 100px;
+}
+
+.params-input {
+  width: 100%;
+  height: 32px;
+  padding: 4px 12px;
+  padding-right: 25px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--color-dark);
+  outline: none;
+  box-sizing: border-box;
+}
+
+.params-unit {
+  position: absolute;
+  right: 9px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--color-light);
+  pointer-events: none;
+}
+
+/* Кнопки */
+.params-actions {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.params-btn {
+  width: 195px;
+  height: 44px;
+  border-radius: 12px;
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  border: none;
+}
+
+.params-btn--cancel {
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  box-shadow: 0px 0px 20px rgba(29, 59, 255, 0.1);
+  color: var(--color-dark);
+}
+
+.params-btn--cancel:hover {
+  background: var(--color-bg);
+}
+
+.params-btn--confirm {
+  background: var(--color-blue);
+  color: var(--color-white);
+}
+
+.params-btn--confirm:hover {
+  background: #2d5acf;
+}
+
+.params-field:last-of-type,
+.params-field--range:last-of-type {
+  margin-bottom: 0px;
 }
