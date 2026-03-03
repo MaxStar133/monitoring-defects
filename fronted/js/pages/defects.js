@@ -66,4 +66,34 @@ document.addEventListener('DOMContentLoaded', function() {
       }
     });
   }
+
+  // Открытие модального окна истории обнаружений
+  const detailBtns = document.querySelectorAll('.table-row__action-btn');
+  const detectionsModal = document.getElementById('detections-modal');
+  
+  if (detailBtns.length > 0 && detectionsModal) {
+    detailBtns.forEach(btn => {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        const defectId = this.dataset.id;
+        detectionsModal.dataset.currentDefect = defectId;
+        detectionsModal.classList.add('active');
+        document.body.classList.add('modal-open');
+      });
+    });
+    
+    detectionsModal.addEventListener('click', function(e) {
+      if (e.target === this) {
+        this.classList.remove('active');
+        document.body.classList.remove('modal-open');
+      }
+    });
+    
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && detectionsModal.classList.contains('active')) {
+        detectionsModal.classList.remove('active');
+        document.body.classList.remove('modal-open');
+      }
+    });
+  }
 });
