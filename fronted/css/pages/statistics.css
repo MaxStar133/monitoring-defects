@@ -85,7 +85,11 @@
     border-color: #3B6ACF;
 }
 
-.stats-btn--update .stats-btn__text { color:#fff; }
+.stats-btn--update .stats-btn__text { 
+    color:#fff; 
+    font-family: 'Inter', normal;
+    font-weight: 400;
+}
 .stats-btn--update .stats-btn__icon { filter:brightness(0) invert(1); }
 
 .stats-btn__icon {
@@ -344,6 +348,8 @@
 .heatmap-edit-btn {
     position: absolute;
     right: 0;
+   font-family: 'Inter', normal;
+    font-weight: 400;
 }
 
 .heatmap-legend {
@@ -365,7 +371,21 @@
     border-radius:4px;
 }
 
-.legend-text { font-size:16px; }
+.legend-text { 
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 600;  /* SemiBold */
+    font-size: 20px;
+    line-height: 24px;
+    color: #333333;
+}
+
+.legend-text-value { 
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400; 
+    font-size: 20px;
+}
 
 .heatmap-edit-btn {
     font-size:16px;
