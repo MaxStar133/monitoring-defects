@@ -1,5 +1,6 @@
 @import url("../abstracts/colors.css");
 
+/* ===== ОСНОВНОЙ КОНТЕЙНЕР ===== */
 .main {
   box-sizing: border-box;
   display: flex;
@@ -24,6 +25,7 @@
   margin-top: 10px;
 }
 
+/* ===== ВЕРХНЯЯ ПАНЕЛЬ С КНОПКАМИ ===== */
 .defects-top-frame {
   position: relative;
   display: flex;
@@ -102,6 +104,7 @@
   position: relative;
 }
 
+/* ===== КНОПКИ ===== */
 .action-btn {
   box-sizing: border-box;
   display: flex;
@@ -167,7 +170,6 @@
   flex: none;
   order: 1;
   flex-grow: 0;
-
   white-space: nowrap;
 }
 
@@ -179,6 +181,7 @@
   flex-grow: 0;
 }
 
+/* ===== БЛОК "СКАЧАТЬ" ===== */
 .download-block {
   box-sizing: border-box;
   display: flex;
@@ -248,7 +251,7 @@
   height: 729px;
 }
 
-/* Frame 36 - заголовок таблицы */
+/* Заголовок таблицы */
 .table-header {
   box-sizing: border-box;
   display: flex;
@@ -269,7 +272,6 @@
   flex-grow: 0;
 }
 
-/* Дефект - Inter Medium */
 .table-header__cell--id {
   width: 120px;
   text-align: center;
@@ -278,11 +280,9 @@
   font-size: 20px;
   line-height: 24px;
   color: var(--color-dark);
-
   margin: 0;
 }
 
-/* Дата и время первого обнаружения - Inter Medium */
 .table-header__cell--date {
   width: 240px;
   text-align: center;
@@ -291,13 +291,11 @@
   font-size: 20px;
   line-height: 24px;
   color: var(--color-dark);
-
   display: flex;
   align-items: center;
   justify-content: center;
   white-space: normal;
   word-break: break-word;
-
   margin: 0;
 }
 
@@ -311,7 +309,6 @@
   gap: 10px;
 }
 
-/* Координаты - Inter Medium */
 .coordinates-title {
   width: 100%;
   text-align: center;
@@ -322,7 +319,6 @@
   color: var(--color-dark);
 }
 
-/* Подписи под координатами - Inter Regular */
 .coordinates-sub {
   display: flex;
   flex-direction: row;
@@ -349,31 +345,8 @@
   opacity: 0.2;
 }
 
-/* Тип - Inter Medium */
-.table-header__cell--type {
-  width: 240px;
-  text-align: center;
-  font-family: "Inter", normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
-  color: var(--color-dark);
-  margin: 0;
-}
-
-/* Статус - Inter Medium */
-.table-header__cell--status {
-  width: 240px;
-  text-align: center;
-  font-family: "Inter", normal;
-  font-weight: 500;
-  font-size: 20px;
-  line-height: 24px;
-  color: var(--color-dark);
-  margin: 0;
-}
-
-/* Действия - Inter Medium */
+.table-header__cell--type,
+.table-header__cell--status,
 .table-header__cell--actions {
   width: 240px;
   text-align: center;
@@ -385,7 +358,7 @@
   margin: 0;
 }
 
-/* Frame 35 - строка таблицы */
+/* Строка таблицы */
 .table-row {
   box-sizing: border-box;
   display: flex;
@@ -406,53 +379,41 @@
   flex-grow: 0;
 }
 
-/* ID дефекта (D-015) */
 .table-row__cell--id {
   margin: 0 auto;
   width: 120px;
   height: 24px;
-
   font-family: "Inter", normal;
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
-
   color: var(--color-dark);
-
   flex: none;
   order: 0;
   flex-grow: 0;
 }
 
-/* Дата и время */
 .table-row__cell--date {
   margin: 0 auto;
   width: 240px;
   height: 24px;
-
   font-family: "Inter", normal;
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
-
   color: rgba(51, 51, 51, 0.5);
-
   flex: none;
   order: 1;
   flex-grow: 1;
 }
 
-/* Время делаем черным */
 .table-row__cell--date .time {
   color: var(--color-dark);
   font-weight: 400;
 }
 
-/* Frame 691316213 - блок координат */
 .table-row__coordinates {
   display: flex;
   flex-direction: row;
@@ -460,76 +421,61 @@
   align-items: center;
   padding: 0px;
   gap: 10px;
-
   margin: 0 auto;
   width: 260px;
   height: 24px;
-
   flex: none;
   order: 2;
   flex-grow: 0;
 }
 
-/* Значение координат (150) */
 .table-row__coord-value {
   width: 125px;
   height: 24px;
-
   font-family: "Inter", normal;
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
-
   color: var(--color-dark);
-
   flex: none;
   order: 0;
   flex-grow: 1;
 }
 
-/* Второе значение координат (250) */
 .table-row__coord-value:last-child {
   order: 1;
 }
 
-/* Тип дефекта */
-.table-row__cell--type {
+.table-row__cell--type,
+.table-row__cell--status,
+.table-row__action {
   margin: 0 auto;
   width: 240px;
   height: 24px;
-
   font-family: "Inter", normal;
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
-
-  color: var(--color-dark);
-
   flex: none;
-  order: 3;
   flex-grow: 1;
 }
 
-/* Статус */
+.table-row__cell--type {
+  order: 3;
+  color: var(--color-dark);
+}
+
 .table-row__cell--status {
-  margin: 0 auto;
-  width: 240px;
-  height: 24px;
-
-  font-family: "Inter", normal;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 20px;
-  line-height: 24px;
-  text-align: center;
-
-  flex: none;
   order: 4;
-  flex-grow: 1;
+}
+
+.table-row__action {
+  order: 5;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* Цвета статусов */
@@ -545,39 +491,16 @@
   color: var(--color-rivet);
 }
 
-/* Frame 691316173 - действие */
-.table-row__action {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  padding: 0px;
-  gap: 8px;
-
-  margin: 0 auto;
-  width: 240px;
-  height: 24px;
-
-  flex: none;
-  order: 5;
-  flex-grow: 1;
-}
-
-/* Кнопка "Подробнее" */
 .table-row__action-btn {
   width: 100%;
   height: 24px;
-
   font-family: "Inter", normal;
-  font-style: normal;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
   text-decoration-line: underline;
-
   color: var(--color-blue);
-
   background: none;
   border: none;
   cursor: pointer;
@@ -593,7 +516,6 @@
 }
 
 /* ===== ПАГИНАЦИЯ ===== */
-/* Основной контейнер пагинации */
 .pagination {
   display: flex;
   flex-direction: row;
@@ -611,25 +533,20 @@
   flex-grow: 0;
 }
 
-/* Результаты слева */
 .pagination__info {
   width: 263px;
   height: 24px;
-
   font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
-
   color: rgba(51, 51, 51, 0.8);
-
   flex: none;
   order: 0;
   flex-grow: 0;
 }
 
-/* Блок с кнопками справа */
 .pagination__controls {
   display: flex;
   flex-direction: row;
@@ -645,7 +562,6 @@
   flex-grow: 0;
 }
 
-/* Кнопки навигации */
 .pagination__nav-btn {
   box-sizing: border-box;
   display: flex;
@@ -679,28 +595,22 @@
   stroke: var(--color-dark);
 }
 
-/* Номера страниц */
 .pagination__page {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   width: 24px;
   height: 24px;
-
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
-
   color: var(--color-blue);
-
   background: none;
   border: none;
   cursor: pointer;
-
   flex: none;
 }
 
@@ -712,39 +622,33 @@
   width: 51px;
 }
 
-/* Многоточие */
 .pagination__dots {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   width: 24px;
   height: 24px;
-
   font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
-
   color: var(--color-dark);
-
   flex: none;
 }
 
-/* =========ФИЛЬТРЫ============= */
-
+/* ===== МОДАЛЬНОЕ ОКНО ФИЛЬТРОВ (ГЛАВНАЯ) ===== */
 .filter-overlay {
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background: rgba(0, 0, 0, 0.25);
   display: flex;
-  justify-content: flex-end; /* Модалка справа */
-  align-items: flex-start; /* Сверху */
+  justify-content: flex-start;
+  align-items: flex-start;
   z-index: 1000;
   opacity: 0;
   visibility: hidden;
@@ -756,7 +660,6 @@
   visibility: visible;
 }
 
-/* Модальное окно фильтров */
 .filter-modal {
   box-sizing: border-box;
   display: flex;
@@ -774,75 +677,39 @@
   transform: scale(0.9) translateX(20px);
   transition: transform 0.3s ease;
 
-  /* Позиционирование под кнопкой */
   position: absolute;
   top: 170px;
   right: 258px;
 }
 
 .filter-overlay.active .filter-modal {
-  transform: scale(1) translateX(0);
+  transform: scale(1);
 }
 
-/* Блокируем прокрутку страницы при открытой модалке */
 body.modal-open {
   overflow: hidden;
 }
 
-/* ================Модальное окно фильтров============== */
-.filter-modal {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 16px;
-  gap: 16px;
-
-  width: 400px;
-  background: var(--color-white);
-  border: 1px solid var(--color-border);
-  box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.1);
-  border-radius: 12px;
-
-  transform: scale(0.9) translateX(20px); /* Эффект появления */
-  transition: transform 0.3s ease;
-
-  /* Позиционирование под кнопкой */
-  position: absolute;
-  top: 170px; /* Отступ сверху */
-  right: 258px; /* Отступ справа */
-}
-
-.modal-overlay.active .filter-modal {
-  transform: scale(1) translateX(0);
-}
-
-/* Основной контент */
 .filter-modal__content {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
   gap: 16px;
-
   width: 368px;
-
   flex: none;
   order: 0;
   align-self: stretch;
   flex-grow: 0;
 }
 
-/* Секция фильтра */
 .filter-section {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
   gap: 8px;
-
   width: 368px;
-
   flex: none;
   order: 0;
   align-self: stretch;
@@ -852,30 +719,58 @@ body.modal-open {
 .filter-section__title {
   width: 100%;
   height: 19px;
-
   font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
-
   color: var(--color-dark);
-
   flex: none;
   order: 0;
   flex-grow: 0;
 }
 
-/* Выпадающий список статуса */
+/* Выпадающий список */
 .filter-select {
   position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 8px;
+  gap: 12px;
+  width: 368px;
+  height: 32px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
+  cursor: pointer;
+}
+
+.filter-select__text {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: var(--color-dark);
 }
 
 .filter-select__arrow {
+  width: 18px;
+  height: 18px;
   transition: transform 0.2s ease;
 }
 
 .filter-select.active .filter-select__arrow {
   transform: rotate(180deg);
+}
+
+.filter-select__arrow path {
+  stroke: var(--color-dark);
 }
 
 .filter-dropdown {
@@ -919,10 +814,8 @@ body.modal-open {
   align-items: center;
   padding: 0px;
   gap: 8px;
-
   width: 368px;
   height: 35px;
-
   flex: none;
   order: 1;
   align-self: stretch;
@@ -935,11 +828,9 @@ body.modal-open {
   align-items: center;
   padding: 8px;
   gap: 8px;
-
   height: 35px;
 }
 
-/* Стили для кастомного чекбокса */
 .checkbox-label {
   display: flex;
   flex-direction: row;
@@ -949,7 +840,6 @@ body.modal-open {
   position: relative;
 }
 
-/* Прячем стандартный чекбокс */
 .checkbox-label input[type="checkbox"] {
   position: absolute;
   opacity: 0;
@@ -957,7 +847,6 @@ body.modal-open {
   height: 0;
 }
 
-/* Рисуем кастомный чекбокс - потолще */
 .checkbox-custom {
   width: 18px;
   height: 18px;
@@ -969,10 +858,9 @@ body.modal-open {
   box-sizing: border-box;
 }
 
-/* Стили для отмеченного чекбокса - только рамка синяя */
 .checkbox-label input[type="checkbox"]:checked + .checkbox-custom {
-  border-color: var(--color-blue); /* Только рамка становится синей */
-  background: transparent; /* Прозрачный фон */
+  border-color: var(--color-blue);
+  background: transparent;
   box-shadow: none;
 }
 
@@ -1005,14 +893,11 @@ body.modal-open {
   align-items: center;
   padding: 0px 24px;
   gap: 8px;
-
   width: 368px;
   height: 40px;
-
   background: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: 12px;
-
   flex: none;
   order: 1;
   align-self: stretch;
@@ -1047,47 +932,6 @@ body.modal-open {
   color: var(--color-dark);
 }
 
-/* Селект статуса */
-.filter-select {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  padding: 4px 8px;
-  gap: 12px;
-
-  width: 368px;
-  height: 32px;
-
-  background: var(--color-bg);
-  border: 1px solid var(--color-border);
-  border-radius: 8px;
-
-  flex: none;
-  order: 1;
-  align-self: stretch;
-  flex-grow: 0;
-  cursor: pointer;
-}
-
-.filter-select__text {
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 17px;
-  color: var(--color-dark);
-}
-
-.filter-select__arrow {
-  width: 18px;
-  height: 18px;
-}
-
-.filter-select__arrow path {
-  stroke: var(--color-dark);
-}
-
 /* Координаты */
 .filter-coord {
   display: flex;
@@ -1095,9 +939,7 @@ body.modal-open {
   align-items: flex-start;
   padding: 0px;
   gap: 6px;
-
   width: 368px;
-
   flex: none;
   order: 1;
   align-self: stretch;
@@ -1111,7 +953,7 @@ body.modal-open {
   font-size: 14px;
   line-height: 17px;
   color: var(--color-dark);
-  margin-bottom: 2px; /* Небольшой отступ снизу */
+  margin-bottom: 2px;
 }
 
 .coord-inputs {
@@ -1120,10 +962,8 @@ body.modal-open {
   align-items: center;
   padding: 0px;
   gap: 16px;
-
   width: 368px;
   height: 32px;
-
   flex: none;
   order: 1;
   align-self: stretch;
@@ -1136,10 +976,8 @@ body.modal-open {
   align-items: center;
   padding: 0px;
   gap: 8px;
-
   width: 127px;
   height: 32px;
-
   flex: none;
   flex-grow: 0;
 }
@@ -1150,7 +988,7 @@ body.modal-open {
   font-size: 14px;
   line-height: 17px;
   color: var(--color-dark);
-  min-width: 19px; /* Фиксированная ширина для "От" и "До" */
+  min-width: 19px;
 }
 
 .coord-input-field {
@@ -1159,14 +997,11 @@ body.modal-open {
   flex-direction: row;
   align-items: center;
   padding: 4px 12px;
-
   width: 100px;
   height: 32px;
-
   background: var(--color-bg);
   border: 1px solid var(--color-border);
   border-radius: 8px;
-
   position: relative;
 }
 
@@ -1180,7 +1015,7 @@ body.modal-open {
   background: transparent;
   border: none;
   outline: none;
-  padding-right: 20px; /* Место для единиц измерения */
+  padding-right: 20px;
 }
 
 .coord-unit {
@@ -1192,20 +1027,18 @@ body.modal-open {
   line-height: 17px;
   text-align: right;
   color: var(--color-light);
-  pointer-events: none; /* Чтобы нельзя было кликнуть */
+  pointer-events: none;
 }
 
-/* Кнопки действий */
+/* Кнопки фильтров */
 .filter-actions {
   display: flex;
   flex-direction: row;
   align-items: flex-start;
   padding: 0px;
   gap: 10px;
-
   width: 368px;
   height: 44px;
-
   flex: none;
   order: 1;
   align-self: stretch;
@@ -1219,18 +1052,14 @@ body.modal-open {
   align-items: center;
   padding: 10px 0;
   gap: 10px;
-
   width: 179px;
   height: 44px;
-
   border-radius: 12px;
-
   font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
   text-align: center;
-
   cursor: pointer;
   transition: all 0.2s ease;
 }
@@ -1256,7 +1085,7 @@ body.modal-open {
   background: #2d5acf;
 }
 
-/* =============Модальное окно параметров============= */
+/* ===== МОДАЛЬНОЕ ОКНО ПАРАМЕТРОВ ===== */
 .params-overlay {
   position: fixed;
   top: 0;
@@ -1321,7 +1150,6 @@ body.modal-open {
   gap: 0;
 }
 
-/* Базовые стили колонки */
 .params-col {
   width: 220px;
 }
@@ -1340,18 +1168,13 @@ body.modal-open {
   padding-left: 24px;
 }
 
-/* Разделители */
 .params-divider {
   width: 1px;
   height: 272px;
   background: #d9d9d9;
   align-self: stretch;
-  margin: 0; /* Убираем внешние отступы */
+  margin: 0;
   flex-shrink: 0;
-}
-
-.params-col--wide {
-  width: 220px;
 }
 
 .params-col__title {
@@ -1384,7 +1207,7 @@ body.modal-open {
   color: var(--color-rivet);
 }
 
-/* Поле с параметром */
+/* Поля параметров */
 .params-field {
   margin-bottom: 24px;
 }
@@ -1406,7 +1229,6 @@ body.modal-open {
   text-align: center;
 }
 
-/* Для левой и правой колонки */
 .params-input-wrapper {
   display: flex;
   align-items: center;
@@ -1422,7 +1244,6 @@ body.modal-open {
   min-width: 19px;
 }
 
-/* Для средней колонки */
 .params-range-headers {
   display: flex;
   gap: 16px;
@@ -1444,7 +1265,6 @@ body.modal-open {
   margin-top: 4px;
 }
 
-/* Поле ввода */
 .params-input-container {
   position: relative;
   width: 100px;
@@ -1480,7 +1300,7 @@ body.modal-open {
   pointer-events: none;
 }
 
-/* Кнопки */
+/* Кнопки параметров */
 .params-actions {
   display: flex;
   justify-content: center;
@@ -1527,8 +1347,7 @@ body.modal-open {
   margin-bottom: 0px;
 }
 
-/* =============Модальное окно истории обнаружений============= */
-/* Серый внешний блок */
+/* ===== МОДАЛЬНОЕ ОКНО ИСТОРИИ ОБНАРУЖЕНИЙ ===== */
 .detections-modal {
   box-sizing: border-box;
   display: flex;
@@ -1537,8 +1356,8 @@ body.modal-open {
   padding: 8px;
   gap: 16px;
 
-  width: 1300px;  /* Чуть больше внутреннего */
-  height: 900px;   /* Чуть больше внутреннего */
+  width: 1300px;
+  height: 900px;
 
   background: #F6F8FF;
   border: 1px solid rgba(0, 0, 0, 0.25);
@@ -1552,7 +1371,6 @@ body.modal-open {
   transform: scale(1);
 }
 
-/* Белый внутренний блок с прокруткой */
 .detections-modal__content {
   box-sizing: border-box;
   display: flex;
@@ -1564,7 +1382,7 @@ body.modal-open {
 
   width: 1284px;   
   height: 884px;  
-   overflow-y: auto;    
+  overflow-y: auto;    
   overflow-x: hidden;  
 
   background: #FFFFFF;
@@ -1599,7 +1417,6 @@ body.modal-open {
 
 /* Заголовок */
 .detections-header {
-  /* Auto layout */
   display: flex;
   flex-direction: row;  
   justify-content: space-between; 
@@ -1610,14 +1427,13 @@ body.modal-open {
   width: 1244px;
   height: 44px;
 
-  /* Inside auto layout */
   flex: none;
   order: 0;
   align-self: stretch;
   flex-grow: 0;
 }
+
 .detections-header-left {
-  /* Auto layout */
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -1629,23 +1445,20 @@ body.modal-open {
   
   justify-content: flex-start;
 
-  /* Inside auto layout */
   flex: none;
   order: 0;
   flex-grow: 0;
 }
+
 .detections-header__label {
   width: 83px;
   height: 24px;
-
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
   text-align: left; 
-
   color: #333333;
-
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -1654,15 +1467,12 @@ body.modal-open {
 .detections-header__id {
   width: 60px;
   height: 24px;
-
   font-family: 'Inter', sans-serif;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
   text-align: left; 
-
   color: #333333;
-
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -1671,22 +1481,18 @@ body.modal-open {
 .detections-header__type {
   width: 108px;
   height: 24px;
-
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   text-align: left; 
-
   color: #333333;
-
   flex: none;
   order: 2;
   flex-grow: 0;
 }
 
 .detections-header__btn {
-  /* Auto layout */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -1697,17 +1503,14 @@ body.modal-open {
   width: 143px;
   height: 44px;
 
-  /* Blue */
   background: var(--color-blue);
   border-radius: 12px;
   border: none;
   cursor: pointer;
 
-  /* Inside auto layout */
   flex: none;
   order: 1;
   flex-grow: 0;
-  
   transition: background 0.2s ease;
 }
 
@@ -1728,9 +1531,7 @@ body.modal-open {
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-
   color: #F6F8FF;
-
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -1738,17 +1539,15 @@ body.modal-open {
 
 /* Статистика обнаружений */
 .detections-statistics {
-  /* Auto layout */
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
-  gap: 8px; /* Отступ между статистикой и графиками */
+  gap: 8px;
 
   width: 1244px;
-  height: auto; /* Убираем фиксированную высоту */
+  height: auto;
 
-  /* Inside auto layout */
   flex: none;
   order: 1;
   align-self: stretch;
@@ -1756,7 +1555,6 @@ body.modal-open {
 }
 
 .detections-statistics__row {
-  /* Auto layout */
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -1767,7 +1565,6 @@ body.modal-open {
   width: 1244px;
   height: 19px;
 
-  /* Inside auto layout */
   flex: none;
   order: 0;
   align-self: stretch;
@@ -1775,7 +1572,6 @@ body.modal-open {
 }
 
 .detections-statistics__item {
-  /* Auto layout */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -1786,9 +1582,6 @@ body.modal-open {
   width: 333px;
   height: 19px;
 
-  border-radius: 0px;
-
-  /* Inside auto layout */
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -1797,14 +1590,11 @@ body.modal-open {
 .detections-statistics__label {
   width: 80px;
   height: 19px;
-
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-
   color: #333333;
-
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -1813,14 +1603,11 @@ body.modal-open {
 .detections-statistics__value {
   width: 100px;
   height: 19px;
-
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-
   color: #333333;
-
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -1829,21 +1616,18 @@ body.modal-open {
 .detections-statistics__percent {
   width: 60px;
   height: 19px;
-
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
   text-align: right;
-
   color: #333333;
-
   flex: none;
   order: 2;
   flex-grow: 0;
 }
 
-/* Контейнер для графиков */
+/* Графики */
 .detections-graphs {
   display: flex;
   flex-direction: row;
@@ -1859,19 +1643,18 @@ body.modal-open {
   order: 1;
   align-self: stretch;
   flex-grow: 0;
-  margin-top: 0; /* Убираем лишний отступ */
+  margin-top: 0;
 }
 
-/* Заглушка графика */
 .graph-placeholder {
   width: 399px;
   height: 240px;
-  background: #D9D9D9; /* Простой серый цвет */
+  background: #D9D9D9;
   border-radius: 16px;
   flex: none;
 }
 
-/* Кнопки параметров */
+/* Кнопки в модальном окне */
 .detections-buttons {
   display: flex;
   flex-direction: row;
@@ -1889,7 +1672,6 @@ body.modal-open {
   flex-grow: 0;
 }
 
-/* Блок "Скачать" */
 .detections-download-block {
   box-sizing: border-box;
   display: flex;
@@ -1947,7 +1729,6 @@ body.modal-open {
   font-size: 16px;
 }
 
-/* Кнопка "Фильтры" */
 .detections-filter-btn {
   box-sizing: border-box;
   display: flex;
@@ -2027,7 +1808,6 @@ body.modal-open {
   flex-grow: 0;
 }
 
-/* Заголовок таблицы */
 .detections-table-header {
   box-sizing: border-box;
   display: flex;
@@ -2088,7 +1868,6 @@ body.modal-open {
   color: #333333;
 }
 
-/* Строка таблицы */
 .detections-table-row {
   box-sizing: border-box;
   display: flex;
@@ -2130,6 +1909,7 @@ body.modal-open {
   color: var(--color-dark);
   font-weight: 400;
 }
+
 .detections-table-row__cell--status {
   width: 241.33px;
 }
@@ -2172,7 +1952,6 @@ body.modal-open {
   color: var(--color-dark)
 }
 
-/* Цвета статусов */
 .detections-table-row__cell--status.status--critical {
   color: var(--color-crack);
 }
@@ -2185,7 +1964,7 @@ body.modal-open {
   color: var(--color-rivet);
 }
 
-/* Пагинация для модального окна */
+/* Пагинация в модальном окне */
 .detections-pagination {
   display: flex;
   flex-direction: row;
@@ -2199,7 +1978,6 @@ body.modal-open {
 
   margin-top: 24px;
 
-
   flex: none;
   order: 4;
   align-self: stretch;
@@ -2209,15 +1987,12 @@ body.modal-open {
 .detections-pagination__info {
   width: 228px;
   height: 24px;
-
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
-
   color: rgba(51, 51, 51, 0.8);
-
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -2276,22 +2051,17 @@ body.modal-open {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   width: 24px;
   height: 24px;
-
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
-
   color: var(--color-blue);
-  
   background: none;
   border: none;
   cursor: pointer;
-  
   flex: none;
 }
 
@@ -2308,18 +2078,14 @@ body.modal-open {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
   width: 24px;
   height: 24px;
-
   font-family: 'Inter', sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
-
   color: var(--color-dark);
-
   flex: none;
 }
 
@@ -2327,7 +2093,7 @@ body.modal-open {
   border-bottom: none;
 }
 
-/* ============= Модальное окно подтверждения ============= */
+/* ===== МОДАЛЬНОЕ ОКНО ПОДТВЕРЖДЕНИЯ ===== */
 .alert-overlay {
   position: fixed;
   top: 0;
@@ -2377,9 +2143,7 @@ body.modal-open {
   align-items: flex-start;
   padding: 0px;
   gap: 20px;
-
   width: 400px;
-
   flex: none;
   order: 0;
   align-self: stretch;
@@ -2389,15 +2153,12 @@ body.modal-open {
 .alert-modal__title {
   width: 400px;
   height: 24px;
-
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
   text-align: center;
-
   color: #333333;
-
   flex: none;
   order: 0;
   align-self: stretch;
@@ -2407,14 +2168,11 @@ body.modal-open {
 .alert-modal__subtitle {
   width: 389px;
   height: 19px;
-
   font-family: 'Inter', sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
-
   color: #333333;
-
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -2427,10 +2185,8 @@ body.modal-open {
   align-items: flex-start;
   padding: 0px;
   gap: 10px;
-
   width: 400px;
   height: 44px;
-
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -2443,18 +2199,14 @@ body.modal-open {
   align-items: center;
   padding: 10px 70px;
   gap: 10px;
-
   width: 195px;
   height: 44px;
-
   border-radius: 12px;
-
   font-family: 'Inter', sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
   text-align: center;
-
   cursor: pointer;
   transition: all 0.2s ease;
   border: none;
@@ -2480,18 +2232,18 @@ body.modal-open {
   background: #2D5ACF;
 }
 
-/* ========== ФИЛЬТРЫ ДЛЯ МОДАЛЬНОГО ОКНА ОБНАРУЖЕНИЙ ========== */
+/* ===== ФИЛЬТРЫ ДЛЯ МОДАЛЬНОГО ОКНА ОБНАРУЖЕНИЙ ===== */
 .detections-filter-overlay {
-  position: absolute;
+  position: fixed; 
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
   background: rgba(0, 0, 0, 0.25); 
   display: flex;
-  justify-content: center; 
-  align-items: center; 
-  z-index: 20;
+  justify-content: flex-start;
+  align-items: flex-start;
+  z-index: 2000;
   opacity: 0;
   visibility: hidden;
   transition: all 0.3s ease;
@@ -2515,19 +2267,19 @@ body.modal-open {
   width: 400px;
   background: var(--color-white);
   border: 1px solid var(--color-border);
+  box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.25);
   border-radius: 12px;
 
-  transform: scale(0.9) translateX(20px);
+  transform: scale(0.9);
   transition: transform 0.3s ease;
 
-  /* Позиционирование под кнопкой */
-  position: relative;
-  top: auto;
-  right: auto;
+  position: fixed;
+  margin: 0;
+  z-index: 2001;
 }
 
 .detections-filter-overlay.active .detections-filter-modal {
-  transform: scale(1) translateX(0);
+  transform: scale(1);
 }
 
 .detections-filter-modal__content {
@@ -2536,9 +2288,7 @@ body.modal-open {
   align-items: flex-start;
   padding: 0px;
   gap: 16px;
-
   width: 368px;
-
   flex: none;
   order: 0;
   align-self: stretch;

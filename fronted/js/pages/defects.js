@@ -1,15 +1,63 @@
 // Открытие модального окна фильтров
 document.addEventListener("DOMContentLoaded", function () {
+  // ===== ФИЛЬТРЫ НА ГЛАВНОЙ =====
   const filterBtn = document.getElementById("filter-btn");
-  const modal = document.getElementById("filter-modal");
+  const filterModal = document.getElementById("filter-modal");
+  const filterContent = document.querySelector(".filter-modal");
 
-  if (filterBtn && modal) {
-    filterBtn.addEventListener("click", function () {
-      modal.classList.add("active");
+  if (filterBtn && filterModal && filterContent) {
+    // Функция для обновления позиции модалки
+    function updateFilterModalPosition() {
+      const rect = filterBtn.getBoundingClientRect();
+
+      // Базовая позиция под кнопкой
+      let top = rect.bottom + 5; // 5px отступ снизу
+      let left = rect.right - 400; // 400px - ширина модалки
+
+      // Корректировка, если выходит за левый край
+      if (left < 10) left = 10;
+
+      // Корректировка, если выходит за правый край
+      if (left + 400 > window.innerWidth - 10) {
+        left = window.innerWidth - 410;
+      }
+
+      // Корректировка, если не помещается снизу
+      if (top + 500 > window.innerHeight - 10) {
+        top = rect.top - 500; // Показываем сверху
+      }
+
+      filterContent.style.position = "fixed";
+      filterContent.style.top = top + "px";
+      filterContent.style.left = left + "px";
+    }
+
+    filterBtn.addEventListener("click", function (e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      // Обновляем позицию перед открытием
+      updateFilterModalPosition();
+
+      filterModal.classList.add("active");
       document.body.classList.add("modal-open");
     });
 
-    modal.addEventListener("click", function (e) {
+    // Обновляем позицию при скролле
+    window.addEventListener("scroll", function () {
+      if (filterModal.classList.contains("active")) {
+        updateFilterModalPosition();
+      }
+    });
+
+    // Обновляем позицию при ресайзе окна
+    window.addEventListener("resize", function () {
+      if (filterModal.classList.contains("active")) {
+        updateFilterModalPosition();
+      }
+    });
+
+    filterModal.addEventListener("click", function (e) {
       if (e.target === this) {
         this.classList.remove("active");
         document.body.classList.remove("modal-open");
@@ -17,8 +65,8 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     document.addEventListener("keydown", function (e) {
-      if (e.key === "Escape" && modal.classList.contains("active")) {
-        modal.classList.remove("active");
+      if (e.key === "Escape" && filterModal.classList.contains("active")) {
+        filterModal.classList.remove("active");
         document.body.classList.remove("modal-open");
       }
     });
@@ -135,18 +183,64 @@ document.addEventListener("DOMContentLoaded", function () {
       });
     }
   }
-
-  // Открытие модального окна фильтров в обнаружениях
+  // Открытие модального окна фильтров в обнаружениях с привязкой к кнопке
   const detectionsFilterBtn = document.getElementById("detections-filter-btn");
   const detectionsFilterModal = document.getElementById(
     "detections-filter-modal",
   );
+  const detectionsFilterContent = document.querySelector(
+    ".detections-filter-modal",
+  );
 
-  if (detectionsFilterBtn && detectionsFilterModal) {
+  if (detectionsFilterBtn && detectionsFilterModal && detectionsFilterContent) {
+    // Функция для обновления позиции модалки
+    function updateFilterModalPosition() {
+      const rect = detectionsFilterBtn.getBoundingClientRect();
+
+      // Базовая позиция под кнопкой
+      let top = rect.bottom + 5;
+      let left = rect.right - 400; // 400px - ширина модалки
+
+      // Корректировка, если выходит за левый край
+      if (left < 10) left = 10;
+
+      // Корректировка, если выходит за правый край
+      if (left + 400 > window.innerWidth - 10) {
+        left = window.innerWidth - 410;
+      }
+
+      // Корректировка, если выходит за нижний край
+      if (top + 400 > window.innerHeight - 10) {
+        top = rect.top - 405; // Показываем сверху от кнопки
+      }
+
+      detectionsFilterContent.style.position = "fixed";
+      detectionsFilterContent.style.top = top + "px";
+      detectionsFilterContent.style.left = left + "px";
+    }
+
     detectionsFilterBtn.addEventListener("click", function (e) {
       e.preventDefault();
       e.stopPropagation();
+
+      // Обновляем позицию перед открытием
+      updateFilterModalPosition();
+
       detectionsFilterModal.classList.add("active");
+    });
+
+    // Обновляем позицию при скролле
+    window.addEventListener("scroll", function () {
+      if (detectionsFilterModal.classList.contains("active")) {
+        updateFilterModalPosition();
+      }
+    });
+
+    // Обновляем позицию при ресайзе окна
+    window.addEventListener("resize", function () {
+      if (detectionsFilterModal.classList.contains("active")) {
+        updateFilterModalPosition();
+      }
     });
 
     detectionsFilterModal.addEventListener("click", function (e) {
