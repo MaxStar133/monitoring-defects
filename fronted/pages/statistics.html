@@ -37,7 +37,10 @@
             </div>
           </a>
           <!-- Главная слева -->
-          <a href="../index.html" class="header__button header__button--home-before">
+          <a
+            href="../index.html"
+            class="header__button header__button--home-after"
+          >
             <img
               src="../images/home-icon.svg"
               alt=""
@@ -189,8 +192,7 @@
               ></span>
               <span class="legend-text"
                 >Высокая
-                <span class="legend-text-value">(>25) 
-                </span>
+                <span class="legend-text-value">(>25) </span>
               </span>
             </div>
             <div class="legend-item">
@@ -200,8 +202,7 @@
               ></span>
               <span class="legend-text"
                 >Средняя
-                <span class="legend-text-value">(15-25) 
-                </span>
+                <span class="legend-text-value">(15-25) </span>
               </span>
             </div>
             <div class="legend-item">
@@ -211,8 +212,7 @@
               ></span>
               <span class="legend-text"
                 >Низкая
-                <span class="legend-text-value">(<15) 
-                </span>
+                <span class="legend-text-value">(<15) </span>
               </span>
             </div>
           </div>
@@ -247,8 +247,7 @@
               ></span>
               <span class="legend-text"
                 >Высокая
-                <span class="legend-text-value">(>25) 
-                </span>
+                <span class="legend-text-value">(>25) </span>
               </span>
             </div>
             <div class="legend-item">
@@ -258,8 +257,7 @@
               ></span>
               <span class="legend-text"
                 >Средняя
-                <span class="legend-text-value">(15-25) 
-                </span>
+                <span class="legend-text-value">(15-25) </span>
               </span>
             </div>
             <div class="legend-item">
@@ -269,8 +267,7 @@
               ></span>
               <span class="legend-text"
                 >Низкая
-                <span class="legend-text-value">(<15) 
-                </span>
+                <span class="legend-text-value">(<15) </span>
               </span>
             </div>
           </div>
@@ -487,10 +484,10 @@
           <!-- 1 -->
           <div class="modal-row">
             <div class="color-box high"></div>
-              <span class="label-main">Высокая</span>
-              <span class="label-sub">от</span>
-              <input type="number" value="25" />
-            </div>
+            <span class="label-main">Высокая</span>
+            <span class="label-sub">от</span>
+            <input type="number" value="25" />
+          </div>
 
           <!-- 2 -->
           <div class="modal-row modal-row--medium">
@@ -523,50 +520,40 @@
     </div>
 
     <!-- ОКНО УВЕДОМЛЕНИЙ -->
-<div class="notifications-overlay" id="notificationsPanel">
+    <div class="notifications-overlay" id="notificationsPanel">
+      <div class="notifications-app">
+        <div class="notifications-header">
+          <div class="bell">
+            <img src="../images/bell-icon.svg" alt="Bell" class="icon" />
+            <span class="badge">+1</span>
+          </div>
 
-  <div class="notifications-app">
+          <h1>Новые дефекты</h1>
 
-    <div class="notifications-header">
+          <a href="#" class="clear">Очистить все</a>
+        </div>
 
-      <div class="bell">
-        <img src="../images/bell-icon.svg" alt="Bell" class="icon">
-        <span class="badge">+1</span>
-      </div>
+        <div class="list">
+          <div class="card">
+            <div class="left">
+              <div class="id">D-015</div>
+              <div class="notification-date">01.01.2026 <span>14:30:12</span></div>
+            </div>
 
-      <h1>Новые дефекты</h1>
+            <div class="center">
+              <div class="status">Критичный</div>
+              <div class="type">Отслоение</div>
+            </div>
 
-      <a href="#" class="clear">Очистить все</a>
-
-    </div>
-
-    <div class="list">
-
-      <div class="card">
-        <div class="left">
-          <div class="id">D-015</div>
-          <div class="date">
-          01.01.2026 <span>14:30:12</span>
+            <div class="arrow">
+              <img src="../images/arrow.svg" alt="arrow" class="icon" />
+            </div>
           </div>
         </div>
-
-        <div class="center">
-          <div class="status">Критичный</div>
-          <div class="type">Отслоение</div>
-        </div>
-
-        <div class="arrow">
-          <img src="../images/arrow.svg" alt="arrow" class="icon">
-        </div>
       </div>
-      </div>
-
     </div>
 
-  </div>
-
-</div>
     <script src="js/notifications.js"></script>
-    <script src="js/properties.js"></script> 
+    <script src="js/properties.js"></script>
   </body>
 </html>

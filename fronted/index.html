@@ -207,45 +207,38 @@
 
     <script src="js/index.js"></script>
     <!-- ОКНО УВЕДОМЛЕНИЙ -->
-<div class="notifications-overlay" id="notificationsPanel">
+    <div class="notifications-overlay" id="notificationsPanel">
+      <div class="notifications-app">
+        <div class="notifications-header">
+          <div class="bell">
+            <img src="../images/bell-icon.svg" alt="Bell" class="icon" />
+            <span class="badge">+1</span>
+          </div>
 
-  <div class="notifications-app">
+          <h1>Новые дефекты</h1>
 
-    <div class="notifications-header">
+          <a href="#" class="clear">Очистить все</a>
+        </div>
 
-      <div class="bell">
-        <img src="images/bell-icon.svg" alt="Bell" class="icon">
-        <span class="badge">+1</span>
-      </div>
+        <div class="list">
+          <div class="card">
+            <div class="left">
+              <div class="id">D-015</div>
+              <div class="date">01.01.2026 <span>14:30:12</span></div>
+            </div>
 
-      <h1>Новые дефекты</h1>
+            <div class="center">
+              <div class="status">Критичный</div>
+              <div class="type">Отслоение</div>
+            </div>
 
-      <a href="#" class="clear">Очистить все</a>
-
-    </div>
-
-    <div class="list">
-
-      <div class="card">
-        <div class="left">
-          <div class="id">D-015</div>
-          <div class="date">
-          01.01.2026 <span>14:30:12</span>
+            <div class="arrow">
+              <img src="../images/arrow.svg" alt="arrow" class="icon" />
+            </div>
           </div>
         </div>
-
-        <div class="center">
-          <div class="status">Критичный</div>
-          <div class="type">Отслоение</div>
-        </div>
-
-        <div class="arrow">
-          <img src="images/arrow.svg" alt="arrow" class="icon">
-        </div>
       </div>
     </div>
-  </div>
-</div>
     <script src="pages/js/notifications.js"></script>
   </body>
 </html>
