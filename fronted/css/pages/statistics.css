@@ -1,6 +1,9 @@
 @import url("../abstracts/colors.css");
 
 /* ===== ШАПКА 1 ===== */
+body * {
+  color: #333333;
+}
 .header__nav {
     max-width: 1380px;
     display: flex;

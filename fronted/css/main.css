@@ -393,4 +393,263 @@ body {
         font-size: 13px;
     }
 }
+/* ===== колокольчик крутой ===== */
 
+.notifications-overlay{
+position:fixed;
+top:80px;
+right:20px;
+
+opacity:0;
+pointer-events:none;
+transition:0.2s;
+
+z-index:2000;
+}
+
+.notifications-overlay.active{
+opacity:1;
+pointer-events:auto;
+}
+
+
+/* ===== APP ===== */
+
+.notifications-app{
+width:400px;
+height:600px;
+
+background:#FFFFFF;
+
+border:1px solid rgba(0,0,0,0.1);
+border-radius:20px 0 0 20px;
+
+padding:12px 16px;
+
+box-shadow:0 0 20px rgba(29,59,255,0.1);
+}
+
+
+/* ===== HEADER ===== */
+
+.notifications-header{
+position:relative;
+
+display:flex;
+align-items:center;
+
+width:368px;
+height:32px;
+
+margin-bottom:16px;
+}
+
+
+/* ===== TITLE ===== */
+
+.notifications-header h1{
+position:absolute;
+left:50%;
+transform:translateX(-50%);
+
+width:125px;
+height:19px;
+
+font-size:16px;
+font-weight:400;
+
+color:#333333;
+
+text-align:center;
+}
+
+
+/* ===== CLEAR BUTTON ===== */
+
+.clear{
+margin-left:auto;
+
+width:93px;
+height:17px;
+
+color:#3B6ACF;
+
+font-size:14px;
+font-weight:400;
+
+text-decoration:underline;
+}
+
+
+/* ===== BELL ===== */
+
+.bell{
+
+position:relative;
+
+width:32px;
+height:32px;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+background:rgba(59,106,207,0.05);
+
+border-radius:50%;
+}
+
+.bell .icon{
+width:24px;
+height:24px;
+}
+
+
+/* ===== BADGE ===== */
+
+.badge{
+
+position:absolute;
+
+top:-2px;
+right:-2px;
+
+width:14px;
+height:14px;
+
+background:#FF0000;
+color:#FFFFFF;
+
+border-radius:50%;
+
+display:flex;
+align-items:center;
+justify-content:center;
+
+font-size:8px;
+font-weight:bold;
+
+line-height:10px;
+}
+
+
+/* ===== LIST ===== */
+
+.list{
+display:flex;
+flex-direction:column;
+
+width:368px;
+height:528px;
+
+gap:12px;
+
+
+}
+
+
+/* ===== CARD ===== */
+
+.card{
+display:grid;
+
+grid-template-columns:140px 1fr 30px;
+
+align-items:center;
+
+width:368px;
+height:56px;
+
+background:rgba(59,106,207,0.05);
+
+border-radius:16px;
+
+padding:8px 12px;
+
+border:1px solid rgba(51,51,51,0.1);
+}
+
+
+/* ===== LEFT ===== */
+
+.left{
+display:flex;
+flex-direction:column;
+}
+
+.id{
+font-size:16px;
+color:#333333;
+}
+
+.date{
+font-size:14px;
+color:rgba(51,51,51,0.5);
+
+margin-top:4px;
+}
+
+
+/* ===== CENTER ===== */
+
+.center{
+display:flex;
+flex-direction:column;
+}
+
+.status{
+
+width:88px;
+height:19px;
+
+font-size:16px;
+font-weight:400;
+
+color:#FF0000;
+}
+
+.type{
+
+font-size:14px;
+
+font-weight:400;
+
+color:#333333;
+
+margin-top:4px;
+}
+
+
+/* ===== ARROW ===== */
+
+.arrow{
+display:flex;
+
+justify-content:center;
+align-items:center;
+
+width:32px;
+height:32px;
+
+border-radius:50px;
+}
+
+.arrow .icon{
+width:16px;
+height:16px;
+}
+
+
+.date{
+
+font-size:14px;
+color:rgba(51,51,51,0.5);
+
+margin-top:4px;
+}
+
+/* время внутри строки */
+
+.date span{
+color:#333333;
+}
