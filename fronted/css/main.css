@@ -1,655 +1,716 @@
 /* ========== ПОДКЛЮЧЕНИЯ ========== */
-@import url('abstracts/colors.css');
+@import url("abstracts/colors.css");
 
 /* ========== ШРИФТЫ ========== */
 @font-face {
-    font-family: 'Gotham Pro';
-    src: url('../fonts/gothampro_bold.ttf') format('truetype');
-    font-weight: 700;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Gotham Pro";
+  src: url("../fonts/gothampro_bold.ttf") format("truetype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Gotham Pro';
-    src: url('../fonts/gothampro_regular.ttf') format('truetype');
-    font-weight: 400;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Gotham Pro";
+  src: url("../fonts/gothampro_regular.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
 }
 
 /* ========== ОБНУЛЕНИЕ ========== */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 /* ========== БАЗОВЫЕ СТИЛИ ========== */
 body {
-    font-family: 'Gotham Pro', 'Segoe UI', Arial, sans-serif;
-    background-color: var(--color-bg);
-    min-height: 100vh;
-    padding: 20px;
+  font-family: "Gotham Pro", "Segoe UI", Arial, sans-serif;
+  background-color: var(--color-bg);
+  min-height: 100vh;
+  padding: 20px;
 }
 
 /* ========== ШАПКА ========== */
 .header {
-    max-width: 1420px;
-    margin: 0 auto;
+  max-width: 1420px;
+  margin: 0 auto;
 }
 
 .header__container {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 8px 8px 8px 20px;
-    gap: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 8px 8px 20px;
+  gap: 10px;
 
-    width: 1380px;
-    height: 60px;
+  width: 1380px;
+  height: 60px;
 
-    background: var(--color-white);
-    border: 1px solid var(--color-border);
-    box-shadow: 0px 0px 20px rgba(29, 59, 255, 0.1);
-    border-radius: 20px;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  box-shadow: 0px 0px 20px rgba(29, 59, 255, 0.1);
+  border-radius: 20px;
 
-    margin: 0 auto;
+  margin: 0 auto;
 }
 
 /* ===== ЛЕВАЯ ЧАСТЬ ===== */
 .header__logo-block {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0px;
-    gap: 12px;
-    
-    width: 304px;
-    height: 43px;
-    
-    flex: none;
-    order: 0;
-    flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 0px;
+  gap: 12px;
+
+  width: 304px;
+  height: 43px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
 
 .header__logo {
-    width: 54px;
-    height: 43px;
-    
-    flex: none;
-    order: 0;
-    flex-grow: 0;
+  width: 54px;
+  height: 43px;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
 }
 
 .header__logo-text {
-    width: 250px;
-    height: 30px;
-    
-    font-family: 'Gotham Pro', sans-serif;
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 15px;
-    color: var(--color-blue-dark);
-    
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    
-    white-space: normal;
-    word-break: break-word;
-    
-    flex: none;
-    order: 1;
-    flex-grow: 0;
+  width: 250px;
+  height: 30px;
+
+  font-family: "Gotham Pro", sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 15px;
+  color: var(--color-blue-dark);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  white-space: normal;
+  word-break: break-word;
+
+  flex: none;
+  order: 1;
+  flex-grow: 0;
 }
 
 /* ===== ПРАВАЯ ЧАСТЬ ===== */
 .header__nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-end;
-    align-items: center;
-    padding: 0px;
-    gap: 12px;
-    
-    width: 330px;
-    height: 44px;
-    
-    flex: none;
-    order: 1;
-    align-self: stretch;
-    flex-grow: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0px;
+  gap: 12px;
+
+  width: 330px;
+  height: 44px;
+
+  flex: none;
+  order: 1;
+  align-self: stretch;
+  flex-grow: 0;
 }
 
 /* ===== КНОПКИ СТАТИСТИКА И ДЕФЕКТЫ ===== */
 
 /* Базовые стили для всех кнопок */
 .header__button {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    padding: 0px 12px;
-    gap: 8px;
-    
-    height: 44px; 
-    
-    background: var(--color-white);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.1);
-    border-radius: 12px;
-    
-    text-decoration: none;
-    transition: all 0.2s ease;
-    
-    font-family: 'Inter', sans-serif;
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 19px;
-    color: var(--color-dark);
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px 12px;
+  gap: 8px;
+
+  height: 44px;
+
+  background: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.1);
+  border-radius: 12px;
+
+  text-decoration: none;
+  transition: all 0.2s ease;
+
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 19px;
+  color: var(--color-dark);
 }
 
 /* Кнопка СТАТИСТИКА */
 .header__button--statistics {
-    width: 147px;
-    order: 1;
+  width: 147px;
+  order: 1;
 }
 
 /* Кнопка ДЕФЕКТЫ */
 .header__button--defects {
-    width: 127px;
-    order: 2;
+  width: 127px;
+  order: 2;
 }
 /* Кнопка ГЛАВНАЯ До */
 .header__button--home-before {
-    width: 120px;
-    order: 1;
+  width: 120px;
+  order: 1;
 }
 
 /* Кнопка ГЛАВНАЯ ПОСЛЕ*/
 .header__button--home-after {
-    width: 120px;
-    order: 3;
+  width: 120px;
+  order: 3;
 }
-
 
 /* Иконка внутри кнопки - принудительно 24x24 */
 .header__button-icon {
-    width: 24px !important;
-    height: 24px !important;
-    min-width: 24px;
-    max-width: 24px;
-    object-fit: contain; /* Сохраняет пропорции */
+  width: 24px !important;
+  height: 24px !important;
+  min-width: 24px;
+  max-width: 24px;
+  object-fit: contain; /* Сохраняет пропорции */
 }
 
 /* ===== СМЕНА ИКОНОК ПРИ НАВЕДЕНИИ ===== */
 
 /* Для кнопки СТАТИСТИКА */
 .header__button--statistics:hover .header__button-icon {
-    content: url('../images/statistics-icon-active.svg');
-    width: 24px;
-    height: 24px;
+  content: url("../images/statistics-icon-active.svg");
+  width: 24px;
+  height: 24px;
 }
 /* Для кнопки ГЛАВНАЯ */
 .header__button--home-before:hover .header__button-icon {
-    content: url('../images/home-icon-active.svg');
-    width: 24px;
-    height: 24px;
+  content: url("../images/home-icon-active.svg");
+  width: 24px;
+  height: 24px;
 }
 
 .header__button--home-after:hover .header__button-icon {
-    content: url('../images/home-icon-active.svg');
-    width: 24px;
-    height: 24px;
+  content: url("../images/home-icon-active.svg");
+  width: 24px;
+  height: 24px;
 }
 
 /* Для кнопки ДЕФЕКТЫ */
 .header__button--defects:hover .header__button-icon {
-    content: url('../images/defects-icon-active.svg');
-    width: 24px;
-    height: 24px;
+  content: url("../images/defects-icon-active.svg");
+  width: 24px;
+  height: 24px;
 }
 
 /* ===== ЭФФЕКТЫ ПРИ НАВЕДЕНИИ ===== */
 .header__button:hover {
-    background: var(--color-white);  
-    border-color: var(--color-blue);
-    box-shadow: 0px 0px 12px rgba(59, 106, 207, 0.2);
+  background: var(--color-white);
+  border-color: var(--color-blue);
+  box-shadow: 0px 0px 12px rgba(59, 106, 207, 0.2);
 }
 
 .header__button:hover .header__button-text {
-    color: var(--color-blue);
+  color: var(--color-blue);
 }
 
 /* Убираем изменение цвета через stroke, так как используем content!!!!!!!! */
 .header__button-icon path,
 .header__button-icon circle {
-    transition: none;
+  transition: none;
 }
 
 /* Эффект нажатия */
 .header__button:active {
-    transform: scale(0.98);
+  transform: scale(0.98);
 }
 
 /* ===== КОЛОКОЛЬЧИК ===== */
 
 /* Контейнер колокольчика */
 .header__notifications {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding: 0px;
+  gap: 10px;
+
+  width: 32px;
+  height: 32px;
+
+  background: var(--color-notification-bg);
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  transition: background 0.2s ease;
+}
+
+.header__notifications:hover {
+  background: rgba(59, 106, 207, 0.15);
+}
+
+.header__notifications:active {
+  transform: scale(0.95);
+}
+
+.header__icon-wrapper {
+  position: relative;
+  width: 24px;
+  height: 24px;
+}
+
+/* Иконка колокольчика */
+.header__icon {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+/* Смена иконки при наведении */
+.header__notifications:hover .header__icon {
+  content: url("../images/bell-icon-active.svg");
+  width: 24px;
+  height: 24px;
+}
+
+/* Красный бейдж */
+.header__badge {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  right: -4px;
+  top: -4px;
+
+  background: var(--color-crack);
+  border-radius: 50%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-family: "Inter", sans-serif;
+  font-weight: 700;
+  font-size: 8px;
+  line-height: 10px;
+  color: var(--color-white);
+
+  z-index: 1;
+}
+
+/* ===== АДАПТИВНОСТЬ ===== */
+@media (max-width: 1440px) {
+  .header__container {
+    width: 100%;
+    max-width: 1380px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .header__logo-text {
+    /* Убираем font-size: 14px */
+    width: auto;
+    min-width: 200px;
+  }
+
+  .header__logo-block {
+    width: auto;
+    min-width: 280px;
+  }
+}
+
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  .header__container {
+    height: auto;
+    min-height: 60px;
+    padding: 8px 12px;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .header__logo-block {
+    height: auto;
+  }
+
+  .header__logo {
+    width: 44px;
+    height: 35px;
+  }
+
+  .header__logo-text {
+    /* Убираем font-size: 13px */
+    line-height: 14px;
+    height: auto;
+    white-space: normal;
+  }
+
+  .header__nav {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .header__container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .header__logo-block {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .header__nav {
+    width: 100%;
+    justify-content: space-between;
+  }
+
+  .header__button {
+    padding: 8px 12px;
+    /* Убираем font-size: 13px */
+  }
+}
+/* ===== ПАНЕЛЬ УВЕДОМЛЕНИЙ ===== */
+
+/* Оверлей - занимает всю правую часть */
+.notifications-overlay {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.25);
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    z-index: 2000;
+
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.notifications-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+/* Сама панель уведомлений */
+.notifications-app {
+    width: 400px;
+    height: 600px;
+    background: #ffffff;
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    border-radius: 20px 0 0 20px; /* Скругление слева */
+    padding: 20px 16px;
+    box-shadow: -4px 0 20px rgba(29, 59, 255, 0.15);
+
+    /* Позиция сверху справа - без отступа */
+    margin-top: 80px;
+    margin-right: 0; /* Убираем отступ справа */
+    
+    position: relative;
+}
+
+/* Заголовок */
+.notifications-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    height: 32px;
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 10;
+}
+
+/* Колокольчик */
+.bell {
+    position: relative;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(59, 106, 207, 0.05);
+    border-radius: 50%;
+    flex-shrink: 0;
+    z-index: 12;
+}
+
+.bell .icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Бейдж */
+.badge {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 14px;
+    height: 14px;
+    background: #ff0000;
+    color: #ffffff;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 8px;
+    font-weight: bold;
+    line-height: 10px;
+}
+
+/* Заголовок "Новые дефекты" */
+.notifications-header h1 {
+    font-family: "Inter", sans-serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: #333333;
+    margin: 0;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    white-space: nowrap;
+    text-align: center;
+    z-index: 11;
+}
+
+/* Кнопка "Очистить все" */
+.clear {
+    color: #3b6acf;
+    font-family: "Inter", sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    text-decoration: underline;
+    cursor: pointer;
+    flex-shrink: 0;
+    white-space: nowrap;
+    z-index: 12;
+    margin-left: auto;
+}
+
+.clear:hover {
+    color: #2a4fa8;
+}
+
+/* Список уведомлений */
+.list {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: calc(100% - 52px);
+    gap: 8px;
+    overflow-y: auto;
+    padding-right: 4px;
+    padding-left: 2px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Карточка уведомления */
+.card {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    gap: 10px;
+    
+    width: 100%;
+    min-height: 56px;
+    
+    background: rgba(59, 106, 207, 0.05);
+    border: 1px solid rgba(51, 51, 51, 0.1);
+    border-radius: 16px;
+    
+    transition: background 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease; /* Убираем transform из transition */
+    
+    position: relative;
+    z-index: 2;
+}
+
+.card:hover {
+    background: rgba(59, 106, 207, 0.08);
+    border-color: rgba(59, 106, 207, 0.3);
+    box-shadow: 2px 2px 8px rgba(29, 59, 255, 0.1);
+    /* Убираем transform: translateX(-4px) */
+}
+
+/* Внутренний контейнер для левой части и центра */
+.card-content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 0px;
+    gap: 20px;
+    width: 239px;
+    height: 40px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+/* Левая часть с ID и датой */
+.left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 4px;
+    width: 131px;
+    height: 40px;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.id {
+    width: 47px;
+    height: 19px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    color: #333333;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+}
+
+.notification-date {
+    width: 131px;
+    height: 17px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: rgba(51, 51, 51, 0.5);
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    white-space: nowrap;
+}
+
+.notification-date span {
+    color: #333333;
+}
+
+/* Центральная часть со статусом и типом */
+.center {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 0px;
+    gap: 4px;
+    width: 88px;
+    height: 40px;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+}
+
+.status {
+    width: 88px;
+    height: 19px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 19px;
+    text-align: center;
+    color: #FF0000;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    white-space: nowrap;
+}
+
+.type {
+    width: 75px;
+    height: 17px;
+    font-family: 'Inter', sans-serif;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+    color: #333333;
+    flex: none;
+    order: 1;
+    flex-grow: 0;
+    white-space: nowrap;
+}
+
+/* Стрелка */
+.arrow {
     display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
     padding: 0px;
     gap: 10px;
-    
     width: 32px;
     height: 32px;
-    
-    background: var(--color-notification-bg);
     border-radius: 50px;
-    border: none;
-    cursor: pointer;
-    text-decoration: none;
-    
     flex: none;
-    order: 0;
+    order: 1;
     flex-grow: 0;
+    cursor: pointer;
     transition: background 0.2s ease;
 }
 
-.header__notifications:hover {
-    background: rgba(59, 106, 207, 0.15);
+.arrow:hover {
+    background: rgba(59, 106, 207, 0.1);
 }
 
-.header__notifications:active {
-    transform: scale(0.95);
-}
-
-.header__icon-wrapper {
-    position: relative;
+.arrow .icon {
     width: 24px;
     height: 24px;
 }
 
-/* Иконка колокольчика */
-.header__icon {
-    width: 24px;
-    height: 24px;
-    display: block;
+/* Скроллбар для списка */
+.list::-webkit-scrollbar {
+    width: 4px;
 }
 
-/* Смена иконки при наведении */
-.header__notifications:hover .header__icon {
-    content: url('../images/bell-icon-active.svg');
-    width: 24px;
-    height: 24px;
+.list::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 4px;
 }
 
-/* Красный бейдж */
-.header__badge {
-    position: absolute;
-    width: 14px;
-    height: 14px;
-    right: -4px;
-    top: -4px;
-    
-    background: var(--color-crack);
-    border-radius: 50%;
-    
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    
-    font-family: 'Inter', sans-serif;
-    font-weight: 700;
-    font-size: 8px;
-    line-height: 10px;
-    color: var(--color-white);
-    
-    z-index: 1;
+.list::-webkit-scrollbar-thumb {
+    background: rgba(59, 106, 207, 0.3);
+    border-radius: 4px;
 }
 
-/* ===== АДАПТИВНОСТЬ ===== */
-@media (max-width: 1440px) {
-    .header__container {
-        width: 100%;
-        max-width: 1380px;
-    }
+.list::-webkit-scrollbar-thumb:hover {
+    background: rgba(59, 106, 207, 0.5);
 }
 
-@media (max-width: 1024px) {
-    .header__logo-text {
-        font-size: 14px;
-        width: auto;
-        min-width: 200px;
-    }
-
-    .header__logo-block {
-        width: auto;
-        min-width: 280px;
-    }
-}
-
-@media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-
-    .header__container {
-        height: auto;
-        min-height: 60px;
-        padding: 8px 12px;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    .header__logo-block {
-        height: auto;
-    }
-
-    .header__logo {
-        width: 44px;
-        height: 35px;
-    }
-
-    .header__logo-text {
-        font-size: 13px;
-        line-height: 14px;
-        height: auto;
-        white-space: normal;
-    }
-
-    .header__nav {
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        width: 100%;
-    }
-}
-
-@media (max-width: 480px) {
-    .header__container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .header__logo-block {
-        width: 100%;
-        justify-content: flex-start;
-    }
-
-    .header__nav {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .header__button {
-        padding: 8px 12px;
-        font-size: 13px;
-    }
-}
-/* ===== колокольчик крутой ===== */
-
-.notifications-overlay{
-position:fixed;
-top:80px;
-right:20px;
-
-opacity:0;
-pointer-events:none;
-transition:0.2s;
-
-z-index:2000;
-}
-
-.notifications-overlay.active{
-opacity:1;
-pointer-events:auto;
-}
-
-
-/* ===== APP ===== */
-
-.notifications-app{
-width:400px;
-height:600px;
-
-background:#FFFFFF;
-
-border:1px solid rgba(0,0,0,0.1);
-border-radius:20px 0 0 20px;
-
-padding:12px 16px;
-
-box-shadow:0 0 20px rgba(29,59,255,0.1);
-}
-
-
-/* ===== HEADER ===== */
-
-.notifications-header{
-position:relative;
-
-display:flex;
-align-items:center;
-
-width:368px;
-height:32px;
-
-margin-bottom:16px;
-}
-
-
-/* ===== TITLE ===== */
-
-.notifications-header h1{
-position:absolute;
-left:50%;
-transform:translateX(-50%);
-
-width:125px;
-height:19px;
-
-font-size:16px;
-font-weight:400;
-
-color:#333333;
-
-text-align:center;
-}
-
-
-/* ===== CLEAR BUTTON ===== */
-
-.clear{
-margin-left:auto;
-
-width:93px;
-height:17px;
-
-color:#3B6ACF;
-
-font-size:14px;
-font-weight:400;
-
-text-decoration:underline;
-}
-
-
-/* ===== BELL ===== */
-
-.bell{
-
-position:relative;
-
-width:32px;
-height:32px;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-background:rgba(59,106,207,0.05);
-
-border-radius:50%;
-}
-
-.bell .icon{
-width:24px;
-height:24px;
-}
-
-
-/* ===== BADGE ===== */
-
-.badge{
-
-position:absolute;
-
-top:-2px;
-right:-2px;
-
-width:14px;
-height:14px;
-
-background:#FF0000;
-color:#FFFFFF;
-
-border-radius:50%;
-
-display:flex;
-align-items:center;
-justify-content:center;
-
-font-size:8px;
-font-weight:bold;
-
-line-height:10px;
-}
-
-
-/* ===== LIST ===== */
-
-.list{
-display:flex;
-flex-direction:column;
-
-width:368px;
-height:528px;
-
-gap:12px;
-
-
-}
-
-
-/* ===== CARD ===== */
-
-.card{
-display:grid;
-
-grid-template-columns:140px 1fr 30px;
-
-align-items:center;
-
-width:368px;
-height:56px;
-
-background:rgba(59,106,207,0.05);
-
-border-radius:16px;
-
-padding:8px 12px;
-
-border:1px solid rgba(51,51,51,0.1);
-}
-
-
-/* ===== LEFT ===== */
-
-.left{
-display:flex;
-flex-direction:column;
-}
-
-.id{
-font-size:16px;
-color:#333333;
-}
-
-.date{
-font-size:14px;
-color:rgba(51,51,51,0.5);
-
-margin-top:4px;
-}
-
-
-/* ===== CENTER ===== */
-
-.center{
-display:flex;
-flex-direction:column;
-}
-
-.status{
-
-width:88px;
-height:19px;
-
-font-size:16px;
-font-weight:400;
-
-color:#FF0000;
-}
-
-.type{
-
-font-size:14px;
-
-font-weight:400;
-
-color:#333333;
-
-margin-top:4px;
-}
-
-
-/* ===== ARROW ===== */
-
-.arrow{
-display:flex;
-
-justify-content:center;
-align-items:center;
-
-width:32px;
-height:32px;
-
-border-radius:50px;
-}
-
-.arrow .icon{
-width:16px;
-height:16px;
-}
-
-
-.date{
-
-font-size:14px;
-color:rgba(51,51,51,0.5);
-
-margin-top:4px;
-}
-
-/* время внутри строки */
-
-.date span{
-color:#333333;
-}
