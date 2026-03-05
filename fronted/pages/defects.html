@@ -754,7 +754,11 @@
                 <span class="params-range-header">От</span>
                 <span class="params-range-header">До</span>
               </div>
-              <div class="params-field__label params-field--widle__label-position">Длина</div>
+              <div
+                class="params-field__label params-field--widle__label-position"
+              >
+                Длина
+              </div>
               <div class="params-range-inputs">
                 <div class="params-input-container">
                   <input type="text" value="0" class="params-input" />
@@ -769,9 +773,12 @@
 
             <!-- Ширина -->
             <div class="params-field params-field--range">
-              <div class="params-range-headers">
+              <div class="params-range-headers"></div>
+              <div
+                class="params-field__label params-field--widle__label-position"
+              >
+                Ширина
               </div>
-              <div class="params-field__label params-field--widle__label-position">Ширина</div>
               <div class="params-range-inputs">
                 <div class="params-input-container">
                   <input type="text" value="0" class="params-input" />
@@ -786,9 +793,12 @@
 
             <!-- Площадь -->
             <div class="params-field params-field--range">
-              <div class="params-range-headers">
+              <div class="params-range-headers"></div>
+              <div
+                class="params-field__label params-field--widle__label-position"
+              >
+                Площадь
               </div>
-              <div class="params-field__label params-field--widle__label-position">Площадь</div>
               <div class="params-range-inputs">
                 <div class="params-input-container">
                   <input type="text" value="0" class="params-input" />
@@ -848,6 +858,804 @@
         <div class="params-actions">
           <button class="params-btn params-btn--cancel">Отменить</button>
           <button class="params-btn params-btn--confirm">Подтвердить</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ИСТОРИИ ОБНАРУЖЕНИЙ -->
+    <div class="params-overlay" id="detections-modal">
+      <div class="detections-modal">
+        <div class="detections-modal__content">
+          <!-- Заголовок -->
+          <div class="detections-header">
+            <div class="detections-header-left">
+              <span class="detections-header__label">Дефект:</span>
+              <span class="detections-header__id">D-015</span>
+              <span class="detections-header__type">Отслоение</span>
+            </div>
+            <button class="detections-header__btn" id="detections-header__btn">
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                <path
+                  d="M20 6L9 17L4 12"
+                  stroke="#F6F8FF"
+                  stroke-width="1.5"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+              <span>Исправлен</span>
+            </button>
+          </div>
+
+          <!-- Статистика обнаружений -->
+          <div class="detections-statistics">
+            <div class="detections-statistics__row">
+              <!-- Длина -->
+              <div class="detections-statistics__item">
+                <span class="detections-statistics__label">Длина:</span>
+                <span class="detections-statistics__value">5 → 10 мм</span>
+                <span class="detections-statistics__percent">(+20%)</span>
+              </div>
+
+              <!-- Ширина -->
+              <div class="detections-statistics__item">
+                <span class="detections-statistics__label">Ширина:</span>
+                <span class="detections-statistics__value">5 → 10 мм</span>
+                <span class="detections-statistics__percent">(+20%)</span>
+              </div>
+
+              <!-- Площадь -->
+              <div class="detections-statistics__item">
+                <span class="detections-statistics__label">Площадь:</span>
+                <span class="detections-statistics__value">7 → 15 мм²</span>
+                <span class="detections-statistics__percent">(+20%)</span>
+              </div>
+            </div>
+
+            <!-- Графики -->
+            <div class="detections-graphs">
+              <div class="graph-placeholder"></div>
+              <div class="graph-placeholder"></div>
+              <div class="graph-placeholder"></div>
+            </div>
+          </div>
+
+          <!-- Кнопки -->
+          <div class="detections-buttons">
+            <!-- Блок "Скачать" со ссылками -->
+            <div class="detections-download-block">
+              <span class="detections-download-text">Скачать</span>
+              <div class="detections-download-links">
+                <a href="#" class="detections-excel-link">Excel</a>
+                <span class="detections-divider">|</span>
+                <a href="#" class="detections-pdf-link">PDF</a>
+                <span class="detections-divider">|</span>
+                <a href="#" class="detections-csv-link">CSV</a>
+              </div>
+            </div>
+            <!-- Кнопка "Фильтры" -->
+            <button class="detections-filter-btn" id="detections-filter-btn">
+              <img
+                src="../images/filter-icon.svg"
+                alt="Фильтр"
+                class="detections-filter-icon"
+              />
+              <span class="detections-filter-text">Фильтры</span>
+            </button>
+          </div>
+
+          <!-- Таблица истории обнаружений -->
+          <div class="detections-table">
+            <!-- Заголовок таблицы -->
+            <div class="detections-table-header">
+              <div
+                class="detections-table-header__cell detections-table-header__cell--date"
+              >
+                Дата и время
+              </div>
+
+              <div class="detections-table-header__measurements">
+                <span class="detections-table-header__measure">Длина (мм)</span>
+                <span class="detections-table-header__measure"
+                  >Ширина (мм)</span
+                >
+                <span class="detections-table-header__measure"
+                  >Площадь (мм²)</span
+                >
+              </div>
+
+              <div
+                class="detections-table-header__cell detections-table-header__cell--status"
+              >
+                Статус
+              </div>
+              <div
+                class="detections-table-header__cell detections-table-header__cell--actions"
+              >
+                Действия
+              </div>
+            </div>
+
+            <!-- Строка 1 -->
+            <div class="detections-table-row" data-row="1">
+              <div
+                class="detections-table-row__cell detections-table-row__cell--date"
+              >
+                <span class="date">01.01.2026</span>
+                <span class="time">14:11:11</span>
+              </div>
+              <div class="detections-table-row__measurements">
+                <span class="detections-table-row__value">120</span>
+                <span class="detections-table-row__value">120</span>
+                <span class="detections-table-row__value">150</span>
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--status status--critical"
+              >
+                Критичный
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--actions"
+              >
+                <a href="#" class="detections-table-row__link show-image"
+                  >Показать</a
+                >
+              </div>
+            </div>
+
+            <!-- БЛОК С КАРТИНКОЙ (скрыт по умолчанию) -->
+            <div
+              class="detections-image-row"
+              id="image-row-1"
+              style="display: none"
+            >
+              <div class="detections-image-container">
+                <!-- Сама строка с данными (дубликат) -->
+                <div class="detections-table-row">
+                  <div
+                    class="detections-table-row__cell detections-table-row__cell--date"
+                  >
+                    <span class="date">01.01.2026</span>
+                    <span class="time">14:11:11</span>
+                  </div>
+                  <div class="detections-table-row__measurements">
+                    <span class="detections-table-row__value">120</span>
+                    <span class="detections-table-row__value">120</span>
+                    <span class="detections-table-row__value">150</span>
+                  </div>
+                  <div
+                    class="detections-table-row__cell detections-table-row__cell--status status--critical"
+                  >
+                    Критичный
+                  </div>
+                  <div
+                    class="detections-table-row__cell detections-table-row__cell--actions"
+                  >
+                    <a href="#" class="detections-table-row__link hide-image"
+                      >Скрыть</a
+                    >
+                  </div>
+                </div>
+
+                <!-- Картинка -->
+                <div class="detections-image-wrapper">
+                  <img
+                    src="../images/detection-defect.png"
+                    alt="Дефект"
+                    class="detections-image"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- Строка 2 -->
+            <div class="detections-table-row">
+              <div
+                class="detections-table-row__cell detections-table-row__cell--date"
+              >
+                <span class="date">01.01.2026</span>
+                <span class="time">14:08:12</span>
+              </div>
+              <div class="detections-table-row__measurements">
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">7</span>
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--status status--normal"
+              >
+                Наблюдение
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--actions"
+              >
+                <a href="#" class="detections-table-row__link">Показать</a>
+              </div>
+            </div>
+
+            <!-- Строка 3 -->
+            <div class="detections-table-row">
+              <div
+                class="detections-table-row__cell detections-table-row__cell--date"
+              >
+                <span class="date">01.01.2026</span>
+                <span class="time">12:30:17</span>
+              </div>
+              <div class="detections-table-row__measurements">
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">7</span>
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--status status--normal"
+              >
+                Наблюдение
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--actions"
+              >
+                <a href="#" class="detections-table-row__link">Показать</a>
+              </div>
+            </div>
+
+            <!-- Строка 4 -->
+            <div class="detections-table-row">
+              <div
+                class="detections-table-row__cell detections-table-row__cell--date"
+              >
+                <span class="date">01.01.2026</span>
+                <span class="time">11:30:15</span>
+              </div>
+              <div class="detections-table-row__measurements">
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">7</span>
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--status status--normal"
+              >
+                Наблюдение
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--actions"
+              >
+                <a href="#" class="detections-table-row__link">Показать</a>
+              </div>
+            </div>
+
+            <!-- Строка 5 -->
+            <div class="detections-table-row">
+              <div
+                class="detections-table-row__cell detections-table-row__cell--date"
+              >
+                <span class="date">01.01.2026</span>
+                <span class="time">08:30:17</span>
+              </div>
+              <div class="detections-table-row__measurements">
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">7</span>
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--status status--normal"
+              >
+                Наблюдение
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--actions"
+              >
+                <a href="#" class="detections-table-row__link">Показать</a>
+              </div>
+            </div>
+
+            <!-- Строка 6 -->
+            <div class="detections-table-row">
+              <div
+                class="detections-table-row__cell detections-table-row__cell--date"
+              >
+                <span class="date">01.01.2026</span>
+                <span class="time">05:26:16</span>
+              </div>
+              <div class="detections-table-row__measurements">
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">7</span>
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--status status--normal"
+              >
+                Наблюдение
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--actions"
+              >
+                <a href="#" class="detections-table-row__link">Показать</a>
+              </div>
+            </div>
+
+            <!-- Строка 7 -->
+            <div class="detections-table-row">
+              <div
+                class="detections-table-row__cell detections-table-row__cell--date"
+              >
+                <span class="date">01.01.2026</span>
+                <span class="time">03:30:17</span>
+              </div>
+              <div class="detections-table-row__measurements">
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">7</span>
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--status status--normal"
+              >
+                Наблюдение
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--actions"
+              >
+                <a href="#" class="detections-table-row__link">Показать</a>
+              </div>
+            </div>
+
+            <!-- Строка 8 -->
+            <div class="detections-table-row">
+              <div
+                class="detections-table-row__cell detections-table-row__cell--date"
+              >
+                <span class="date">01.01.2026</span>
+                <span class="time">01:30:15</span>
+              </div>
+              <div class="detections-table-row__measurements">
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">7</span>
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--status status--normal"
+              >
+                Наблюдение
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--actions"
+              >
+                <a href="#" class="detections-table-row__link">Показать</a>
+              </div>
+            </div>
+
+            <!-- Строка 9 -->
+            <div class="detections-table-row">
+              <div
+                class="detections-table-row__cell detections-table-row__cell--date"
+              >
+                <span class="date">01.01.2026</span>
+                <span class="time">00:32:15</span>
+              </div>
+              <div class="detections-table-row__measurements">
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">7</span>
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--status status--normal"
+              >
+                Наблюдение
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--actions"
+              >
+                <a href="#" class="detections-table-row__link">Показать</a>
+              </div>
+            </div>
+
+            <!-- Строка 10 -->
+            <div class="detections-table-row">
+              <div
+                class="detections-table-row__cell detections-table-row__cell--date"
+              >
+                <span class="date">01.01.2026</span>
+                <span class="time">00:26:15</span>
+              </div>
+              <div class="detections-table-row__measurements">
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">7</span>
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--status status--normal"
+              >
+                Наблюдение
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--actions"
+              >
+                <a href="#" class="detections-table-row__link">Показать</a>
+              </div>
+            </div>
+
+            <!-- Строка 11 -->
+            <div class="detections-table-row">
+              <div
+                class="detections-table-row__cell detections-table-row__cell--date"
+              >
+                <span class="date">01.01.2026</span>
+                <span class="time">00:22:55</span>
+              </div>
+              <div class="detections-table-row__measurements">
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">7</span>
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--status status--normal"
+              >
+                Наблюдение
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--actions"
+              >
+                <a href="#" class="detections-table-row__link">Показать</a>
+              </div>
+            </div>
+
+            <!-- Строка 12 -->
+            <div class="detections-table-row">
+              <div
+                class="detections-table-row__cell detections-table-row__cell--date"
+              >
+                <span class="date">01.01.2026</span>
+                <span class="time">00:12:25</span>
+              </div>
+              <div class="detections-table-row__measurements">
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">7</span>
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--status status--normal"
+              >
+                Наблюдение
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--actions"
+              >
+                <a href="#" class="detections-table-row__link">Показать</a>
+              </div>
+            </div>
+
+            <!-- Строка 13 -->
+            <div class="detections-table-row">
+              <div
+                class="detections-table-row__cell detections-table-row__cell--date"
+              >
+                <span class="date">01.01.2026</span>
+                <span class="time">00:07:35</span>
+              </div>
+              <div class="detections-table-row__measurements">
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">7</span>
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--status status--normal"
+              >
+                Наблюдение
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--actions"
+              >
+                <a href="#" class="detections-table-row__link">Показать</a>
+              </div>
+            </div>
+
+            <!-- Строка 14 -->
+            <div class="detections-table-row">
+              <div
+                class="detections-table-row__cell detections-table-row__cell--date"
+              >
+                <span class="date">01.01.2026</span>
+                <span class="time">00:01:55</span>
+              </div>
+              <div class="detections-table-row__measurements">
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">7</span>
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--status status--normal"
+              >
+                Наблюдение
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--actions"
+              >
+                <a href="#" class="detections-table-row__link">Показать</a>
+              </div>
+            </div>
+
+            <!-- Строка 15 -->
+            <div class="detections-table-row detections-table-row--last">
+              <div
+                class="detections-table-row__cell detections-table-row__cell--date"
+              >
+                <span class="date">01.01.2026</span>
+                <span class="time">00:01:55</span>
+              </div>
+              <div class="detections-table-row__measurements">
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">5</span>
+                <span class="detections-table-row__value">7</span>
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--status status--normal"
+              >
+                Наблюдение
+              </div>
+              <div
+                class="detections-table-row__cell detections-table-row__cell--actions"
+              >
+                <a href="#" class="detections-table-row__link">Показать</a>
+              </div>
+            </div>
+          </div>
+
+          <!-- Пагинация для модального окна -->
+          <div class="detections-pagination">
+            <div class="detections-pagination__info">
+              Результаты 1-15 из 124
+            </div>
+
+            <div class="detections-pagination__controls">
+              <!-- Кнопка "Назад" -->
+              <button
+                class="detections-pagination__nav-btn detections-pagination__nav-btn--prev"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M15 18L9 12L15 6"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+
+              <!-- Страница 1 -->
+              <button
+                class="detections-pagination__page detections-pagination__page--active"
+              >
+                1
+              </button>
+              <!-- Страница 2 -->
+              <button class="detections-pagination__page">2</button>
+              <!-- Страница 3 -->
+              <button class="detections-pagination__page">3</button>
+              <!-- Страница 4 -->
+              <button class="detections-pagination__page">4</button>
+              <!-- Страница 5 -->
+              <button class="detections-pagination__page">5</button>
+              <!-- Страница 6 -->
+              <button class="detections-pagination__page">6</button>
+              <!-- Многоточие -->
+              <span class="detections-pagination__dots">...</span>
+              <!-- Страница 12 -->
+              <button
+                class="detections-pagination__page detections-pagination__page--last"
+              >
+                12
+              </button>
+
+              <!-- Кнопка "Вперед" -->
+              <button
+                class="detections-pagination__nav-btn detections-pagination__nav-btn--next"
+              >
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path
+                    d="M9 18L15 12L9 6"
+                    stroke="currentColor"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- МОДАЛЬНОЕ ОКНО ПОДТВЕРЖДЕНИЯ ИСПРАВЛЕНИЯ -->
+      <div class="alert-overlay" id="fix-confirm-modal">
+        <div class="alert-modal">
+          <!-- Иконка/Заголовок -->
+          <div class="alert-modal__header">
+            <h2 class="alert-modal__title">Исправление дефекта</h2>
+            <p class="alert-modal__subtitle">
+              Дефект больше не будет отображаться в списке
+            </p>
+          </div>
+
+          <!-- Кнопки -->
+          <div class="alert-modal__actions">
+            <button class="alert-modal__btn alert-modal__btn--cancel">
+              Отменить
+            </button>
+            <button class="alert-modal__btn alert-modal__btn--confirm">
+              Подтвердить
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- ========== МОДАЛЬНОЕ ОКНО ФИЛЬТРОВ ========== -->
+      <div class="detections-filter-overlay" id="detections-filter-modal">
+        <div class="detections-filter-modal">
+          <div class="detections-filter-modal__content">
+            <!-- Дата -->
+            <div class="filter-section">
+              <div class="filter-section__title">Дата:</div>
+
+              <div class="filter-date">
+                <div class="date-picker">
+                  <img
+                    src="../images/calendar-icon.svg"
+                    alt="Календарь"
+                    class="date-picker__icon"
+                  />
+                  <span class="date-picker__text">15.01.2026</span>
+                </div>
+
+                <span class="date-separator">-</span>
+
+                <div class="date-picker">
+                  <span class="date-picker__text">16.01.2026</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Статус -->
+            <div class="filter-section">
+              <div class="filter-section__title">Статус:</div>
+
+              <div
+                class="detections-filter-select"
+                id="detections-status-select"
+              >
+                <span
+                  class="detections-filter-select__text"
+                  id="detections-selected-status"
+                  >Критичный</span
+                >
+                <svg
+                  class="detections-filter-select__arrow"
+                  width="18"
+                  height="18"
+                  viewBox="0 0 18 18"
+                  fill="none"
+                >
+                  <path
+                    d="M4.5 6.75L9 11.25L13.5 6.75"
+                    stroke="#333333"
+                    stroke-width="1.125"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+
+                <!-- Выпадающий список -->
+                <div
+                  class="detections-filter-dropdown"
+                  id="detections-status-dropdown"
+                >
+                  <div
+                    class="detections-filter-dropdown__item"
+                    data-value="critical"
+                  >
+                    Критичный
+                  </div>
+                  <div
+                    class="detections-filter-dropdown__item"
+                    data-value="warning"
+                  >
+                    Внимание
+                  </div>
+                  <div
+                    class="detections-filter-dropdown__item"
+                    data-value="normal"
+                  >
+                    Наблюдение
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Размеры -->
+            <div class="filter-section">
+              <div class="filter-section__title">Размеры:</div>
+
+              <!-- Длина -->
+              <div class="filter-coord">
+                <div class="coord-label">Длина</div>
+
+                <div class="coord-inputs">
+                  <!-- От -->
+                  <div class="coord-input-group">
+                    <span class="coord-input-label">От</span>
+                    <div class="coord-input-field">
+                      <input type="text" value="0" class="coord-input" />
+                      <span class="coord-unit">м</span>
+                    </div>
+                  </div>
+
+                  <!-- До -->
+                  <div class="coord-input-group">
+                    <span class="coord-input-label">До</span>
+                    <div class="coord-input-field">
+                      <input type="text" value="200" class="coord-input" />
+                      <span class="coord-unit">м</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ширина -->
+              <div class="filter-coord">
+                <div class="coord-label">Ширина</div>
+
+                <div class="coord-inputs">
+                  <!-- От -->
+                  <div class="coord-input-group">
+                    <span class="coord-input-label">От</span>
+                    <div class="coord-input-field">
+                      <input type="text" value="0" class="coord-input" />
+                      <span class="coord-unit">мм</span>
+                    </div>
+                  </div>
+
+                  <!-- До -->
+                  <div class="coord-input-group">
+                    <span class="coord-input-label">До</span>
+                    <div class="coord-input-field">
+                      <input type="text" value="200" class="coord-input" />
+                      <span class="coord-unit">мм</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Площадь -->
+              <div class="filter-coord">
+                <div class="coord-label">Площадь</div>
+
+                <div class="coord-inputs">
+                  <!-- От -->
+                  <div class="coord-input-group">
+                    <span class="coord-input-label">От</span>
+                    <div class="coord-input-field">
+                      <input type="text" value="0" class="coord-input" />
+                      <span class="coord-unit">мм²</span>
+                    </div>
+                  </div>
+
+                  <!-- До -->
+                  <div class="coord-input-group">
+                    <span class="coord-input-label">До</span>
+                    <div class="coord-input-field">
+                      <input type="text" value="200" class="coord-input" />
+                      <span class="coord-unit">мм²</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Кнопки -->
+            <div class="filter-actions">
+              <button class="filter-btn filter-btn--reset">Сбросить</button>
+              <button class="filter-btn filter-btn--apply">Применить</button>
+            </div>
+          </div>
         </div>
       </div>
     </div>
