@@ -298,4 +298,121 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
   }
+
+  // ===== ПОКАЗ/СКРЫТИЕ КАРТИНКИ В ТАБЛИЦЕ =====
+  // Функция для показа картинки
+  function showImage(clickedLink) {
+    // Находим родительскую строку
+    const currentRow = clickedLink.closest(".detections-table-row");
+    if (!currentRow) return;
+
+    // Получаем ID строки
+    const rowIndex = Array.from(
+      document.querySelectorAll(".detections-table-row"),
+    ).indexOf(currentRow);
+
+    // Находим или создаем блок с картинкой для этой строки
+    let imageRow = document.getElementById(`image-row-${rowIndex}`);
+
+    if (!imageRow) {
+      // Создаем блок с картинкой
+      imageRow = document.createElement("div");
+      imageRow.className = "detections-image-row";
+      imageRow.id = `image-row-${rowIndex}`;
+      imageRow.style.display = "none";
+
+      // Копируем данные из текущей строки
+      const dateCell = currentRow.querySelector(
+        ".detections-table-row__cell--date",
+      );
+      const measurements = currentRow.querySelectorAll(
+        ".detections-table-row__value",
+      );
+      const statusCell = currentRow.querySelector(
+        ".detections-table-row__cell--status",
+      );
+
+      const dateHtml = dateCell ? dateCell.innerHTML : "";
+      const length = measurements[0] ? measurements[0].textContent : "120";
+      const width = measurements[1] ? measurements[1].textContent : "120";
+      const area = measurements[2] ? measurements[2].textContent : "150";
+      const statusText = statusCell ? statusCell.textContent : "Критичный";
+      const statusClass = statusCell
+        ? statusCell.className
+        : "status--critical";
+
+      // Создаем содержимое
+      imageRow.innerHTML = `
+<div class="detections-image-container">
+  <!-- Строка с данными (такая же как оригинал, но с кнопкой "Скрыть") -->
+  <div class="detections-table-row">
+    <div class="detections-table-row__cell detections-table-row__cell--date">
+      ${dateHtml}
+    </div>
+    <div class="detections-table-row__measurements">
+      <span class="detections-table-row__value">${length}</span>
+      <span class="detections-table-row__value">${width}</span>
+      <span class="detections-table-row__value">${area}</span>
+    </div>
+    <div class="detections-table-row__cell detections-table-row__cell--status ${statusClass}">
+      ${statusText}
+    </div>
+    <div class="detections-table-row__cell detections-table-row__cell--actions">
+      <a href="#" class="detections-table-row__link hide-image">Скрыть</a>
+    </div>
+  </div>
+  
+  <!-- ТОЛЬКО ФОТО В ГОЛУБОМ ФОНЕ (без размеров) -->
+  <div class="detections-image-frame">
+    <div class="detections-image-wrapper">
+      <img src="../images/detection-defect.png" alt="Дефект" class="detections-image">
+    </div>
+  </div>
+</div>
+`;
+
+      // Вставляем после текущей строки
+      currentRow.parentNode.insertBefore(imageRow, currentRow.nextSibling);
+    }
+
+    // Скрываем текущую строку и показываем блок с картинкой
+    currentRow.style.display = "none";
+    imageRow.style.display = "block";
+
+    // Добавляем обработчик на кнопку "Скрыть"
+    const hideLink = imageRow.querySelector(".hide-image");
+    if (hideLink) {
+      hideLink.addEventListener("click", function (e) {
+        e.preventDefault();
+        hideImage(this);
+      });
+    }
+  }
+
+  // Функция для скрытия картинки
+  function hideImage(clickedLink) {
+    // Находим блок с картинкой
+    const imageRow = clickedLink.closest(".detections-image-row");
+    if (!imageRow) return;
+
+    // Находим оригинальную строку (предыдущий элемент)
+    const prevRow = imageRow.previousElementSibling;
+    if (prevRow && prevRow.classList.contains("detections-table-row")) {
+      prevRow.style.display = "";
+    }
+
+    // Удаляем блок с картинкой
+    imageRow.remove();
+  }
+
+  // Навешиваем обработчики на все ссылки "Показать"
+  document.querySelectorAll(".detections-table-row__link").forEach((link) => {
+    link.addEventListener("click", function (e) {
+      e.preventDefault();
+      // Проверяем, что это не ссылка "Скрыть"
+      if (!this.classList.contains("hide-image")) {
+        showImage(this);
+      }
+    });
+  });
 });

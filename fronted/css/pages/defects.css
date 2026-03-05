@@ -1359,10 +1359,10 @@ body.modal-open {
   width: 1300px;
   height: 900px;
 
-  background: #F6F8FF;
+  background: #f6f8ff;
   border: 1px solid rgba(0, 0, 0, 0.25);
   border-radius: 20px;
-  
+
   transform: scale(0.9);
   transition: transform 0.3s ease;
 }
@@ -1378,14 +1378,14 @@ body.modal-open {
   align-items: center;
   padding: 20px;
   gap: 16px;
-  max-width: 100%;  
+  max-width: 100%;
 
-  width: 1284px;   
-  height: 884px;  
-  overflow-y: auto;    
-  overflow-x: hidden;  
+  width: 1284px;
+  height: 884px;
+  overflow-y: auto;
+  overflow-x: hidden;
 
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 20px rgba(29, 59, 255, 0.1);
   border-radius: 20px;
@@ -1418,10 +1418,10 @@ body.modal-open {
 /* Заголовок */
 .detections-header {
   display: flex;
-  flex-direction: row;  
-  justify-content: space-between; 
-  align-items: center;  
-  padding: 4px 0 0 0;    
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 0 0 0;
   gap: 16px;
 
   width: 1244px;
@@ -1442,7 +1442,7 @@ body.modal-open {
 
   width: 323px;
   height: 24px;
-  
+
   justify-content: flex-start;
 
   flex: none;
@@ -1453,11 +1453,11 @@ body.modal-open {
 .detections-header__label {
   width: 83px;
   height: 24px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-  text-align: left; 
+  text-align: left;
   color: #333333;
   flex: none;
   order: 0;
@@ -1467,11 +1467,11 @@ body.modal-open {
 .detections-header__id {
   width: 60px;
   height: 24px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 20px;
   line-height: 24px;
-  text-align: left; 
+  text-align: left;
   color: #333333;
   flex: none;
   order: 1;
@@ -1481,11 +1481,11 @@ body.modal-open {
 .detections-header__type {
   width: 108px;
   height: 24px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
-  text-align: left; 
+  text-align: left;
   color: #333333;
   flex: none;
   order: 2;
@@ -1515,7 +1515,7 @@ body.modal-open {
 }
 
 .detections-header__btn:hover {
-  background: #2D5ACF; 
+  background: #2d5acf;
 }
 
 .detections-header__btn svg {
@@ -1527,11 +1527,11 @@ body.modal-open {
 }
 
 .detections-header__btn span {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
-  color: #F6F8FF;
+  color: #f6f8ff;
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -1590,7 +1590,7 @@ body.modal-open {
 .detections-statistics__label {
   width: 80px;
   height: 19px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
@@ -1603,7 +1603,7 @@ body.modal-open {
 .detections-statistics__value {
   width: 100px;
   height: 19px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
@@ -1616,7 +1616,7 @@ body.modal-open {
 .detections-statistics__percent {
   width: 60px;
   height: 19px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 16px;
   line-height: 19px;
@@ -1649,7 +1649,7 @@ body.modal-open {
 .graph-placeholder {
   width: 399px;
   height: 240px;
-  background: #D9D9D9;
+  background: #d9d9d9;
   border-radius: 16px;
   flex: none;
 }
@@ -1765,7 +1765,8 @@ body.modal-open {
 }
 
 .detections-filter-btn:hover .detections-filter-icon {
-  filter: brightness(0) saturate(100%) invert(34%) sepia(97%) saturate(517%) hue-rotate(187deg) brightness(93%) contrast(88%);
+  filter: brightness(0) saturate(100%) invert(34%) sepia(97%) saturate(517%)
+    hue-rotate(187deg) brightness(93%) contrast(88%);
 }
 
 .detections-filter-btn:active {
@@ -1829,7 +1830,7 @@ body.modal-open {
 }
 
 .detections-table-header__cell {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
@@ -1860,7 +1861,7 @@ body.modal-open {
 
 .detections-table-header__measure {
   width: 173.33px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
@@ -1889,7 +1890,7 @@ body.modal-open {
 }
 
 .detections-table-row__cell {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
@@ -1929,7 +1930,7 @@ body.modal-open {
 
 .detections-table-row__value {
   width: 173.33px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
@@ -1938,7 +1939,7 @@ body.modal-open {
 }
 
 .detections-table-row__link {
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
@@ -1949,7 +1950,7 @@ body.modal-open {
 }
 
 .detections-table-row__link:hover {
-  color: var(--color-dark)
+  color: var(--color-dark);
 }
 
 .detections-table-row__cell--status.status--critical {
@@ -1987,7 +1988,7 @@ body.modal-open {
 .detections-pagination__info {
   width: 228px;
   height: 24px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 20px;
   line-height: 24px;
@@ -2053,7 +2054,7 @@ body.modal-open {
   align-items: center;
   width: 24px;
   height: 24px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
@@ -2080,7 +2081,7 @@ body.modal-open {
   align-items: center;
   width: 24px;
   height: 24px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 400;
   font-size: 20px;
   line-height: 24px;
@@ -2124,11 +2125,11 @@ body.modal-open {
   gap: 20px;
 
   width: 460px;
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.1);
   border-radius: 12px;
-  
+
   transform: scale(0.9);
   transition: transform 0.3s ease;
 }
@@ -2153,7 +2154,7 @@ body.modal-open {
 .alert-modal__title {
   width: 400px;
   height: 24px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 20px;
   line-height: 24px;
@@ -2168,7 +2169,7 @@ body.modal-open {
 .alert-modal__subtitle {
   width: 389px;
   height: 19px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 500;
   font-size: 16px;
   line-height: 19px;
@@ -2202,7 +2203,7 @@ body.modal-open {
   width: 195px;
   height: 44px;
   border-radius: 12px;
-  font-family: 'Inter', sans-serif;
+  font-family: "Inter", sans-serif;
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
@@ -2213,33 +2214,33 @@ body.modal-open {
 }
 
 .alert-modal__btn--cancel {
-  background: #FFFFFF;
+  background: #ffffff;
   border: 1px solid rgba(0, 0, 0, 0.1);
   box-shadow: 0px 0px 20px rgba(29, 59, 255, 0.1);
   color: #333333;
 }
 
 .alert-modal__btn--cancel:hover {
-  background: #F6F8FF;
+  background: #f6f8ff;
 }
 
 .alert-modal__btn--confirm {
-  background: #3B6ACF;
-  color: #FFFFFF;
+  background: #3b6acf;
+  color: #ffffff;
 }
 
 .alert-modal__btn--confirm:hover {
-  background: #2D5ACF;
+  background: #2d5acf;
 }
 
 /* ===== ФИЛЬТРЫ ДЛЯ МОДАЛЬНОГО ОКНА ОБНАРУЖЕНИЙ ===== */
 .detections-filter-overlay {
-  position: fixed; 
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.25); 
+  background: rgba(0, 0, 0, 0.25);
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
@@ -2372,4 +2373,47 @@ body.modal-open {
 
 .detections-filter-dropdown__item:hover {
   background: var(--color-bg);
+}
+
+/* ===== БЛОК С КАРТИНКОЙ ===== */
+.detections-image-row {
+  width: 100%;
+}
+
+/* Контейнер для строки с данными и фото */
+.detections-image-container {
+  width: 100%;
+}
+
+/* ГОЛУБОЙ ФОН (родительский контейнер) */
+.detections-image-frame {
+  box-sizing: border-box;
+  width: 1244px;
+  background: #f6f8ff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 20px;
+  margin-top: 8px;
+  padding: 8px; /* ОТСТУП 8px СО ВСЕХ СТОРОН */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.detections-image-wrapper {
+  width: 1227px; /* ширина как в Figma */
+  height: 726px; /* высота как в Figma */
+  position: relative;
+  flex: none;
+  order: 0;
+  flex-grow: 0;
+  overflow: hidden; /* чтобы фото не выходило за рамки */
+  border-radius: 16px; /* скругление для фото */
+}
+
+/* Само фото */
+.detections-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }

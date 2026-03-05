@@ -977,7 +977,7 @@
             </div>
 
             <!-- Строка 1 -->
-            <div class="detections-table-row">
+            <div class="detections-table-row" data-row="1">
               <div
                 class="detections-table-row__cell detections-table-row__cell--date"
               >
@@ -997,7 +997,54 @@
               <div
                 class="detections-table-row__cell detections-table-row__cell--actions"
               >
-                <a href="#" class="detections-table-row__link">Показать</a>
+                <a href="#" class="detections-table-row__link show-image"
+                  >Показать</a
+                >
+              </div>
+            </div>
+
+            <!-- БЛОК С КАРТИНКОЙ (скрыт по умолчанию) -->
+            <div
+              class="detections-image-row"
+              id="image-row-1"
+              style="display: none"
+            >
+              <div class="detections-image-container">
+                <!-- Сама строка с данными (дубликат) -->
+                <div class="detections-table-row">
+                  <div
+                    class="detections-table-row__cell detections-table-row__cell--date"
+                  >
+                    <span class="date">01.01.2026</span>
+                    <span class="time">14:11:11</span>
+                  </div>
+                  <div class="detections-table-row__measurements">
+                    <span class="detections-table-row__value">120</span>
+                    <span class="detections-table-row__value">120</span>
+                    <span class="detections-table-row__value">150</span>
+                  </div>
+                  <div
+                    class="detections-table-row__cell detections-table-row__cell--status status--critical"
+                  >
+                    Критичный
+                  </div>
+                  <div
+                    class="detections-table-row__cell detections-table-row__cell--actions"
+                  >
+                    <a href="#" class="detections-table-row__link hide-image"
+                      >Скрыть</a
+                    >
+                  </div>
+                </div>
+
+                <!-- Картинка -->
+                <div class="detections-image-wrapper">
+                  <img
+                    src="../images/detection-defect.png"
+                    alt="Дефект"
+                    class="detections-image"
+                  />
+                </div>
               </div>
             </div>
 
