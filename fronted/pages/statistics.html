@@ -24,6 +24,7 @@
             Система мониторинга<br />дефектов конвейерных лент
           </div>
         </div>
+
         <div class="header__nav">
           <!-- Кнопка уведомлений -->
           <a href="#" class="header__notifications">
@@ -276,204 +277,6 @@
           <a href="#" class="heatmap-edit-btn">Изменить параметры</a>
         </div>
       </div>
-    </header>
-
-    <!-- ШАПКА 2: Отдельный блок 1380x60 -->
-    <div class="stats-header-block">
-      <div class="stats-header-content">
-        <!-- Левая группа: кнопки Назад и Обновить графики -->
-        <div class="stats-header-left">
-          <a href="javascript:history.back()" class="stats-btn stats-btn--back">
-            <img
-              src="../images/back-icon.svg"
-              alt="Назад"
-              class="stats-btn__icon"
-            />
-            <span class="stats-btn__text">Назад</span>
-          </a>
-          <a href="#" class="stats-btn stats-btn--update">
-            <img
-              src="../images/Refresh.svg"
-              alt="Обновить"
-              class="stats-btn__icon"
-            />
-            <span class="stats-btn__text">Обновить графики</span>
-          </a>
-        </div>
-
-        <!-- Заголовок по центру -->
-        <div class="stats-header-center">
-          <span class="stats-header-title">Графики и диаграммы</span>
-        </div>
-
-        <!-- Правая группа: Дефекты за и дата -->
-        <div class="stats-header-right">
-          <span class="stats-header-label">Дефекты за:</span>
-          <div class="stats-date-block">
-            <img
-              src="../images/calendar.svg"
-              alt="Календарь"
-              class="stats-date-icon"
-            />
-            <span class="stats-date-text">15.01.2026 - 16.01.2026</span>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Основной контент -->
-    <main class="main">
-      <!-- ФРЕЙМ 1380x707 с графиками -->
-      <div class="stats-block">
-        <div class="stats-frame">
-          <!-- Левая часть: Обнаруженные дефекты -->
-          <div class="stats-frame-left">
-            <h2 class="frame-title">Обнаруженные дефекты</h2>
-            <div class="frame-image image-5">
-              <img
-                src="../images/image%205.svg"
-                alt="График обнаруженных дефектов"
-                class="svg-image"
-              />
-            </div>
-          </div>
-
-          <!-- Правая часть: Распределение по типам -->
-          <div class="stats-frame-right">
-            <h2 class="frame-title">Распределение по типам:</h2>
-            <div class="frame-image image-7">
-              <img
-                src="../images/image%207.svg"
-                alt="График распределения по типам"
-                class="svg-image"
-              />
-            </div>
-          </div>
-        </div>
-
-        <!-- Статистика за 24 часа -->
-        <div class="stats-grid">
-          <!-- Всего дефектов -->
-          <div class="stat-card stat-card--total">
-            <span class="stat-card__value">24</span>
-            <span class="stat-card__label">Всего дефектов</span>
-          </div>
-
-          <!-- Трещины -->
-          <div class="stat-card stat-card--cracks">
-            <span class="stat-card__value">8</span>
-            <span class="stat-card__label">Трещины</span>
-          </div>
-
-          <!-- Отслоения -->
-          <div class="stat-card stat-card--delamination">
-            <span class="stat-card__value">5</span>
-            <span class="stat-card__label">Отслоения</span>
-          </div>
-
-          <!-- Заклепки -->
-          <div class="stat-card stat-card--rivets">
-            <span class="stat-card__value">11</span>
-            <span class="stat-card__label">Заклепки</span>
-          </div>
-        </div>
-      </div>
-      <!-- ФРЕЙМ ТЕПЛОВОЙ КАРТЫ ПО ДЛИНЕ 1380x430 -->
-      <div class="heatmap-frame">
-        <h2 class="heatmap-frame__title">
-          Тепловая карта дефектов ленты по длине
-        </h2>
-
-        <!-- Изображение тепловой карты -->
-        <div class="heatmap-image">
-          <img
-            src="../images/Teplo.jpg"
-            alt="Тепловая карта по длине"
-            class="heatmap-img"
-          />
-        </div>
-
-        <!-- Нижний блок с легендой -->
-        <div class="heatmap-footer">
-          <!-- Легенда -->
-          <div class="heatmap-legend">
-            <div class="legend-item">
-              <span
-                class="legend-color"
-                style="background-color: #ea5a3f"
-              ></span>
-              <span class="legend-text">Высокая (>25)</span>
-            </div>
-            <div class="legend-item">
-              <span
-                class="legend-color"
-                style="background-color: #ff8306"
-              ></span>
-              <span class="legend-text"
-                >Средняя
-                <span class="legend-text-value">(15-25) 
-                </span>
-              </span>
-            </div>
-            <div class="legend-item">
-              <span
-                class="legend-color"
-                style="background-color: #21a600"
-              ></span>
-              <span class="legend-text">Низкая (<15)</span>
-            </div>
-          </div>
-          <!-- Кнопка "Изменить параметры" -->
-          <a href="#" class="heatmap-edit-btn">Изменить параметры</a>
-        </div>
-      </div>
-
-      <!-- ФРЕЙМ ТЕПЛОВОЙ КАРТЫ ПО ШИРИНЕ 1380x639 -->
-      <div class="heatmap-frame heatmap-frame--width">
-        <h2 class="heatmap-frame__title">
-          Тепловая карта дефектов ленты по ширине
-        </h2>
-
-        <!-- Изображение тепловой карты -->
-        <div class="heatmap-image heatmap-image--width">
-          <img
-            src="../images/Teplo1.jpg"
-            alt="Тепловая карта по ширине"
-            class="heatmap-img"
-          />
-        </div>
-
-        <!-- Нижний блок с легендой и кнопкой -->
-        <div class="heatmap-footer">
-          <!-- Легенда -->
-          <div class="heatmap-legend">
-            <div class="legend-item">
-              <span
-                class="legend-color"
-                style="background-color: #ea5a3f"
-              ></span>
-              <span class="legend-text">Высокая (>25)</span>
-            </div>
-            <div class="legend-item">
-              <span
-                class="legend-color"
-                style="background-color: #ff8306"
-              ></span>
-              <span class="legend-text">Средняя (15-25)</span>
-            </div>
-            <div class="legend-item">
-              <span
-                class="legend-color"
-                style="background-color: #21a600"
-              ></span>
-              <span class="legend-text">Низкая (<15) </span>
-            </div>
-          </div>
-
-          <!-- Кнопка "Изменить параметры" -->
-          <a href="#" class="heatmap-edit-btn">Изменить параметры</a>
-        </div>
-      </div>
     </main>
     <!-- МОДАЛЬНОЕ ОКНО -->
     <div class="modal-overlay" id="heatmapModal">
@@ -537,7 +340,9 @@
           <div class="card">
             <div class="left">
               <div class="id">D-015</div>
-              <div class="notification-date">01.01.2026 <span>14:30:12</span></div>
+              <div class="notification-date">
+                01.01.2026 <span>14:30:12</span>
+              </div>
             </div>
 
             <div class="center">
@@ -553,7 +358,6 @@
       </div>
     </div>
 
-    <script src="js/notifications.js"></script>
-    <script src="js/properties.js"></script>
+    <script src="../js/pages/Statistics.js" type="module"></script>
   </body>
 </html>

@@ -714,7 +714,6 @@ body {
     background: rgba(59, 106, 207, 0.5);
 }
 
-<<<<<<< HEAD
 @media (max-width: 1024px) {
     .header__logo-text {
         font-size: 14px;
@@ -859,5 +858,3 @@ body {
         min-width: 100px;
     }
 }
-=======
->>>>>>> 073e459 (refactoring notifications)

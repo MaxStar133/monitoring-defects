@@ -547,3 +547,17 @@
 .calibrate-modal__btn--confirm:hover {
   background: #2a4fa8;
 }
+
+/* Выделение сегодняшнего дня (если не выбран) */
+.calendar-day.today {
+    background: rgba(59, 106, 207, 0.1);
+    border-radius: 60px;
+    color: #3B6ACF;
+    font-weight: 700;
+}
+
+/* Если сегодняшний день выбран, приоритет у selected */
+.calendar-day.selected.today {
+    background: #3B6ACF;
+    color: #FFFFFF;
+}
