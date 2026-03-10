@@ -12,12 +12,10 @@ document.addEventListener("DOMContentLoaded", function () {
     
     // Кнопки "Изменить параметры"
     const editButtons = document.querySelectorAll('.heatmap-edit-btn');
-    console.log("Найдено кнопок:", editButtons.length); // Для отладки
     
     editButtons.forEach(button => {
         button.addEventListener('click', (e) => {
             e.preventDefault();
-            console.log("Клик по кнопке Изменить параметры"); // Для отладки
             heatmapModal.open();
         });
     });
@@ -36,12 +34,11 @@ document.addEventListener("DOMContentLoaded", function () {
     if (confirmBtn) {
         confirmBtn.addEventListener('click', () => {
             console.log("Параметры тепловой карты сохранены");
-            // Здесь можно добавить логику сохранения
             heatmapModal.close();
         });
     }
     
-    // Закрытие по клику на оверлей (дополнительная проверка)
+    // Закрытие по клику на оверлей
     const modalOverlay = document.getElementById('heatmapModal');
     if (modalOverlay) {
         modalOverlay.addEventListener('click', (e) => {
@@ -55,6 +52,5 @@ document.addEventListener("DOMContentLoaded", function () {
     if (document.getElementById("notificationsPanel")) {
         console.log("Инициализация панели уведомлений");
         const notifications = new NotificationsPanel();
-        window.notifications = notifications; // Для отладки в консоли
     }
 });

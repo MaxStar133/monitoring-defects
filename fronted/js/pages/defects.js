@@ -3,24 +3,43 @@ import { Dropdown } from '../core/Dropdown.js';
 import { BaseModal } from '../core/BaseModal.js';
 import { ImageManager } from '../modals/ImageManager.js';
 import { NotificationsPanel } from '../modals/NotificationsPanel.js';
+import { FilterCalendar } from '../modals/FilterCalendar.js';
 
 document.addEventListener("DOMContentLoaded", function () {
     console.log("Defects.js loaded");
     
+    const filterCalendar = new FilterCalendar();
+    
     // Фильтры на странице дефектов
     if (document.getElementById("filter-btn")) {
-        new PositionedModal("filter-modal", "filter-btn", ".filter-modal", 400, 500);
+        const filterModal = new PositionedModal("filter-modal", "filter-btn", ".filter-modal", 400, 500);
+        
+        const originalOpen = filterModal.open;
+        filterModal.open = function() {
+            originalOpen.call(this);
+            setTimeout(() => {
+                filterCalendar.initFilterButtons();
+            }, 50);
+        };
     }
     
     // Фильтры в обнаружениях
     if (document.getElementById("detections-filter-btn")) {
-        new PositionedModal(
+        const detectionsFilterModal = new PositionedModal(
             "detections-filter-modal", 
             "detections-filter-btn", 
             ".detections-filter-modal", 
             400, 
             400
         );
+        
+        const originalOpen = detectionsFilterModal.open;
+        detectionsFilterModal.open = function() {
+            originalOpen.call(this);
+            setTimeout(() => {
+                filterCalendar.initDetectionsFilterButtons();
+            }, 50);
+        };
     }
     
     // Выпадающие списки
@@ -61,7 +80,6 @@ document.addEventListener("DOMContentLoaded", function () {
             const defectId = btn.dataset.id;
             detectionsModal.modal.dataset.currentDefect = defectId;
             
-            // Здесь можно загрузить данные для конкретного дефекта
             console.log("Открыт дефект:", defectId);
             
             detectionsModal.open();

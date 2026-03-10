@@ -42,9 +42,7 @@ export class HeatmapModal extends BaseModal {
         }
     }
 
-    // Можно добавить методы для сохранения параметров
     saveParameters() {
-        // Сбор данных из инпутов
         const highValue = document.querySelector('.modal-row input').value;
         const mediumFrom = document.querySelectorAll('.modal-row--medium input')[0]?.value;
         const mediumTo = document.querySelectorAll('.modal-row--medium input')[1]?.value;
@@ -56,6 +54,5 @@ export class HeatmapModal extends BaseModal {
             low: lowValue
         });
         
-        // Здесь логика сохранения
     }
 }
