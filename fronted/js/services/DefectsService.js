@@ -287,7 +287,7 @@ const mockDefectDetails = {
                     width: 110,
                     area: 140
                 },
-                status: "Критичный",
+                status: "Внимание",
                 imageUrl: "/images/detections/detection4.jpg"
             },
             {
@@ -355,6 +355,377 @@ const mockDefectDetails = {
                 imageUrl: "/images/detections/detection2.jpg"
             },
             {
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },
+            {
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
+                date: "02.01.2026",
+                time: "12:30:17",
+                measurements: {
+                    length: 5,
+                    width: 5,
+                    area: 7
+                },
+                status: "Наблюдение",
+                imageUrl: "/images/detections/detection2.jpg"
+            },{
                 date: "02.01.2026",
                 time: "12:30:17",
                 measurements: {
