@@ -1,31 +1,23 @@
 // js/utils/Pagination.js
 
 export class Pagination {
-    constructor(container, itemsPerPage = 15, classPrefix = 'pagination') {
+    constructor(container, itemsPerPage = 15) {
         this.container = container;
         this.itemsPerPage = itemsPerPage;
         this.currentPage = 1;
         this.totalItems = 0;
         this.totalPages = 1;
         this.onPageChange = null;
-        this.classPrefix = classPrefix; // 'pagination' или 'detections-pagination'
         
         this.init();
     }
     
     init() {
-        // Находим элементы пагинации с учетом префикса
-        this.prevBtn = this.container.querySelector(`.${this.classPrefix}__nav-btn--prev`);
-        this.nextBtn = this.container.querySelector(`.${this.classPrefix}__nav-btn--next`);
-        this.infoEl = this.container.querySelector(`.${this.classPrefix}__info`);
-        this.controlsEl = this.container.querySelector(`.${this.classPrefix}__controls`);
-        
-        console.log(`Pagination.init with prefix ${this.classPrefix}:`, {
-            prevBtn: this.prevBtn,
-            nextBtn: this.nextBtn,
-            infoEl: this.infoEl,
-            controlsEl: this.controlsEl
-        });
+        // Находим элементы пагинации
+        this.prevBtn = this.container.querySelector('.pagination__nav-btn--prev');
+        this.nextBtn = this.container.querySelector('.pagination__nav-btn--next');
+        this.infoEl = this.container.querySelector('.pagination__info');
+        this.controlsEl = this.container.querySelector('.pagination__controls');
         
         if (this.prevBtn) {
             this.prevBtn.addEventListener('click', () => this.goToPrevPage());
@@ -61,9 +53,6 @@ export class Pagination {
     }
     
     render() {
-        console.log(`Pagination.render: totalPages =`, this.totalPages);
-        console.log(`Pagination.render: controlsEl =`, this.controlsEl);
-        
         // Обновляем информацию
         if (this.infoEl) {
             const start = (this.currentPage - 1) * this.itemsPerPage + 1;
@@ -86,13 +75,15 @@ export class Pagination {
         
         // Удаляем старые кнопки страниц
         if (this.controlsEl) {
-            const oldPages = this.controlsEl.querySelectorAll(`.${this.classPrefix}__page, .${this.classPrefix}__dots`);
-            console.log(`Pagination.render: удаляем старые кнопки:`, oldPages.length);
+            const oldPages = this.controlsEl.querySelectorAll('.pagination__page, .pagination__dots');
             oldPages.forEach(el => el.remove());
+            
+            // Если всего одна страница, не показываем кнопки
+            if (this.totalPages <= 1) return;
             
             // Создаем контейнер для кнопок
             const pagesContainer = document.createElement('div');
-            pagesContainer.style.display = 'contents'; 
+            pagesContainer.style.display = 'contents'; // Не влияет на стили
             
             const maxVisiblePages = 5;
             let startPage = Math.max(1, this.currentPage - Math.floor(maxVisiblePages / 2));
@@ -109,7 +100,7 @@ export class Pagination {
                 
                 if (startPage > 2) {
                     const dots = document.createElement('span');
-                    dots.className = `${this.classPrefix}__dots`;
+                    dots.className = 'pagination__dots';
                     dots.textContent = '...';
                     pagesContainer.appendChild(dots);
                 }
@@ -119,7 +110,7 @@ export class Pagination {
             for (let i = startPage; i <= endPage; i++) {
                 const pageBtn = this.createPageButton(i);
                 if (i === this.currentPage) {
-                    pageBtn.classList.add(`${this.classPrefix}__page--active`);
+                    pageBtn.classList.add('pagination__page--active');
                 }
                 pagesContainer.appendChild(pageBtn);
             }
@@ -128,44 +119,26 @@ export class Pagination {
             if (endPage < this.totalPages) {
                 if (endPage < this.totalPages - 1) {
                     const dots = document.createElement('span');
-                    dots.className = `${this.classPrefix}__dots`;
+                    dots.className = 'pagination__dots';
                     dots.textContent = '...';
                     pagesContainer.appendChild(dots);
                 }
                 
                 const lastPage = this.createPageButton(this.totalPages);
-                lastPage.classList.add(`${this.classPrefix}__page--last`);
+                lastPage.classList.add('pagination__page--last');
                 pagesContainer.appendChild(lastPage);
             }
             
-            console.log(`Pagination.render: создано кнопок:`, pagesContainer.children.length);
-            
-            // Вставляем после prevBtn
+            // Вставляем все кнопки после prevBtn
             if (this.prevBtn) {
                 this.prevBtn.insertAdjacentElement('afterend', pagesContainer);
-                console.log(`Pagination.render: кнопки вставлены после prevBtn`);
-            } else {
-                // Если нет prevBtn, вставляем в controlsEl
-                this.controlsEl.appendChild(pagesContainer);
-                console.log(`Pagination.render: кнопки вставлены в controlsEl`);
             }
-
-            // Проверяем, появились ли кнопки в DOM
-            setTimeout(() => {
-                const pages = this.controlsEl.querySelectorAll(`.${this.classPrefix}__page`);
-                console.log(`Pagination.render: кнопки в DOM после вставки:`, pages.length);
-                pages.forEach((page, i) => {
-                    console.log(`Кнопка ${i}:`, page, page.offsetParent ? "видима" : "не видима");
-                });
-            }, 100);
-        } else {
-            console.error(`Pagination.render: controlsEl не найден!`);
         }
     }
     
     createPageButton(pageNumber) {
         const btn = document.createElement('button');
-        btn.className = `${this.classPrefix}__page`;
+        btn.className = 'pagination__page';
         btn.textContent = pageNumber;
         btn.addEventListener('click', () => this.goToPage(pageNumber));
         return btn;

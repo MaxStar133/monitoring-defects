@@ -16,8 +16,6 @@ class DefectsPage {
     this.allDefects = [];
     this.filteredDefects = [];
     this.currentPageDefects = [];
-    this.currentDetections = []; // Для хранения текущих обнаружений
-    this.imageManager = null; // Для управления изображениями
 
     this.init();
   }
@@ -25,11 +23,11 @@ class DefectsPage {
   async init() {
     console.log("DefectsPage initialized - начало");
 
-    // Инициализируем пагинацию для главной таблицы
+    // Инициализируем пагинацию
     const paginationContainer = document.querySelector(".pagination");
     console.log("Pagination container:", paginationContainer);
     if (paginationContainer) {
-      this.pagination = new Pagination(paginationContainer, 15, 'pagination');
+      this.pagination = new Pagination(paginationContainer, 15);
       this.pagination.setOnPageChange((page) => this.loadPage(page));
     }
 
@@ -131,12 +129,6 @@ class DefectsPage {
   async renderDetectionsModal(defectId) {
     try {
       const details = await this.defectsService.getDefectDetails(defectId);
-      console.log("renderDetectionsModal: details", details); // <-- ДОБАВЬТЕ
-      console.log("renderDetectionsModal: detections length", details.detections.length); // <-- ДОБАВЬТЕ
-      console.log("renderDetectionsModal: this.detectionsPagination", this.detectionsPagination); // <-- ДОБАВЬТЕ
-    
-      // Сохраняем текущие обнаружения
-      this.currentDetections = details.detections;
 
       // Сохраняем ID в модальном окне
       const modal = document.getElementById("detections-modal");
@@ -158,115 +150,72 @@ class DefectsPage {
             <span class="detections-statistics__label">Длина:</span>
             <span class="detections-statistics__value">
                 ${details.statistics.firstDetection.measurements.length} → 
-                ${details.statistics.lastDetection.measurements.length} 
+                ${details.statistics.lastDetection.measurements.length} мм
             </span>
-            <span class="detections-statistics__unit">мм</span>
             <span class="detections-statistics__percent">(${details.statistics.growth.length})</span>
           `;
           statItems[1].innerHTML = `
             <span class="detections-statistics__label">Ширина:</span>
             <span class="detections-statistics__value">
                 ${details.statistics.firstDetection.measurements.width} → 
-                ${details.statistics.lastDetection.measurements.width}
+                ${details.statistics.lastDetection.measurements.width} мм
             </span>
-            <span class="detections-statistics__unit">мм</span>
             <span class="detections-statistics__percent">(${details.statistics.growth.width})</span>
           `;
           statItems[2].innerHTML = `
             <span class="detections-statistics__label">Площадь:</span>
             <span class="detections-statistics__value">
                 ${details.statistics.firstDetection.measurements.area} → 
-                ${details.statistics.lastDetection.measurements.area} 
+                ${details.statistics.lastDetection.measurements.area} мм²
             </span>
-            <span class="detections-statistics__unit">мм²</span>
             <span class="detections-statistics__percent">(${details.statistics.growth.area})</span>
           `;
         }
       }
 
+      // Обновляем таблицу обнаружений
+      const tableBody = document.querySelector("#detections-modal .detections-table");
+      if (tableBody) {
+        const header = tableBody.querySelector(".detections-table-header");
+        tableBody.innerHTML = "";
+        tableBody.appendChild(header);
+
+        details.detections.forEach((detection, index) => {
+          const statusClass = `status--${getStatusClass(detection.status)}`;
+          const row = document.createElement("div");
+          row.className = "detections-table-row";
+          if (index === details.detections.length - 1) {
+            row.classList.add("detections-table-row--last");
+          }
+
+          row.innerHTML = `
+            <div class="detections-table-row__cell detections-table-row__cell--date">
+                <span class="date">${detection.date}</span>
+                <span class="time">${detection.time}</span>
+            </div>
+            <div class="detections-table-row__measurements">
+                <span class="detections-table-row__value">${detection.measurements.length}</span>
+                <span class="detections-table-row__value">${detection.measurements.width}</span>
+                <span class="detections-table-row__value">${detection.measurements.area}</span>
+            </div>
+            <div class="detections-table-row__cell detections-table-row__cell--status ${statusClass}">
+                ${detection.status}
+            </div>
+            <div class="detections-table-row__cell detections-table-row__cell--actions">
+                <a href="#" class="detections-table-row__link show-image" data-image="${detection.imageUrl}">Показать</a>
+            </div>
+          `;
+          tableBody.appendChild(row);
+        });
+      }
+
       // Обновляем пагинацию в модальном окне
-      if (this.detectionsPagination) {
-        console.log("Устанавливаем totalItems:", details.detections.length); // <-- ДОБАВЬТЕ
-        this.detectionsPagination.setTotalItems(details.detections.length);
-        this.loadDetectionsPage(1, details.detections);
-      } else {
-        console.log("detectionsPagination не существует, показываем все"); // <-- ДОБАВЬТЕ
-        // Если пагинации нет, показываем все
-        this.renderDetectionsTable(details.detections);
-        
-        const paginationInfo = document.querySelector(".detections-pagination__info");
-        if (paginationInfo) {
-          paginationInfo.textContent = `Результаты 1-${details.detections.length} из ${details.detections.length}`;
-        }
+      const paginationInfo = document.querySelector(".detections-pagination__info");
+      if (paginationInfo) {
+        paginationInfo.textContent = `Результаты 1-${details.detections.length} из ${details.detections.length}`;
       }
     } catch (error) {
       console.error("Ошибка загрузки деталей дефекта:", error);
-    }
-  }
-
-  // Метод для загрузки страницы в модальном окне
-  loadDetectionsPage(page, allDetections) {
-    const start = (page - 1) * this.detectionsPagination.itemsPerPage;
-    const end = start + this.detectionsPagination.itemsPerPage;
-    const pageDetections = allDetections.slice(start, end);
-    
-    this.renderDetectionsTable(pageDetections);
-    
-    // Обновляем информацию о пагинации
-    const paginationInfo = document.querySelector(".detections-pagination__info");
-    if (paginationInfo) {
-      const startItem = start + 1;
-      const endItem = Math.min(end, allDetections.length);
-      paginationInfo.textContent = `Результаты ${startItem}-${endItem} из ${allDetections.length}`;
-    }
-  }
-
-  // Вынести рендер таблицы в отдельный метод
-  renderDetectionsTable(detections) {
-    const tableBody = document.querySelector("#detections-modal .detections-table");
-    if (!tableBody) return;
-    
-    const header = tableBody.querySelector(".detections-table-header");
-    tableBody.innerHTML = "";
-    tableBody.appendChild(header);
-    
-    detections.forEach((detection, index) => {
-      const statusClass = `status--${getStatusClass(detection.status)}`;
-      const row = document.createElement("div");
-      row.className = "detections-table-row";
-      if (index === detections.length - 1) {
-        row.classList.add("detections-table-row--last");
-      }
-      
-      row.innerHTML = `
-        <div class="detections-table-row__cell detections-table-row__cell--date">
-            <span class="date">${detection.date}</span>
-            <span class="time">${detection.time}</span>
-        </div>
-        <div class="detections-table-row__measurements">
-            <span class="detections-table-row__value">${detection.measurements.length}</span>
-            <span class="detections-table-row__value">${detection.measurements.width}</span>
-            <span class="detections-table-row__value">${detection.measurements.area}</span>
-        </div>
-        <div class="detections-table-row__cell detections-table-row__cell--status ${statusClass}">
-            ${detection.status}
-        </div>
-        <div class="detections-table-row__cell detections-table-row__cell--actions">
-            <a href="#" class="detections-table-row__link show-image" data-image="${detection.imageUrl}">Показать</a>
-        </div>
-      `;
-      tableBody.appendChild(row);
-    });
-    
-    // Переинициализируем обработчики для кнопок "Показать"
-    if (document.querySelector(".detections-table-row__link")) {
-      // Если ImageManager уже создан, используем его, иначе создаем новый
-      if (!this.imageManager) {
-        this.imageManager = new ImageManager();
-      } else {
-        // Перепривязываем обработчики
-        this.imageManager.attachEventHandlers();
-      }
     }
   }
 
@@ -300,23 +249,6 @@ class DefectsPage {
       closeOnEsc: true,
       closeOnOverlay: true,
     });
-
-    // ИНИЦИАЛИЗАЦИЯ ПАГИНАЦИИ ДЛЯ МОДАЛЬНОГО ОКНА
-    const detectionsPaginationContainer = document.querySelector('.detections-pagination');
-    console.log("detectionsPaginationContainer:", detectionsPaginationContainer); // <-- ДОБАВЬТЕ
-
-    if (detectionsPaginationContainer) {
-      console.log("Создаем пагинацию для модального окна"); // <-- ДОБАВЬТЕ
-      this.detectionsPagination = new Pagination(detectionsPaginationContainer, 15, 'detections-pagination');
-      this.detectionsPagination.setOnPageChange((page) => {
-        console.log("Страница в модальном окне:", page); // <-- ДОБАВЬТЕ
-        if (this.currentDetections) {
-          this.loadDetectionsPage(page, this.currentDetections);
-        }
-      });
-    }else {
-    console.error("Контейнер пагинации .detections-pagination не найден!"); // <-- ДОБАВЬТЕ
-  }
 
     // Модальное окно подтверждения
     this.fixModal = new BaseModal("fix-confirm-modal", {
@@ -421,7 +353,7 @@ class DefectsPage {
 
     // Управление изображениями
     if (document.querySelector(".detections-table-row__link")) {
-      this.imageManager = new ImageManager();
+      new ImageManager();
     }
 
     // Панель уведомлений

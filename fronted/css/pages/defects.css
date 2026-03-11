@@ -594,11 +594,6 @@
   stroke: var(--color-dark);
 }
 
-.pagination__nav-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
 .pagination__page {
   display: flex;
   flex-direction: column;
@@ -620,7 +615,6 @@
 
 .pagination__page--active {
   font-weight: 500;
-  color: var(--color-dark);
 }
 
 .pagination__page--last {
@@ -916,6 +910,7 @@ body.modal-open {
   background: #EAEBEF;
 }
 
+
 .filter-date,
 .filter-date .date-picker__icon,
 .filter-date .date-picker__text,
@@ -923,14 +918,17 @@ body.modal-open {
   transition: none;
 }
 
+
 .filter-date:hover .date-picker__text,
 .filter-date:hover .date-separator {
   color: var(--color-dark);
 }
 
+
 .filter-date:active {
   transform: none;
 }
+
 
 .filter-date:focus-visible {
   outline: none;
@@ -1496,25 +1494,25 @@ body.modal-open {
   flex-grow: 0;
 }
 
-/* Заголовок дефекта */
 .detections-header-left {
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 0px 20px;
-  gap: 8px;
-  width: auto;
-  min-width: 323px;
+  gap: 16px;
+
+  width: 323px;
   height: 24px;
+
   justify-content: flex-start;
+
   flex: none;
   order: 0;
   flex-grow: 0;
 }
 
 .detections-header__label {
-  width: auto;
-  min-width: 60px;
+  width: 83px;
   height: 24px;
   font-family: "Inter", sans-serif;
   font-weight: 600;
@@ -1525,12 +1523,10 @@ body.modal-open {
   flex: none;
   order: 0;
   flex-grow: 0;
-  white-space: nowrap;
 }
 
 .detections-header__id {
-  width: auto;
-  min-width: 60px;
+  width: 60px;
   height: 24px;
   font-family: "Inter", sans-serif;
   font-weight: 600;
@@ -1541,12 +1537,10 @@ body.modal-open {
   flex: none;
   order: 1;
   flex-grow: 0;
-  white-space: nowrap;
 }
 
 .detections-header__type {
-  width: auto;
-  min-width: 80px;
+  width: 108px;
   height: 24px;
   font-family: "Inter", sans-serif;
   font-weight: 400;
@@ -1557,7 +1551,6 @@ body.modal-open {
   flex: none;
   order: 2;
   flex-grow: 0;
-  white-space: nowrap;
 }
 
 .detections-header__btn {
@@ -1605,15 +1598,17 @@ body.modal-open {
   flex-grow: 0;
 }
 
-/* ===== СТАТИСТИКА ОБНАРУЖЕНИЙ - ИСПРАВЛЕНО ПО FIGMA ===== */
+/* Статистика обнаружений */
 .detections-statistics {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   padding: 0px;
   gap: 8px;
+
   width: 1244px;
   height: auto;
+
   flex: none;
   order: 1;
   align-self: stretch;
@@ -1627,8 +1622,10 @@ body.modal-open {
   align-items: center;
   padding: 0px;
   gap: 20px;
+
   width: 1244px;
   height: 19px;
+
   flex: none;
   order: 0;
   align-self: stretch;
@@ -1638,20 +1635,21 @@ body.modal-open {
 .detections-statistics__item {
   display: flex;
   flex-direction: row;
-  justify-content: center; 
+  justify-content: center;
   align-items: center;
   padding: 0px;
-  gap: 8px; /* Увеличиваем gap для надежности */
+  gap: 4px;
+
   width: 333px;
   height: 19px;
+
   flex: none;
   order: 0;
   flex-grow: 0;
 }
 
 .detections-statistics__label {
-  width: auto; /* Авто ширина */
-  min-width: 45px; /* Минимум для "Длина:" */
+  width: 80px;
   height: 19px;
   font-family: "Inter", sans-serif;
   font-weight: 400;
@@ -1661,12 +1659,10 @@ body.modal-open {
   flex: none;
   order: 0;
   flex-grow: 0;
-  white-space: nowrap;
 }
 
 .detections-statistics__value {
-  width: auto; /* Авто ширина */
-  min-width: 70px; /* Минимум для "120 → 135" */
+  width: 100px;
   height: 19px;
   font-family: "Inter", sans-serif;
   font-weight: 400;
@@ -1676,29 +1672,10 @@ body.modal-open {
   flex: none;
   order: 1;
   flex-grow: 0;
-  white-space: nowrap;
-  text-align: center;
-}
-
-.detections-statistics__unit {
-  width: auto; /* Авто ширина */
-  min-width: 20px; /* Минимум для "мм" или "мм²" */
-  height: 19px;
-  font-family: "Inter", sans-serif;
-  font-weight: 400;
-  font-size: 16px;
-  line-height: 19px;
-  color: #333333;
-  flex: none;
-  order: 2;
-  flex-grow: 0;
-  white-space: nowrap;
-  text-align: left;
 }
 
 .detections-statistics__percent {
-  width: auto; /* Авто ширина */
-  min-width: 50px; /* Минимум для "(+12.5%)" */
+  width: 60px;
   height: 19px;
   font-family: "Inter", sans-serif;
   font-weight: 400;
@@ -1707,9 +1684,8 @@ body.modal-open {
   text-align: right;
   color: #333333;
   flex: none;
-  order: 3; /* Меняем порядок */
+  order: 2;
   flex-grow: 0;
-  white-space: nowrap;
 }
 
 /* Графики */
@@ -1925,7 +1901,6 @@ body.modal-open {
 
 .detections-table-header__cell--date {
   width: 241.33px;
-  text-align: center;
 }
 
 .detections-table-header__cell--status {
@@ -1943,7 +1918,6 @@ body.modal-open {
   padding: 0px;
   width: 520px;
   height: 24px;
-  justify-content: space-around;
 }
 
 .detections-table-header__measure {
@@ -1962,7 +1936,7 @@ body.modal-open {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 0px 0px 8px 0px;
+  padding: 0px 0px 8px;
   gap: 0;
 
   width: 1244px;
@@ -1986,13 +1960,11 @@ body.modal-open {
 
 .detections-table-row__cell--date {
   width: 241.33px;
-  text-align: center;
 }
 
 .detections-table-row__cell--date .date {
   color: var(--color-light);
   font-weight: 400;
-  margin-right: 4px;
 }
 
 .detections-table-row__cell--date .time {
@@ -2015,7 +1987,6 @@ body.modal-open {
   padding: 0px;
   width: 520px;
   height: 24px;
-  justify-content: space-around;
 }
 
 .detections-table-row__value {
@@ -2055,7 +2026,7 @@ body.modal-open {
   color: var(--color-rivet);
 }
 
-/* Пагинация в модальном окне - как на главном экране */
+/* Пагинация в модальном окне */
 .detections-pagination {
   display: flex;
   flex-direction: row;
@@ -2063,9 +2034,12 @@ body.modal-open {
   align-items: center;
   padding: 20px;
   gap: 16px;
+
   width: 1244px;
   height: 32px;
+
   margin-top: 24px;
+
   flex: none;
   order: 4;
   align-self: stretch;
@@ -2073,8 +2047,7 @@ body.modal-open {
 }
 
 .detections-pagination__info {
-  width: auto;
-  min-width: 200px;
+  width: 228px;
   height: 24px;
   font-family: "Inter", sans-serif;
   font-weight: 500;
@@ -2085,7 +2058,6 @@ body.modal-open {
   flex: none;
   order: 0;
   flex-grow: 0;
-  white-space: nowrap;
 }
 
 .detections-pagination__controls {
@@ -2094,17 +2066,13 @@ body.modal-open {
   align-items: center;
   padding: 0px;
   gap: 8px;
-  width: auto;
-  min-width: 200px;
+
+  width: 350px;
   height: 32px;
+
   flex: none;
   order: 1;
   flex-grow: 0;
-  justify-content: flex-end; /* Добавляем выравнивание вправо */
-}
-
-.detections-pagination__controls:empty {
-  display: none;
 }
 
 .detections-pagination__nav-btn {
@@ -2114,12 +2082,15 @@ body.modal-open {
   justify-content: center;
   align-items: center;
   padding: 0px;
-  width: 44px; /* Возвращаем 44px как на главном экране */
+
+  width: 44px;
   height: 32px;
+
   background: var(--color-white);
   border: 1px solid var(--color-border);
   box-shadow: 0px 0px 20px rgba(29, 59, 255, 0.1);
   border-radius: 8px;
+
   flex: none;
   cursor: pointer;
 }
@@ -2137,26 +2108,16 @@ body.modal-open {
   stroke: var(--color-dark);
 }
 
-.detections-pagination__nav-btn:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.detections-pagination__nav-btn--prev:only-child,
-.detections-pagination__nav-btn--next:only-child {
-  margin: 0 2px;
-}
-
 .detections-pagination__page {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 24px; /* Возвращаем 24px как на главном экране */
+  width: 24px;
   height: 24px;
   font-family: "Inter", sans-serif;
   font-weight: 400;
-  font-size: 20px; /* Возвращаем 20px как на главном экране */
+  font-size: 20px;
   line-height: 24px;
   text-align: center;
   color: var(--color-blue);
@@ -2164,23 +2125,14 @@ body.modal-open {
   border: none;
   cursor: pointer;
   flex: none;
-  border-radius: 0; /* Убираем скругление */
-  transition: all 0.2s ease;
-}
-
-.detections-pagination__page:hover {
-  color: var(--color-dark);
-  background: none; /* Убираем фон при наведении */
 }
 
 .detections-pagination__page--active {
   font-weight: 500;
-  color: var(--color-dark);
-  background: none; /* Убираем фон */
 }
 
 .detections-pagination__page--last {
-  width: 30px; /* Возвращаем 30px */
+  width: 30px;
 }
 
 .detections-pagination__dots {
@@ -2525,4 +2477,5 @@ body.modal-open {
   object-fit: cover;
   display: block;
 }
+
 

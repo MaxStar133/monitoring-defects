@@ -102,9 +102,9 @@
               alt="Календарь"
               class="stats-date-icon"
             />
-            <span class="stats-date-text">15.01.2026</span>
+            <span class="stats-date-text">01.01.2026</span>
             <span class="stats-date-sep">-</span>
-            <span class="stats-date-text">16.01.2026</span>
+            <span class="stats-date-text">15.01.2026</span>
           </div>
         </div>
       </div>
@@ -119,11 +119,7 @@
           <div class="stats-frame-left">
             <h2 class="frame-title">Обнаруженные дефекты</h2>
             <div class="frame-image image-5">
-              <img
-                src="../images/image%205.svg"
-                alt="График обнаруженных дефектов"
-                class="svg-image"
-              />
+              <canvas id="defectsLineChart"></canvas>
             </div>
           </div>
 
@@ -131,11 +127,7 @@
           <div class="stats-frame-right">
             <h2 class="frame-title">Распределение по типам:</h2>
             <div class="frame-image image-7">
-              <img
-                src="../images/image%207.svg"
-                alt="График распределения по типам"
-                class="svg-image"
-              />
+              <canvas id="defectsPieChart"></canvas>
             </div>
           </div>
         </div>
@@ -358,6 +350,8 @@
       </div>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script src="../js/pages/Statistics.js" type="module"></script>
   </body>
 </html>
