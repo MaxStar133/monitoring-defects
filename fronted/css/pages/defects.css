@@ -2526,3 +2526,133 @@ body.modal-open {
   display: block;
 }
 
+/* Графики в модальном окне обнаружений */
+.detections-graphs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin: 16px 0;
+  padding: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.graph-container {
+  background: var(--color-white);
+  border-radius: 12px;
+  padding: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  width: 100%;
+  box-sizing: border-box;
+  height: 240px; 
+  display: flex;
+  flex-direction: column;
+}
+
+.graph-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+  padding: 0 4px;
+  height: 28px;
+}
+
+.graph-title {
+  font-size: 13px;
+  font-weight: 600;
+  color: #333;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+}
+
+.graph-unit {
+  display: none; 
+}
+
+.graph-canvas-wrapper {
+  position: relative;
+  height: 200px; 
+  width: 100%;
+  flex: 1;
+}
+
+.detection-chart {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+
+/* Стили для сообщения "Нет данных" */
+.no-data {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 100px 40px;
+  color: #999;
+  font-size: 14px;
+  background: #f5f5f5;
+  border-radius: 8px;
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Адаптивность */
+@media (max-width: 1400px) {
+  .graph-canvas-wrapper {
+    height: 200px;
+  }
+  .graph-container {
+    height: 240px;
+  }
+}
+
+@media (max-width: 1200px) {
+  .detections-graphs {
+    gap: 12px;
+  }
+  
+  .graph-canvas-wrapper {
+    height: 180px;
+  }
+  
+  .graph-container {
+    height: 220px;
+  }
+}
+
+@media (max-width: 768px) {
+  .detections-graphs {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  
+  .graph-canvas-wrapper {
+    height: 240px;
+  }
+  
+  .graph-container {
+    height: 280px;
+  }
+}
+
+/* Анимация при загрузке */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.graph-container {
+  animation: fadeIn 0.3s ease-out;
+}
+
+.graph-container:nth-child(1) { animation-delay: 0.1s; }
+.graph-container:nth-child(2) { animation-delay: 0.2s; }
+.graph-container:nth-child(3) { animation-delay: 0.3s; }

@@ -7,11 +7,11 @@ export class BaseModal {
       closeOnOverlay: true,
       onOpen: null,
       onClose: null,
-      ...options
+      ...options,
     };
-    
+
     if (!this.modal) return;
-    
+
     this.init();
   }
 
@@ -30,6 +30,10 @@ export class BaseModal {
       });
     }
   }
+  // Добавить этот метод
+  setOnClose(callback) {
+    this.onCloseCallback = callback;
+  }
 
   open() {
     this.modal.classList.add("active");
@@ -40,7 +44,9 @@ export class BaseModal {
   close() {
     this.modal.classList.remove("active");
     document.body.classList.remove("modal-open");
-    if (this.options.onClose) this.options.onClose();
+    if (this.onCloseCallback) {
+      this.onCloseCallback(); // Вызываем callback при закрытии
+    }
   }
 
   toggle() {
