@@ -6,6 +6,7 @@ import { NotificationsPanel } from "../modals/NotificationsPanel.js";
 import { FilterCalendar } from "../modals/FilterCalendar.js";
 import { Pagination } from "../utils/Pagination.js";
 import { DefectsService, getStatusClass } from "../services/DefectsService.js";
+import { ExportService } from '../services/ExportService.js';
 
 
 // Главный класс страницы
@@ -23,26 +24,30 @@ class DefectsPage {
   }
 
   async init() {
-    console.log("DefectsPage initialized - начало");
+  console.log("DefectsPage initialized - начало");
 
-    // Инициализируем пагинацию для главной таблицы
-    const paginationContainer = document.querySelector(".pagination");
-    console.log("Pagination container:", paginationContainer);
-    if (paginationContainer) {
-      this.pagination = new Pagination(paginationContainer, 15, 'pagination');
-      this.pagination.setOnPageChange((page) => this.loadPage(page));
-    }
-
-    // Загружаем данные
-    console.log("Загружаем данные...");
-    await this.loadData();
-    console.log("Данные загружены");
-
-    // Инициализируем все модальные окна и фильтры
-    this.initModals();
-    this.initFilters();
-    console.log("DefectsPage initialized - конец");
+  // Инициализируем пагинацию для главной таблицы
+  const paginationContainer = document.querySelector(".pagination");
+  console.log("Pagination container:", paginationContainer);
+  if (paginationContainer) {
+    this.pagination = new Pagination(paginationContainer, 15);
+    this.pagination.setOnPageChange((page) => this.loadPage(page));
   }
+
+  // Загружаем данные
+  console.log("Загружаем данные...");
+  await this.loadData();
+  console.log("Данные загружены");
+
+  // Инициализируем все модальные окна и фильтры
+  this.initModals();
+  this.initFilters();
+  
+  // Инициализируем экспорт
+  this.initExport(); // <-- ДОБАВЬТЕ ЭТУ СТРОКУ
+  
+  console.log("DefectsPage initialized - конец");
+}
 
   async loadData() {
     try {
@@ -287,6 +292,7 @@ class DefectsPage {
     console.log("detailHandler: клик по дефекту", defectId);
 
     await this.renderDetectionsModal(defectId);
+    this.initDetectionsExport(); // <-- Добавить эту строку
     this.detectionsModal.open();
 
     console.log("Открыт дефект:", defectId);
@@ -429,6 +435,135 @@ class DefectsPage {
       const notifications = new NotificationsPanel();
     }
   }
+  // Исправленная версия метода
+initExport() {
+  console.log("initExport: инициализация экспорта");
+  
+  this.exportService = new ExportService(); // Сохраняем в свойство класса
+  
+  // Находим ссылки для скачивания
+  const excelLink = document.querySelector('.excel-link');
+  const pdfLink = document.querySelector('.pdf-link');
+  const csvLink = document.querySelector('.csv-link');
+  
+  // Удаляем старые обработчики
+  if (excelLink) {
+    excelLink.removeEventListener('click', this.mainExcelHandler);
+    this.mainExcelHandler = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const data = this.filteredDefects; // Используем отфильтрованные данные
+      this.exportService.exportData('excel', data, 'defects_list');
+    };
+    excelLink.addEventListener('click', this.mainExcelHandler);
+  }
+  
+  if (pdfLink) {
+    pdfLink.removeEventListener('click', this.mainPdfHandler);
+    this.mainPdfHandler = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const data = this.filteredDefects;
+      this.exportService.exportData('pdf', data, 'defects_list');
+    };
+    pdfLink.addEventListener('click', this.mainPdfHandler);
+  }
+  
+  if (csvLink) {
+    csvLink.removeEventListener('click', this.mainCsvHandler);
+    this.mainCsvHandler = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const data = this.filteredDefects;
+      this.exportService.exportData('csv', data, 'defects_list');
+    };
+    csvLink.addEventListener('click', this.mainCsvHandler);
+  }
+}
+
+// Добавьте в класс DefectsPage
+
+// Исправленная версия метода
+initDetectionsExport() {
+  console.log("initDetectionsExport: инициализация экспорта для модального окна");
+  
+  const exportService = new ExportService();
+  
+  // Находим ссылки для скачивания в модальном окне
+  const excelLink = document.querySelector('.detections-excel-link');
+  const pdfLink = document.querySelector('.detections-pdf-link');
+  const csvLink = document.querySelector('.detections-csv-link');
+  
+  // Удаляем старые обработчики перед добавлением новых
+  if (excelLink) {
+    excelLink.removeEventListener('click', this.excelHandler);
+    this.excelHandler = (e) => {
+      e.preventDefault();
+      e.stopPropagation(); // Предотвращаем всплытие события
+      const data = this.currentDetections.map(d => ({
+        id: this.detectionsModal.modal.dataset.currentDefect,
+        date: d.date,
+        time: d.time,
+        length: d.measurements.length,
+        width: d.measurements.width,
+        area: d.measurements.area,
+        type: this.getDefectType(this.detectionsModal.modal.dataset.currentDefect),
+        status: d.status
+      }));
+      exportService.exportDetectionsData('excel', data, `defect_${this.detectionsModal.modal.dataset.currentDefect}_detections`);
+      console.log('Экспорт обнаружений в Excel');
+    };
+    excelLink.addEventListener('click', this.excelHandler);
+  }
+  
+  if (pdfLink) {
+    pdfLink.removeEventListener('click', this.pdfHandler);
+    this.pdfHandler = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const data = this.currentDetections.map(d => ({
+        id: this.detectionsModal.modal.dataset.currentDefect,
+        date: d.date,
+        time: d.time,
+        length: d.measurements.length,
+        width: d.measurements.width,
+        area: d.measurements.area,
+        type: this.getDefectType(this.detectionsModal.modal.dataset.currentDefect),
+        status: d.status
+      }));
+      exportService.exportDetectionsData('pdf', data, `defect_${this.detectionsModal.modal.dataset.currentDefect}_detections`);
+      console.log('Экспорт обнаружений в PDF');
+    };
+    pdfLink.addEventListener('click', this.pdfHandler);
+  }
+  
+  if (csvLink) {
+    csvLink.removeEventListener('click', this.csvHandler);
+    this.csvHandler = (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const data = this.currentDetections.map(d => ({
+        id: this.detectionsModal.modal.dataset.currentDefect,
+        date: d.date,
+        time: d.time,
+        length: d.measurements.length,
+        width: d.measurements.width,
+        area: d.measurements.area,
+        type: this.getDefectType(this.detectionsModal.modal.dataset.currentDefect),
+        status: d.status
+      }));
+      exportService.exportDetectionsData('csv', data, `defect_${this.detectionsModal.modal.dataset.currentDefect}_detections`);
+      console.log('Экспорт обнаружений в CSV');
+    };
+    csvLink.addEventListener('click', this.csvHandler);
+  }
+}
+
+// Вспомогательный метод для получения типа дефекта
+getDefectType(defectId) {
+  const defect = this.allDefects.find(d => d.id === defectId);
+  return defect ? defect.type : 'Неизвестно';
+}
 }
 
 // Инициализация
