@@ -1,7 +1,7 @@
 import { PositionedModal } from '../core/PositionedModal.js';
 
 export class Calendar extends PositionedModal {
-  constructor() {
+  constructor(onDateSelect) {
     super(
       "calendar-modal", 
       "date-trigger", 
@@ -20,13 +20,16 @@ export class Calendar extends PositionedModal {
     this.calendarDays = document.getElementById("calendar-days");
     this.prevMonthBtn = document.getElementById("prev-month");
     this.nextMonthBtn = document.getElementById("next-month");
+    
+    // Колбэк при выборе даты
+    this.onDateSelect = onDateSelect;
 
     if (!this.modal) return;
 
     // Состояние календаря
     this.currentDate = new Date();
-    this.selectedDate = new Date(); // Выбранная пользователем дата
-    this.today = new Date(); // Сегодняшняя дата для подсветки
+    this.selectedDate = new Date();
+    this.today = new Date();
 
     this.currentDate.setHours(0, 0, 0, 0);
     this.selectedDate.setHours(0, 0, 0, 0);
@@ -39,7 +42,8 @@ export class Calendar extends PositionedModal {
 
     this.initCalendar();
   }
-  
+
+  // Переопределяем метод open
   open() {
     this.currentDate = new Date(this.selectedDate);
     this.updateMonthYear();
@@ -72,7 +76,6 @@ export class Calendar extends PositionedModal {
     );
   }
 
-  // Проверка, является ли дата сегодняшней
   isToday(date) {
     return this.isSameDate(date, this.today);
   }
@@ -144,6 +147,7 @@ export class Calendar extends PositionedModal {
         classes += day.isCurrentMonth ? " current-month" : " other-month";
         classes += day.isSelected ? " selected" : "";
         classes += day.isToday && !day.isSelected ? " today" : "";
+
         return `<div class="${classes}" data-date="${day.date.toISOString()}">${day.day}</div>`;
       })
       .join("");
@@ -155,10 +159,17 @@ export class Calendar extends PositionedModal {
     const newSelectedDate = new Date(dateStr);
 
     this.selectedDate = newSelectedDate;
-    this.selectedDateSpan.textContent = this.formatDate(this.selectedDate);
+    const formattedDate = this.formatDate(this.selectedDate);
+    this.selectedDateSpan.textContent = formattedDate;
+    
+    // Вызываем колбэк с выбранной датой
+    if (this.onDateSelect) {
+      this.onDateSelect(formattedDate);
+    }
+    
     this.close();
 
-    console.log("Выбрана дата:", this.formatDate(this.selectedDate));
+    console.log("Выбрана дата:", formattedDate);
   }
 
   addDayClickHandlers() {
@@ -195,6 +206,7 @@ export class Calendar extends PositionedModal {
   }
 
   initCalendar() {
+    // Устанавливаем сегодняшнюю дату на кнопке
     this.selectedDateSpan.textContent = this.formatDate(this.selectedDate);
 
     this.prevMonthBtn.addEventListener("click", this.goToPrevMonth);

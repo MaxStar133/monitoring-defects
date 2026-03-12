@@ -561,3 +561,29 @@
     background: #3B6ACF;
     color: #FFFFFF;
 }
+
+/* Загрузка*/
+.stat-card.loading {
+  position: relative;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.stat-card.loading::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  margin-left: -10px;
+  margin-top: -10px;
+  border: 2px solid rgba(59, 106, 207, 0.2);
+  border-top-color: var(--color-blue);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
