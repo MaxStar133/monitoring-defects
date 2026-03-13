@@ -31,11 +31,14 @@ body {
     background-color: var(--color-bg);
     min-height: 100vh;
     padding: 10px;
+    overflow-x: auto; /* Добавляем горизонтальный скролл */
 }
 
 /* ========== ШАПКА ========== */
 .header {
-  max-width: 1420px;
+  min-width: 1380px; /* Фиксированная минимальная ширина */
+  max-width: 1380px; /* Фиксированная максимальная ширина */
+  width: 1380px; /* Фиксированная ширина */
   margin: 0 auto;
 }
 
@@ -47,7 +50,7 @@ body {
   padding: 8px 8px 8px 20px;
   gap: 10px;
 
-  width: 1380px;
+  width: 1380px; /* Фиксированная ширина */
   height: 60px;
 
   background: var(--color-white);
@@ -312,81 +315,6 @@ body {
   z-index: 1;
 }
 
-/* ===== АДАПТИВНОСТЬ ===== */
-@media (max-width: 1440px) {
-  .header__container {
-    width: 100%;
-    max-width: 1380px;
-  }
-}
-
-@media (max-width: 1024px) {
-  .header__logo-text {
-    width: auto;
-    min-width: 200px;
-  }
-
-  .header__logo-block {
-    width: auto;
-    min-width: 280px;
-  }
-}
-
-@media (max-width: 768px) {
-  body {
-    padding: 10px;
-  }
-
-  .header__container {
-    height: auto;
-    min-height: 60px;
-    padding: 8px 12px;
-    flex-wrap: wrap;
-    gap: 15px;
-  }
-
-  .header__logo-block {
-    height: auto;
-  }
-
-  .header__logo {
-    width: 44px;
-    height: 35px;
-  }
-
-  .header__logo-text {
-    line-height: 14px;
-    height: auto;
-    white-space: normal;
-  }
-
-  .header__nav {
-    flex-wrap: wrap;
-    justify-content: flex-end;
-    width: 100%;
-  }
-}
-
-@media (max-width: 480px) {
-  .header__container {
-    flex-direction: column;
-    align-items: flex-start;
-  }
-
-  .header__logo-block {
-    width: 100%;
-    justify-content: flex-start;
-  }
-
-  .header__nav {
-    width: 100%;
-    justify-content: space-between;
-  }
-
-  .header__button {
-    padding: 8px 12px;
-  }
-}
 /* ===== ПАНЕЛЬ УВЕДОМЛЕНИЙ ===== */
 
 /* Оверлей */
@@ -708,146 +636,22 @@ body {
     background: rgba(59, 106, 207, 0.5);
 }
 
-@media (max-width: 1024px) {
-    .header__logo-text {
-        font-size: 14px;
-        width: auto;
-        min-width: 200px;
-    }
-
-    .header__logo-block {
-        width: auto;
-        min-width: 280px;
-    }
-}
-
+/* Удаляем все медиа-запросы для header, оставляем только для уведомлений */
 @media (max-width: 768px) {
-    body {
-        padding: 10px;
-    }
-
-    .header__container {
-        height: auto;
-        min-height: 60px;
-        padding: 8px 12px;
-        flex-wrap: wrap;
-        gap: 15px;
-    }
-
-    .header__logo-block {
-        height: auto;
-    }
-
-    .header__logo {
-        width: 44px;
-        height: 35px;
-    }
-
-    .header__logo-text {
-        font-size: 13px;
-        line-height: 14px;
-        height: auto;
-        white-space: normal;
-    }
-
-    .header__nav {
-        flex-wrap: wrap;
-        justify-content: flex-end;
-        width: 100%;
-    }
+  .notifications-app {
+    width: 100%;
+    max-width: 400px;
+    margin-top: 60px;
+  }
 }
 
 @media (max-width: 480px) {
-    .header__container {
-        flex-direction: column;
-        align-items: flex-start;
-    }
-
-    .header__logo-block {
-        width: 100%;
-        justify-content: flex-start;
-    }
-
-    .header__nav {
-        width: 100%;
-        justify-content: space-between;
-    }
-
-    .header__button {
-        padding: 8px 12px;
-        font-size: 13px;
-    }
-}
-
-/* ========== ДОПОЛНИТЕЛЬНАЯ АДАПТИВНОСТЬ ========== */
-
-/* 1024px - 1280px */
-@media (max-width: 1280px) {
-    .header__container {
-        width: 100%;
-        max-width: 1200px;
-    }
-
-    .header__logo-text {
-        font-size: 14px;
-        width: 220px;
-    }
-
-    .header__nav {
-        width: 300px;
-        gap: 8px;
-    }
-
-    .header__button--statistics {
-        width: 130px;
-    }
-
-    .header__button--defects {
-        width: 110px;
-    }
-
-    .header__button--home-after {
-        width: 100px;
-    }
-
-    .header__button-text {
-        font-size: 14px;
-    }
-}
-
-/* 768px - 1024px */
-@media (max-width: 1024px) and (min-width: 769px) {
-    .header__container {
-        flex-wrap: wrap;
-        height: auto;
-        padding: 12px;
-    }
-
-    .header__logo-block {
-        width: 100%;
-        justify-content: center;
-        margin-bottom: 10px;
-    }
-
-    .header__logo-text {
-        text-align: left;
-        width: auto;
-    }
-
-    .header__nav {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .header__button {
-        height: 40px;
-    }
-
-    .header__button--statistics,
-    .header__button--defects,
-    .header__button--home-after {
-        width: auto;
-        min-width: 100px;
-    }
+  .notifications-app {
+    margin-top: 50px;
+    border-radius: 20px 20px 0 0;
+  }
+  
+  .notifications-header h1 {
+    font-size: 16px;
+  }
 }

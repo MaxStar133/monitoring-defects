@@ -352,7 +352,7 @@ const mockDefectDetails = {
                     area: 8
                 },
                 status: "Наблюдение",
-                imageUrl: "/images/detections/detection2.jpg"
+                imageUrl: "../../images/detection-defect.png"
             },
             {
                 date: "02.01.2026",
