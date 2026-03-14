@@ -160,6 +160,10 @@ export class RangeCalendar extends PositionedModal {
         
         if (day.isSelected) {
           classes += " selected";
+          if (this.endDate) {
+            if (day.isRangeStart) classes += " range-start";
+            if (day.isRangeEnd) classes += " range-end";
+          }
         } else if (day.isInRange) {
           classes += " in-range";
         }
@@ -168,7 +172,7 @@ export class RangeCalendar extends PositionedModal {
           classes += " today";
         }
 
-        return `<div class="${classes}" data-date="${day.date.toISOString()}">${day.day}</div>`;
+        return `<div class="${classes}" data-date="${day.date.toISOString()}"><span>${day.day}</span></div>`;
       })
       .join("");
   }
@@ -252,7 +256,7 @@ export class RangeCalendar extends PositionedModal {
     this.renderCalendar();
   }
 
-  // Переопределяем open
+  // Переопределяем open — не блокируем скролл, календарь работает как dropdown
   open() {
     if (this.startDate) {
       this.currentDate = new Date(this.startDate);
@@ -263,7 +267,13 @@ export class RangeCalendar extends PositionedModal {
       this.positionManager.updatePosition();
     }
     this.modal.classList.add("active");
-    document.body.classList.add("modal-open");
+  }
+
+  close() {
+    this.modal.classList.remove("active");
+    if (this.onCloseCallback) {
+      this.onCloseCallback();
+    }
   }
 
   initCalendar() {

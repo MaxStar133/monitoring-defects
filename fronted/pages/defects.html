@@ -235,13 +235,13 @@
                   alt="Календарь"
                   class="date-picker__icon"
                 />
-                <span class="date-picker__text">15.01.2026</span>
+                <span class="date-picker__text">дд.мм.гггг</span>
               </div>
 
-              <span class="date-separator">-</span>
+              <span class="date-separator">—</span>
 
               <div class="date-picker">
-                <span class="date-picker__text">16.01.2026</span>
+                <span class="date-picker__text">дд.мм.гггг</span>
               </div>
             </div>
           </div>
@@ -252,7 +252,7 @@
 
             <div class="filter-select" id="status-select">
               <span class="filter-select__text" id="selected-status"
-                >Критичный</span
+                >Все</span
               >
               <svg
                 class="filter-select__arrow"
@@ -272,6 +272,9 @@
 
               <!-- Выпадающий список -->
               <div class="filter-dropdown" id="status-dropdown">
+                <div class="filter-dropdown__item" data-value="">
+                  Все
+                </div>
                 <div class="filter-dropdown__item" data-value="critical">
                   Критичный
                 </div>
@@ -298,7 +301,7 @@
                 <div class="coord-input-group">
                   <span class="coord-input-label">От</span>
                   <div class="coord-input-field">
-                    <input type="text" value="0" class="coord-input" />
+                    <input type="text" placeholder="0" class="coord-input" />
                     <span class="coord-unit">м</span>
                   </div>
                 </div>
@@ -307,7 +310,7 @@
                 <div class="coord-input-group">
                   <span class="coord-input-label">До</span>
                   <div class="coord-input-field">
-                    <input type="text" value="200" class="coord-input" />
+                    <input type="text" placeholder="∞" class="coord-input" />
                     <span class="coord-unit">м</span>
                   </div>
                 </div>
@@ -323,7 +326,7 @@
                 <div class="coord-input-group">
                   <span class="coord-input-label">От</span>
                   <div class="coord-input-field">
-                    <input type="text" value="0" class="coord-input" />
+                    <input type="text" placeholder="0" class="coord-input" />
                     <span class="coord-unit">мм</span>
                   </div>
                 </div>
@@ -332,7 +335,7 @@
                 <div class="coord-input-group">
                   <span class="coord-input-label">До</span>
                   <div class="coord-input-field">
-                    <input type="text" value="200" class="coord-input" />
+                    <input type="text" placeholder="∞" class="coord-input" />
                     <span class="coord-unit">мм</span>
                   </div>
                 </div>
@@ -713,13 +716,13 @@
                     alt="Календарь"
                     class="date-picker__icon"
                   />
-                  <span class="date-picker__text">15.01.2026</span>
+                  <span class="date-picker__text">дд.мм.гггг</span>
                 </div>
 
-                <span class="date-separator">-</span>
+                <span class="date-separator">—</span>
 
                 <div class="date-picker">
-                  <span class="date-picker__text">16.01.2026</span>
+                  <span class="date-picker__text">дд.мм.гггг</span>
                 </div>
               </button>
             </div>
@@ -735,7 +738,7 @@
                 <span
                   class="detections-filter-select__text"
                   id="detections-selected-status"
-                  >Критичный</span
+                  >Все</span
                 >
                 <svg
                   class="detections-filter-select__arrow"
@@ -758,6 +761,12 @@
                   class="detections-filter-dropdown"
                   id="detections-status-dropdown"
                 >
+                  <div
+                    class="detections-filter-dropdown__item"
+                    data-value=""
+                  >
+                    Все
+                  </div>
                   <div
                     class="detections-filter-dropdown__item"
                     data-value="critical"
@@ -793,7 +802,7 @@
                   <div class="coord-input-group">
                     <span class="coord-input-label">От</span>
                     <div class="coord-input-field">
-                      <input type="text" value="0" class="coord-input" />
+                      <input type="text" placeholder="0" class="coord-input" />
                       <span class="coord-unit">м</span>
                     </div>
                   </div>
@@ -802,7 +811,7 @@
                   <div class="coord-input-group">
                     <span class="coord-input-label">До</span>
                     <div class="coord-input-field">
-                      <input type="text" value="200" class="coord-input" />
+                      <input type="text" placeholder="∞" class="coord-input" />
                       <span class="coord-unit">м</span>
                     </div>
                   </div>
@@ -818,7 +827,7 @@
                   <div class="coord-input-group">
                     <span class="coord-input-label">От</span>
                     <div class="coord-input-field">
-                      <input type="text" value="0" class="coord-input" />
+                      <input type="text" placeholder="0" class="coord-input" />
                       <span class="coord-unit">мм</span>
                     </div>
                   </div>
@@ -827,7 +836,7 @@
                   <div class="coord-input-group">
                     <span class="coord-input-label">До</span>
                     <div class="coord-input-field">
-                      <input type="text" value="200" class="coord-input" />
+                      <input type="text" placeholder="∞" class="coord-input" />
                       <span class="coord-unit">мм</span>
                     </div>
                   </div>
@@ -843,7 +852,7 @@
                   <div class="coord-input-group">
                     <span class="coord-input-label">От</span>
                     <div class="coord-input-field">
-                      <input type="text" value="0" class="coord-input" />
+                      <input type="text" placeholder="0" class="coord-input" />
                       <span class="coord-unit">мм²</span>
                     </div>
                   </div>
@@ -852,7 +861,7 @@
                   <div class="coord-input-group">
                     <span class="coord-input-label">До</span>
                     <div class="coord-input-field">
-                      <input type="text" value="200" class="coord-input" />
+                      <input type="text" placeholder="∞" class="coord-input" />
                       <span class="coord-unit">мм²</span>
                     </div>
                   </div>
@@ -905,6 +914,59 @@
         </div>
       </div>
     </div>
+
+    <!-- Модальное окно календаря -->
+    <div class="calendar-overlay" id="calendar-modal">
+      <div class="calendar-modal__container">
+        <!-- Заголовок с месяцем и годом + стрелки -->
+        <div class="calendar-header">
+          <button class="calendar-header__arrow" id="prev-month">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path
+                d="M11.25 13.5L6.75 9L11.25 4.5"
+                stroke="#333333"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+          <span class="calendar-header__month-year" id="current-month-year"
+            >Январь 2026</span
+          >
+          <button class="calendar-header__arrow" id="next-month">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path
+                d="M6.75 13.5L11.25 9L6.75 4.5"
+                stroke="#333333"
+                stroke-width="1.5"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <!-- Разделительная линия -->
+        <div class="calendar-divider"></div>
+
+        <!-- Дни недели -->
+        <div class="calendar-weekdays">
+          <span class="calendar-weekday">ПН</span>
+          <span class="calendar-weekday">ВТ</span>
+          <span class="calendar-weekday">СР</span>
+          <span class="calendar-weekday">ЧТ</span>
+          <span class="calendar-weekday">ПТ</span>
+          <span class="calendar-weekday">СБ</span>
+          <span class="calendar-weekday">ВС</span>
+        </div>
+
+        <!-- Сетка дней -->
+        <div class="calendar-days" id="calendar-days"></div>
+      </div>
+    </div>
+
+
     <script src="../js/pages/Defects.js" type="module"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>

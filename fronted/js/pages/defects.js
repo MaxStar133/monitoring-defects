@@ -18,6 +18,7 @@ class DefectsPage {
     this.filteredDefects = [];
     this.currentPageDefects = [];
     this.currentDetections = []; // Для хранения текущих обнаружений
+    this.filteredDetections = []; // Для хранения отфильтрованных обнаружений
     this.imageManager = null; // Для управления изображениями
     this.chartsManager = null;
 
@@ -152,6 +153,7 @@ class DefectsPage {
 
       // Сохраняем текущие обнаружения
       this.currentDetections = details.detections;
+      this.filteredDetections = [...details.detections];
 
       // Сохраняем ID в модальном окне
       const modal = document.getElementById("detections-modal");
@@ -427,13 +429,11 @@ class DefectsPage {
   }
 
   initFilters() {
-    console.log("initFilters: инициализация фильтров");
+    this.filterCalendar = new FilterCalendar();
 
-    const filterCalendar = new FilterCalendar();
-
-    // Фильтры на странице дефектов
+    // ── Фильтр дефектов ──────────────────────────────────────────
     if (document.getElementById("filter-btn")) {
-      const filterModal = new PositionedModal(
+      this.filterModal = new PositionedModal(
         "filter-modal",
         "filter-btn",
         ".filter-modal",
@@ -441,18 +441,33 @@ class DefectsPage {
         500,
       );
 
-      const originalOpen = filterModal.open;
-      filterModal.open = function () {
-        originalOpen.call(this);
-        setTimeout(() => {
-          filterCalendar.initFilterButtons();
-        }, 50);
+      const origFilterOpen = this.filterModal.open.bind(this.filterModal);
+      this.filterModal.open = () => {
+        origFilterOpen();
+        document.body.classList.remove('modal-open');
+        setTimeout(() => this.filterCalendar.initFilterButtons(), 50);
       };
+
+      const applyBtn = document.querySelector("#filter-modal .filter-btn--apply");
+      if (applyBtn) {
+        applyBtn.addEventListener("click", () => {
+          this.applyDefectsFilter();
+          this.filterModal.close();
+        });
+      }
+
+      const resetBtn = document.querySelector("#filter-modal .filter-btn--reset");
+      if (resetBtn) {
+        resetBtn.addEventListener("click", () => {
+          this.resetDefectsFilter();
+          this.filterModal.close();
+        });
+      }
     }
 
-    // Фильтры в обнаружениях
+    // ── Фильтр обнаружений ────────────────────────────────────────
     if (document.getElementById("detections-filter-btn")) {
-      const detectionsFilterModal = new PositionedModal(
+      this.detectionsFilterModal = new PositionedModal(
         "detections-filter-modal",
         "detections-filter-btn",
         ".detections-filter-modal",
@@ -460,22 +475,33 @@ class DefectsPage {
         400,
       );
 
-      const originalOpen = detectionsFilterModal.open;
-      detectionsFilterModal.open = function () {
-        originalOpen.call(this);
-        setTimeout(() => {
-          filterCalendar.initDetectionsFilterButtons();
-        }, 50);
+      const origDetOpen = this.detectionsFilterModal.open.bind(this.detectionsFilterModal);
+      this.detectionsFilterModal.open = () => {
+        origDetOpen();
+        document.body.classList.remove('modal-open');
+        setTimeout(() => this.filterCalendar.initDetectionsFilterButtons(), 50);
       };
+
+      const detApplyBtn = document.querySelector("#detections-filter-modal .filter-btn--apply");
+      if (detApplyBtn) {
+        detApplyBtn.addEventListener("click", () => {
+          this.applyDetectionsFilter();
+          this.detectionsFilterModal.close();
+        });
+      }
+
+      const detResetBtn = document.querySelector("#detections-filter-modal .filter-btn--reset");
+      if (detResetBtn) {
+        detResetBtn.addEventListener("click", () => {
+          this.resetDetectionsFilter();
+          this.detectionsFilterModal.close();
+        });
+      }
     }
 
     // Выпадающие списки
     if (document.getElementById("status-select")) {
-      new Dropdown(
-        "status-select",
-        "selected-status",
-        ".filter-dropdown__item",
-      );
+      new Dropdown("status-select", "selected-status", ".filter-dropdown__item");
     }
 
     if (document.getElementById("detections-status-select")) {
@@ -493,7 +519,161 @@ class DefectsPage {
 
     // Панель уведомлений
     if (document.getElementById("notificationsPanel")) {
-      const notifications = new NotificationsPanel();
+      new NotificationsPanel();
+    }
+  }
+
+  // Парсим дату из формата "дд.мм.гггг"
+  parseDate(str) {
+    if (!str || str === "дд.мм.гггг") return null;
+    const parts = str.split(".");
+    if (parts.length !== 3) return null;
+    const [d, m, y] = parts;
+    const date = new Date(+y, +m - 1, +d);
+    return isNaN(date.getTime()) ? null : date;
+  }
+
+  // ── Фильтрация таблицы дефектов ──────────────────────────────────
+  applyDefectsFilter() {
+    const modal = "#filter-modal";
+
+    // Типы
+    const checkedTypes = [...document.querySelectorAll(`${modal} .checkbox-input:checked`)]
+      .map((cb) => cb.closest(".filter-checkbox").querySelector(".checkbox-text").textContent.trim());
+
+    // Дата
+    const startDate = this.parseDate(
+      document.querySelector(`${modal} .date-picker:first-child .date-picker__text`)?.textContent?.trim()
+    );
+    const endDate = this.parseDate(
+      document.querySelector(`${modal} .date-picker:last-child .date-picker__text`)?.textContent?.trim()
+    );
+
+    // Статус
+    const selectedStatus = document.getElementById("selected-status")?.textContent?.trim();
+    const filterByStatus = selectedStatus && selectedStatus !== "Все";
+
+    // Координаты
+    const inputs = [...document.querySelectorAll(`${modal} .coord-input`)];
+    const lengthFrom = inputs[0]?.value !== "" ? parseFloat(inputs[0].value) : null;
+    const lengthTo   = inputs[1]?.value !== "" ? parseFloat(inputs[1].value) : null;
+    const widthFrom  = inputs[2]?.value !== "" ? parseFloat(inputs[2].value) : null;
+    const widthTo    = inputs[3]?.value !== "" ? parseFloat(inputs[3].value) : null;
+
+    this.filteredDefects = this.allDefects.filter((d) => {
+      if (checkedTypes.length > 0 && !checkedTypes.includes(d.type)) return false;
+
+      if (startDate || endDate) {
+        const dt = this.parseDate(d.firstDetection.date);
+        if (dt) {
+          if (startDate && dt < startDate) return false;
+          if (endDate && dt > endDate) return false;
+        }
+      }
+
+      if (filterByStatus && d.status !== selectedStatus) return false;
+
+      if (lengthFrom !== null && d.firstDetection.length < lengthFrom) return false;
+      if (lengthTo   !== null && d.firstDetection.length > lengthTo)   return false;
+      if (widthFrom  !== null && d.firstDetection.width  < widthFrom)  return false;
+      if (widthTo    !== null && d.firstDetection.width  > widthTo)    return false;
+
+      return true;
+    });
+
+    this.pagination.setTotalItems(this.filteredDefects.length);
+    this.loadPage(1);
+  }
+
+  resetDefectsFilter() {
+    const modal = "#filter-modal";
+
+    document.querySelectorAll(`${modal} .checkbox-input`).forEach((cb) => (cb.checked = false));
+
+    document.querySelectorAll(`${modal} .date-picker__text`).forEach((el) => (el.textContent = "дд.мм.гггг"));
+    this.filterCalendar.clearRange("filter");
+
+    const statusEl = document.getElementById("selected-status");
+    if (statusEl) statusEl.textContent = "Все";
+
+    document.querySelectorAll(`${modal} .coord-input`).forEach((inp) => (inp.value = ""));
+
+    this.filteredDefects = [...this.allDefects];
+    this.pagination.setTotalItems(this.filteredDefects.length);
+    this.loadPage(1);
+  }
+
+  // ── Фильтрация таблицы обнаружений ───────────────────────────────
+  applyDetectionsFilter() {
+    const modal = "#detections-filter-modal";
+
+    const startDate = this.parseDate(
+      document.querySelector(`${modal} .date-picker:first-child .date-picker__text`)?.textContent?.trim()
+    );
+    const endDate = this.parseDate(
+      document.querySelector(`${modal} .date-picker:last-child .date-picker__text`)?.textContent?.trim()
+    );
+
+    const selectedStatus = document.getElementById("detections-selected-status")?.textContent?.trim();
+    const filterByStatus = selectedStatus && selectedStatus !== "Все";
+
+    const inputs = [...document.querySelectorAll(`${modal} .coord-input`)];
+    const lengthFrom = inputs[0]?.value !== "" ? parseFloat(inputs[0].value) : null;
+    const lengthTo   = inputs[1]?.value !== "" ? parseFloat(inputs[1].value) : null;
+    const widthFrom  = inputs[2]?.value !== "" ? parseFloat(inputs[2].value) : null;
+    const widthTo    = inputs[3]?.value !== "" ? parseFloat(inputs[3].value) : null;
+    const areaFrom   = inputs[4]?.value !== "" ? parseFloat(inputs[4].value) : null;
+    const areaTo     = inputs[5]?.value !== "" ? parseFloat(inputs[5].value) : null;
+
+    const filtered = this.currentDetections.filter((det) => {
+      if (startDate || endDate) {
+        const dt = this.parseDate(det.date);
+        if (dt) {
+          if (startDate && dt < startDate) return false;
+          if (endDate && dt > endDate) return false;
+        }
+      }
+
+      if (filterByStatus && det.status !== selectedStatus) return false;
+
+      if (lengthFrom !== null && det.measurements.length < lengthFrom) return false;
+      if (lengthTo   !== null && det.measurements.length > lengthTo)   return false;
+      if (widthFrom  !== null && det.measurements.width  < widthFrom)  return false;
+      if (widthTo    !== null && det.measurements.width  > widthTo)    return false;
+      if (areaFrom   !== null && det.measurements.area   < areaFrom)   return false;
+      if (areaTo     !== null && det.measurements.area   > areaTo)     return false;
+
+      return true;
+    });
+
+    this.filteredDetections = filtered;
+
+    if (this.detectionsPagination) {
+      this.detectionsPagination.setTotalItems(filtered.length);
+      this.loadDetectionsPage(1, filtered);
+    } else {
+      this.renderDetectionsTable(filtered);
+    }
+  }
+
+  resetDetectionsFilter() {
+    const modal = "#detections-filter-modal";
+
+    document.querySelectorAll(`${modal} .date-picker__text`).forEach((el) => (el.textContent = "дд.мм.гггг"));
+    this.filterCalendar.clearRange("detections-filter");
+
+    const statusEl = document.getElementById("detections-selected-status");
+    if (statusEl) statusEl.textContent = "Все";
+
+    document.querySelectorAll(`${modal} .coord-input`).forEach((inp) => (inp.value = ""));
+
+    this.filteredDetections = [...this.currentDetections];
+
+    if (this.detectionsPagination) {
+      this.detectionsPagination.setTotalItems(this.currentDetections.length);
+      this.loadDetectionsPage(1, this.currentDetections);
+    } else {
+      this.renderDetectionsTable(this.currentDetections);
     }
   }
   // Исправленная версия метода
@@ -563,7 +743,7 @@ class DefectsPage {
       this.excelHandler = (e) => {
         e.preventDefault();
         e.stopPropagation(); // Предотвращаем всплытие события
-        const data = this.currentDetections.map((d) => ({
+        const data = this.filteredDetections.map((d) => ({
           id: this.detectionsModal.modal.dataset.currentDefect,
           date: d.date,
           time: d.time,
@@ -590,7 +770,7 @@ class DefectsPage {
       this.pdfHandler = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const data = this.currentDetections.map((d) => ({
+        const data = this.filteredDetections.map((d) => ({
           id: this.detectionsModal.modal.dataset.currentDefect,
           date: d.date,
           time: d.time,
@@ -617,7 +797,7 @@ class DefectsPage {
       this.csvHandler = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const data = this.currentDetections.map((d) => ({
+        const data = this.filteredDetections.map((d) => ({
           id: this.detectionsModal.modal.dataset.currentDefect,
           date: d.date,
           time: d.time,

@@ -650,8 +650,244 @@ body {
     margin-top: 50px;
     border-radius: 20px 20px 0 0;
   }
-  
+
   .notifications-header h1 {
     font-size: 16px;
   }
+}
+
+/* ========== КАЛЕНДАРЬ ========== */
+
+.calendar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  z-index: 1500;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.15s ease, visibility 0.15s ease;
+  pointer-events: none;
+}
+
+.calendar-overlay.active {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+.calendar-modal__container {
+  position: fixed;
+  width: 356px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  box-sizing: border-box;
+  top: 0;
+  left: 0;
+  pointer-events: auto;
+}
+
+.calendar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+}
+
+.calendar-header__month-year {
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 16px;
+  color: #333333;
+}
+
+.calendar-header__arrow {
+  width: 32px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f6f8ff;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.calendar-header__arrow:hover {
+  background: #3b6acf;
+}
+
+.calendar-header__arrow:hover svg path {
+  stroke: #ffffff;
+}
+
+.calendar-divider {
+  width: 100%;
+  height: 1px;
+  background: #eaebef;
+  margin-bottom: 16px;
+}
+
+/* Заголовки дней недели — без column-gap, чтобы совпадать с сеткой дней */
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  margin-bottom: 8px;
+}
+
+.calendar-weekday {
+  font-family: "Inter", sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  color: #747887;
+  text-align: center;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Сетка дней — без column-gap для бесшовной подсветки диапазона */
+.calendar-days {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  row-gap: 4px;
+}
+
+/* Базовый стиль дня: заполняет всю колонку по ширине */
+.calendar-day {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Inter", sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  cursor: pointer;
+  position: relative;
+  transition: color 0.15s;
+}
+
+/* Число поверх круга */
+.calendar-day > span {
+  position: relative;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Круг (hover / выбрано / сегодня) через ::before */
+.calendar-day::before {
+  content: '';
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border-radius: 60px;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  transition: background 0.15s;
+  pointer-events: none;
+}
+
+.calendar-day:hover::before {
+  background: #e0e5f5;
+}
+
+/* Цвета текста по принадлежности к месяцу */
+.calendar-day.current-month { color: #333333; }
+.calendar-day.other-month   { color: #b1b5bd; }
+
+/* Сегодняшняя дата */
+.calendar-day.today {
+  color: #3b6acf;
+  font-weight: 700;
+}
+.calendar-day.today::before {
+  background: rgba(59, 106, 207, 0.1);
+}
+
+/* Одиночная выбранная дата / начало-конец диапазона */
+.calendar-day.selected {
+  color: #ffffff !important;
+}
+.calendar-day.selected::before {
+  background: #3b6acf;
+}
+.calendar-day.selected:hover::before {
+  background: #3b6acf;
+}
+
+/* ── Диапазон дат ── */
+
+/* Промежуточные даты: фон на всю ширину колонки (без column-gap — нет щелей) */
+.calendar-day.in-range {
+  background: rgba(59, 106, 207, 0.1);
+  color: #333333;
+}
+.calendar-day.in-range.other-month {
+  color: #b1b5bd;
+}
+/* Не показываем hover-круг внутри диапазона */
+.calendar-day.in-range:hover::before {
+  background: transparent;
+}
+
+/* Первая ячейка строки (Пн): скругление слева */
+.calendar-day.in-range:nth-child(7n+1) {
+  border-radius: 30px 0 0 30px;
+}
+/* Последняя ячейка строки (Вс): скругление справа */
+.calendar-day.in-range:nth-child(7n) {
+  border-radius: 0 30px 30px 0;
+}
+
+/* Начало диапазона: левая половина прозрачная, правая — полоса */
+.calendar-day.range-start {
+  background: linear-gradient(to right, transparent 50%, rgba(59, 106, 207, 0.1) 50%);
+  color: #ffffff !important;
+}
+.calendar-day.range-start::before {
+  background: #3b6acf;
+}
+.calendar-day.range-start:hover::before {
+  background: #3b6acf;
+}
+
+/* Конец диапазона: левая половина — полоса, правая прозрачная */
+.calendar-day.range-end {
+  background: linear-gradient(to left, transparent 50%, rgba(59, 106, 207, 0.1) 50%);
+  color: #ffffff !important;
+}
+.calendar-day.range-end::before {
+  background: #3b6acf;
+}
+.calendar-day.range-end:hover::before {
+  background: #3b6acf;
+}
+
+/* Одна дата = начало и конец: только круг, без полосы */
+.calendar-day.range-start.range-end {
+  background: transparent;
+}
+
+/* Начало диапазона в последней ячейке строки (Вс): нет полосы вправо */
+.calendar-day.range-start:nth-child(7n) {
+  background: transparent;
+}
+/* Конец диапазона в первой ячейке строки (Пн): нет полосы влево */
+.calendar-day.range-end:nth-child(7n+1) {
+  background: transparent;
+}
+
+/* Сегодняшняя дата попадает в диапазон → синий круг */
+.calendar-day.in-range.today::before {
+  background: #3b6acf;
+}
+.calendar-day.in-range.today {
+  color: #ffffff !important;
 }

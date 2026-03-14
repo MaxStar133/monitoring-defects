@@ -13,7 +13,7 @@ const mockUniqueDefects = [
     {
         id: "D-016",
         firstDetection: {
-            date: "01.01.2026",
+            date: "15.01.2026",
             time: "14:30:12",
             length: 150,
             width: 250
