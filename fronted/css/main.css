@@ -617,6 +617,15 @@ body {
     height: 24px;
 }
 
+/* Пустой список уведомлений */
+.notifications-empty {
+  font-family: "Inter", sans-serif;
+  font-size: 14px;
+  color: rgba(51, 51, 51, 0.5);
+  text-align: center;
+  padding: 24px 0;
+}
+
 /* Скроллбар для списка */
 .list::-webkit-scrollbar {
     width: 4px;
