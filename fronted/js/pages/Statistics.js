@@ -1,39 +1,37 @@
 import { BaseModal } from "../core/BaseModal.js";
 import { NotificationsPanel } from "../modals/NotificationsPanel.js";
 import { StatisticsService } from "../services/StatisticsService.js";
+import { StatsRangeCalendar } from "../modals/StatsRangeCalendar.js";
 
 class StatisticsPage {
 
   constructor() {
-    console.log("StatisticsPage constructor");
-
     this.statisticsService = new StatisticsService();
+    this.lineChart = null;
+    this.pieChart = null;
 
     this.init();
   }
 
   async init() {
-    console.log("StatisticsPage initialized");
-
     Chart.register(ChartDataLabels);
 
     this.initModals();
     this.initNotifications();
+    this.initCalendar();
+    this.initRefreshButton();
 
     await this.loadStatistics();
   }
 
   // ===== МОДАЛЬНЫЕ ОКНА =====
   initModals() {
-
     this.heatmapModal = new BaseModal("heatmapModal", {
       closeOnEsc: true,
       closeOnOverlay: true
     });
 
-    const editButtons = document.querySelectorAll(".heatmap-edit-btn");
-
-    editButtons.forEach(btn => {
+    document.querySelectorAll(".heatmap-edit-btn").forEach(btn => {
       btn.addEventListener("click", (e) => {
         e.preventDefault();
         this.heatmapModal.open();
@@ -43,52 +41,101 @@ class StatisticsPage {
     const cancelBtn = document.querySelector(".btn-cancel");
     const confirmBtn = document.querySelector(".btn-confirm");
 
-    if (cancelBtn) {
-      cancelBtn.addEventListener("click", () => {
-        console.log("Отмена");
-        this.heatmapModal.close();
-      });
-    }
-
-    if (confirmBtn) {
-      confirmBtn.addEventListener("click", () => {
-        console.log("Параметры тепловой карты сохранены");
-        this.heatmapModal.close();
-      });
-    }
+    if (cancelBtn) cancelBtn.addEventListener("click", () => this.heatmapModal.close());
+    if (confirmBtn) confirmBtn.addEventListener("click", () => this.heatmapModal.close());
 
     const overlay = document.getElementById("heatmapModal");
-
     if (overlay) {
       overlay.addEventListener("click", (e) => {
-        if (e.target === overlay) {
-          this.heatmapModal.close();
-        }
+        if (e.target === overlay) this.heatmapModal.close();
       });
     }
   }
 
   // ===== УВЕДОМЛЕНИЯ =====
   initNotifications() {
-
     if (document.getElementById("notificationsPanel")) {
-      console.log("Инициализация панели уведомлений");
       this.notifications = new NotificationsPanel();
     }
-
   }
 
-  // ===== ЗАГРУЗКА СТАТИСТИКИ =====
+  // ===== КАЛЕНДАРЬ С ДИАПАЗОНОМ =====
+  initCalendar() {
+    this.rangeCalendar = new StatsRangeCalendar((start, end) => {
+      this.updateDateDisplay(start, end);
+      this.loadStatisticsForRange(start, end);
+    });
+
+    // Set initial date display
+    this.updateDateDisplay(this.rangeCalendar.startDate, this.rangeCalendar.endDate);
+  }
+
+  updateDateDisplay(start, end) {
+    const startEl = document.getElementById("stats-date-start");
+    const endEl = document.getElementById("stats-date-end");
+    if (startEl && start) startEl.textContent = this.formatDate(start);
+    if (endEl && end) endEl.textContent = this.formatDate(end);
+  }
+
+  formatDate(date) {
+    const d = String(date.getDate()).padStart(2, "0");
+    const m = String(date.getMonth() + 1).padStart(2, "0");
+    return `${d}.${m}.${date.getFullYear()}`;
+  }
+
+  // ===== КНОПКА ОБНОВИТЬ =====
+  initRefreshButton() {
+    const btn = document.querySelector(".stats-btn--update");
+    if (!btn) return;
+
+    btn.addEventListener("click", (e) => {
+      e.preventDefault();
+      const start = this.rangeCalendar?.startDate ?? null;
+      const end = this.rangeCalendar?.endDate ?? null;
+      this.loadStatisticsForRange(start, end);
+    });
+  }
+
+  // ===== ПОКАЗ ЗАГРУЗКИ =====
+  showLoading() {
+    document.querySelectorAll(".stat-card").forEach(c => c.classList.add("loading"));
+    document.querySelectorAll(".frame-image").forEach(c => c.classList.add("loading"));
+
+    const btn = document.querySelector(".stats-btn--update");
+    if (btn) btn.classList.add("loading");
+  }
+
+  hideLoading() {
+    document.querySelectorAll(".stat-card").forEach(c => c.classList.remove("loading"));
+    document.querySelectorAll(".frame-image").forEach(c => c.classList.remove("loading"));
+
+    const btn = document.querySelector(".stats-btn--update");
+    if (btn) btn.classList.remove("loading");
+  }
+
+  // ===== ЗАГРУЗКА СТАТИСТИКИ (начальная, для диапазона по умолчанию) =====
   async loadStatistics() {
+    const start = this.rangeCalendar?.startDate ?? new Date(2026, 0, 1);
+    const end = this.rangeCalendar?.endDate ?? new Date(2026, 0, 15);
+    await this.loadStatisticsForRange(start, end);
+  }
 
-    console.log("loadStatistics started");
+  // ===== ЗАГРУЗКА СТАТИСТИКИ ДЛЯ ДИАПАЗОНА =====
+  async loadStatisticsForRange(startDate, endDate) {
+    this.showLoading();
 
-    const statistics = await this.statisticsService.getStatistics();
+    let statistics;
+
+    if (startDate && endDate) {
+      statistics = await this.statisticsService.getStatisticsForRange(startDate, endDate);
+    } else {
+      statistics = await this.statisticsService.getStatistics();
+    }
 
     const dates = Object.keys(statistics).sort((a, b) => {
       const [d1, m1, y1] = a.split(".");
       const [d2, m2, y2] = b.split(".");
-      return new Date(y1, m1 - 1, d1) - new Date(y2, m2 - 1, d2);
+      return new Date(+y1, +m1 - 1, +d1) - new Date(+y2, +m2 - 1, +d2);
     });
 
     const cracks = [];
@@ -101,6 +148,8 @@ class StatisticsPage {
       rivets.push(statistics[date].rivets);
     });
 
+    this.hideLoading();
+
     this.buildLineChart(dates, cracks, delamination, rivets);
     this.buildPieChart(cracks, delamination, rivets);
     this.updateStatsGrid(cracks, delamination, rivets);
@@ -108,10 +157,18 @@ class StatisticsPage {
 
   // ===== ЛИНЕЙНЫЙ ГРАФИК =====
   buildLineChart(dates, cracks, delamination, rivets) {
-
     const ctx = document.getElementById("defectsLineChart");
 
-    new Chart(ctx, {
+    if (this.lineChart) {
+      this.lineChart.destroy();
+      this.lineChart = null;
+    }
+
+    if (dates.length === 0) {
+      return;
+    }
+
+    this.lineChart = new Chart(ctx, {
       type: "line",
       data: {
         labels: dates,
@@ -142,9 +199,8 @@ class StatisticsPage {
       options: {
         responsive: true,
         plugins: {
-          legend: {
-            position: "bottom"
-          }
+          legend: { position: "bottom" },
+          datalabels: { display: false }
         }
       }
     });
@@ -152,18 +208,21 @@ class StatisticsPage {
 
   // ===== КРУГОВАЯ ДИАГРАММА =====
   buildPieChart(cracks, delamination, rivets) {
-
     const totalCracks = cracks.reduce((a, b) => a + b, 0);
     const totalDelamination = delamination.reduce((a, b) => a + b, 0);
     const totalRivets = rivets.reduce((a, b) => a + b, 0);
-
     const total = totalCracks + totalDelamination + totalRivets;
+
+    if (this.pieChart) {
+      this.pieChart.destroy();
+      this.pieChart = null;
+    }
 
     if (total === 0) return;
 
     const ctx = document.getElementById("defectsPieChart");
 
-    new Chart(ctx, {
+    this.pieChart = new Chart(ctx, {
       type: "pie",
       data: {
         datasets: [{
@@ -172,25 +231,15 @@ class StatisticsPage {
             Math.round((totalDelamination / total) * 100),
             Math.round((totalRivets / total) * 100)
           ],
-          backgroundColor: [
-            "#ff0000",
-            "#FFD700",
-            "#008000"
-          ]
+          backgroundColor: ["#ff0000", "#FFD700", "#008000"]
         }]
       },
       options: {
         plugins: {
-
-          legend: {
-            display: false
-          },
-
+          legend: { display: false },
           datalabels: {
             color: "#000000",
-            font: {
-              size: 20
-            },
+            font: { size: 20 },
             formatter: value => value + "%"
           }
         }
@@ -200,11 +249,9 @@ class StatisticsPage {
 
   // ===== ОБНОВЛЕНИЕ КАРТОЧЕК =====
   updateStatsGrid(cracks, delamination, rivets) {
-
     const totalCracks = cracks.reduce((a, b) => a + b, 0);
     const totalDelamination = delamination.reduce((a, b) => a + b, 0);
     const totalRivets = rivets.reduce((a, b) => a + b, 0);
-
     const total = totalCracks + totalDelamination + totalRivets;
 
     document.querySelector(".stat-card--total .stat-card__value").textContent = total;
@@ -215,8 +262,6 @@ class StatisticsPage {
 
 }
 
-// ===== ЗАПУСК СТРАНИЦЫ =====
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOMContentLoaded Statistics");
   window.statisticsPage = new StatisticsPage();
 });

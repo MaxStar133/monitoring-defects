@@ -76,13 +76,8 @@ export class IndexService {
         if (mockStats[date]) {
           resolve(mockStats[date]);
         } else {
-          // Иначе возвращаем случайную статистику
-          resolve({
-            total: Math.floor(Math.random() * 30) + 15,
-            cracks: Math.floor(Math.random() * 10) + 5,
-            delamination: Math.floor(Math.random() * 8) + 3,
-            rivets: Math.floor(Math.random() * 12) + 5
-          });
+          // Нет данных за выбранную дату
+          resolve({ total: 0, cracks: 0, delamination: 0, rivets: 0 });
         }
       }, 200);
     });

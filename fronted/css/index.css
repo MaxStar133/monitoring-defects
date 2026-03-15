@@ -400,8 +400,12 @@
 /* Загрузка*/
 .stat-card.loading {
   position: relative;
-  opacity: 0.7;
   pointer-events: none;
+}
+
+.stat-card.loading .stat-card__value,
+.stat-card.loading .stat-card__label {
+  opacity: 0;
 }
 
 .stat-card.loading::after {

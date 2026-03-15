@@ -96,15 +96,15 @@
         <!-- Правая группа: Дефекты за и дата -->
         <div class="stats-header-right">
           <span class="stats-header-label">Дефекты за:</span>
-          <div class="stats-date-block">
+          <div class="stats-date-block" id="stats-date-trigger" style="cursor:pointer;">
             <img
               src="../images/calendar-icon.svg"
               alt="Календарь"
               class="stats-date-icon"
             />
-            <span class="stats-date-text">01.01.2026</span>
-            <span class="stats-date-sep">-</span>
-            <span class="stats-date-text">15.01.2026</span>
+            <span class="stats-date-text" id="stats-date-start">01.01.2026</span>
+            <span class="stats-date-sep">—</span>
+            <span class="stats-date-text" id="stats-date-end">15.01.2026</span>
           </div>
         </div>
       </div>
@@ -350,8 +350,38 @@
       </div>
     </div>
 
+    <!-- МОДАЛЬНОЕ ОКНО КАЛЕНДАРЯ С ДИАПАЗОНОМ -->
+    <div class="calendar-overlay" id="stats-calendar-modal">
+      <div class="calendar-modal__container stats-calendar__container">
+        <div class="calendar-header">
+          <button class="calendar-header__arrow" id="stats-cal-prev">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M11.25 13.5L6.75 9L11.25 4.5" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <span class="calendar-header__month-year" id="stats-cal-month-year">Январь 2026</span>
+          <button class="calendar-header__arrow" id="stats-cal-next">
+            <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
+              <path d="M6.75 13.5L11.25 9L6.75 4.5" stroke="#333333" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+        <div class="calendar-divider"></div>
+        <div class="calendar-weekdays">
+          <span class="calendar-weekday">ПН</span>
+          <span class="calendar-weekday">ВТ</span>
+          <span class="calendar-weekday">СР</span>
+          <span class="calendar-weekday">ЧТ</span>
+          <span class="calendar-weekday">ПТ</span>
+          <span class="calendar-weekday">СБ</span>
+          <span class="calendar-weekday">ВС</span>
+        </div>
+        <div class="calendar-days" id="stats-cal-days"></div>
+      </div>
+    </div>
+
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
     <script src="../js/pages/Statistics.js" type="module"></script>
   </body>
 </html>

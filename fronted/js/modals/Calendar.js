@@ -1,18 +1,19 @@
 import { PositionedModal } from '../core/PositionedModal.js';
 
 export class Calendar extends PositionedModal {
-  constructor() {
+  constructor(options = {}) {
     super(
-      "calendar-modal", 
-      "date-trigger", 
-      ".calendar-modal__container", 
-      356, 
+      "calendar-modal",
+      "date-trigger",
+      ".calendar-modal__container",
+      356,
       399,
       {
         closeOnEsc: true,
         closeOnOverlay: true
       }
     );
+    this.onDateSelected = options.onDateSelected || null;
 
     // Дополнительные DOM элементы
     this.selectedDateSpan = document.getElementById("selected-date");
@@ -144,7 +145,7 @@ export class Calendar extends PositionedModal {
         classes += day.isCurrentMonth ? " current-month" : " other-month";
         classes += day.isSelected ? " selected" : "";
         classes += day.isToday && !day.isSelected ? " today" : "";
-        return `<div class="${classes}" data-date="${day.date.toISOString()}">${day.day}</div>`;
+        return `<div class="${classes}" data-date="${day.date.toISOString()}"><span>${day.day}</span></div>`;
       })
       .join("");
   }
@@ -158,7 +159,9 @@ export class Calendar extends PositionedModal {
     this.selectedDateSpan.textContent = this.formatDate(this.selectedDate);
     this.close();
 
-    console.log("Выбрана дата:", this.formatDate(this.selectedDate));
+    if (this.onDateSelected) {
+      this.onDateSelected(this.selectedDate, this.formatDate(this.selectedDate));
+    }
   }
 
   addDayClickHandlers() {
