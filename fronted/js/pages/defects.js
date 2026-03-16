@@ -12,62 +12,42 @@ import { DetectionCharts } from "../charts/DetectionCharts.js";
 // Главный класс страницы
 class DefectsPage {
   constructor() {
-    console.log("DefectsPage constructor");
     this.defectsService = new DefectsService();
     this.allDefects = [];
     this.filteredDefects = [];
     this.currentPageDefects = [];
-    this.currentDetections = []; // Для хранения текущих обнаружений
-    this.filteredDetections = []; // Для хранения отфильтрованных обнаружений
-    this.imageManager = null; // Для управления изображениями
+    this.currentDetections = [];
+    this.filteredDetections = [];
+    this.imageManager = null;
     this.chartsManager = null;
 
     this.init();
   }
 
   async init() {
-    console.log("DefectsPage initialized - начало");
-
-    // Инициализируем пагинацию для главной таблицы
+    // Пагинация главной таблицы
     const paginationContainer = document.querySelector(".pagination");
-    console.log("Pagination container:", paginationContainer);
     if (paginationContainer) {
       this.pagination = new Pagination(paginationContainer, 15);
       this.pagination.setOnPageChange((page) => this.loadPage(page));
     }
 
-    // Загружаем данные
-    console.log("Загружаем данные...");
     await this.loadData();
-    console.log("Данные загружены");
 
-    // Инициализируем все модальные окна и фильтры
     this.initModals();
     this.initFilters();
-
-    // Инициализируем экспорт
-    this.initExport(); // <-- ДОБАВЬТЕ ЭТУ СТРОКУ
-
-    console.log("DefectsPage initialized - конец");
+    this.initExport();
   }
 
   async loadData() {
     try {
-      console.log("loadData: начало");
       this.allDefects = await this.defectsService.getUniqueDefects();
-      console.log("loadData: получены дефекты:", this.allDefects);
       this.filteredDefects = [...this.allDefects];
-      console.log("loadData: filteredDefects:", this.filteredDefects);
 
       if (this.pagination) {
-        console.log(
-          "loadData: есть пагинация, total:",
-          this.filteredDefects.length,
-        );
         this.pagination.setTotalItems(this.filteredDefects.length);
         this.loadPage(1);
       } else {
-        console.log("loadData: нет пагинации, рендерим сразу");
         this.renderMainTable(this.filteredDefects);
       }
     } catch (error) {
@@ -76,18 +56,14 @@ class DefectsPage {
   }
 
   loadPage(page) {
-    console.log("loadPage:", page);
     const start = (page - 1) * this.pagination.itemsPerPage;
     const end = start + this.pagination.itemsPerPage;
     this.currentPageDefects = this.filteredDefects.slice(start, end);
-    console.log("loadPage: currentPageDefects:", this.currentPageDefects);
     this.renderMainTable(this.currentPageDefects, page);
   }
 
   renderMainTable(defects, currentPage = 1) {
-    console.log("renderMainTable: defects:", defects);
     const tableBody = document.querySelector(".defects-table");
-    console.log("renderMainTable: tableBody:", tableBody);
 
     if (!tableBody) {
       console.error("Таблица .defects-table не найдена!");
@@ -95,26 +71,24 @@ class DefectsPage {
     }
 
     const header = tableBody.querySelector(".table-header");
-    console.log("renderMainTable: header:", header);
 
     tableBody.innerHTML = "";
     tableBody.appendChild(header);
 
     const isLastPage = currentPage === this.pagination?.totalPages;
-    console.log("renderMainTable: isLastPage:", isLastPage);
 
     defects.forEach((defect, index) => {
       const statusClass = `status--${getStatusClass(defect.status)}`;
       const row = document.createElement("div");
       row.className = "table-row";
 
-      // Добавляем класс table-row--last только для последней строки на последней странице
+      // Класс последней строки на последней странице
       if (isLastPage && index === defects.length - 1) {
         row.classList.add("table-row--last");
       }
 
       row.innerHTML = `
-        <div class="table-row__cell table-row__cell--id">${defect.id}</div>
+        <div class="table-row__cell table-row__cell--id">${defect.name}</div>
         <div class="table-row__cell table-row__cell--date">
             <span class="date">${defect.firstDetection.date}</span>
             <span class="time">${defect.firstDetection.time}</span>
@@ -128,46 +102,35 @@ class DefectsPage {
             ${defect.status}
         </div>
         <div class="table-row__action">
-            <button class="table-row__action-btn" data-id="${defect.id}">Подробнее</button>
+            <button class="table-row__action-btn" data-name="${defect.name}">Подробнее</button>
         </div>
       `;
       tableBody.appendChild(row);
     });
 
-    console.log("renderMainTable: добавлено строк:", defects.length);
     this.initDetailButtons();
   }
 
-  async renderDetectionsModal(defectId) {
+  async renderDetectionsModal(defectName) {
     try {
-      const details = await this.defectsService.getDefectDetails(defectId);
-      console.log("renderDetectionsModal: details", details); // <-- ДОБАВЬТЕ
-      console.log(
-        "renderDetectionsModal: detections length",
-        details.detections.length,
-      ); // <-- ДОБАВЬТЕ
-      console.log(
-        "renderDetectionsModal: this.detectionsPagination",
-        this.detectionsPagination,
-      ); // <-- ДОБАВЬТЕ
+      const details = await this.defectsService.getDefectDetails(defectName);
 
-      // Сохраняем текущие обнаружения
       this.currentDetections = details.detections;
       this.filteredDetections = [...details.detections];
 
-      // Сохраняем ID в модальном окне
+      // Текущий дефект в модальном окне
       const modal = document.getElementById("detections-modal");
       if (modal) {
-        modal.dataset.currentDefect = defectId;
+        modal.dataset.currentDefect = defectName;
       }
 
-      // Обновляем заголовок
+      // Заголовок модального окна
       const headerId = document.querySelector(".detections-header__id");
       const headerType = document.querySelector(".detections-header__type");
-      if (headerId) headerId.textContent = details.id;
+      if (headerId) headerId.textContent = details.name;
       if (headerType) headerType.textContent = details.type;
 
-      // Обновляем статистику
+      // Статистика роста дефекта
       if (details.statistics && details.statistics.firstDetection) {
         const statItems = document.querySelectorAll(
           ".detections-statistics__item",
@@ -176,8 +139,8 @@ class DefectsPage {
           statItems[0].innerHTML = `
             <span class="detections-statistics__label">Длина:</span>
             <span class="detections-statistics__value">
-                ${details.statistics.firstDetection.measurements.length} → 
-                ${details.statistics.lastDetection.measurements.length} 
+                ${details.statistics.firstDetection.measurements.length} →
+                ${details.statistics.lastDetection.measurements.length}
             </span>
             <span class="detections-statistics__unit">мм</span>
             <span class="detections-statistics__percent">(${details.statistics.growth.length})</span>
@@ -185,7 +148,7 @@ class DefectsPage {
           statItems[1].innerHTML = `
             <span class="detections-statistics__label">Ширина:</span>
             <span class="detections-statistics__value">
-                ${details.statistics.firstDetection.measurements.width} → 
+                ${details.statistics.firstDetection.measurements.width} →
                 ${details.statistics.lastDetection.measurements.width}
             </span>
             <span class="detections-statistics__unit">мм</span>
@@ -194,8 +157,8 @@ class DefectsPage {
           statItems[2].innerHTML = `
             <span class="detections-statistics__label">Площадь:</span>
             <span class="detections-statistics__value">
-                ${details.statistics.firstDetection.measurements.area} → 
-                ${details.statistics.lastDetection.measurements.area} 
+                ${details.statistics.firstDetection.measurements.area} →
+                ${details.statistics.lastDetection.measurements.area}
             </span>
             <span class="detections-statistics__unit">мм²</span>
             <span class="detections-statistics__percent">(${details.statistics.growth.area})</span>
@@ -203,7 +166,7 @@ class DefectsPage {
         }
       }
 
-      // ОТРИСОВКА ГРАФИКОВ <-- ДОБАВИТЬ ЭТОТ БЛОК
+      // Графики динамики обнаружений
       if (!this.chartsManager) {
         this.chartsManager = new DetectionCharts();
       }
@@ -213,27 +176,15 @@ class DefectsPage {
           details.detections &&
           details.detections.length > 0
         ) {
-          console.log(
-            "Вызываем renderCharts с",
-            details.detections.length,
-            "обнаружениями",
-          );
           this.chartsManager.renderCharts(details.detections);
-        } else {
-          console.warn(
-            "Нет данных для графиков или chartsManager не инициализирован",
-          );
         }
       }, 100);
 
-      // Обновляем пагинацию в модальном окне
+      // Пагинация таблицы обнаружений
       if (this.detectionsPagination) {
-        console.log("Устанавливаем totalItems:", details.detections.length); // <-- ДОБАВЬТЕ
         this.detectionsPagination.setTotalItems(details.detections.length);
         this.loadDetectionsPage(1, details.detections);
       } else {
-        console.log("detectionsPagination не существует, показываем все"); // <-- ДОБАВЬТЕ
-        // Если пагинации нет, показываем все
         this.renderDetectionsTable(details.detections);
 
         const paginationInfo = document.querySelector(
@@ -248,7 +199,7 @@ class DefectsPage {
     }
   }
 
-  // Метод для загрузки страницы в модальном окне
+  // Загрузка страницы в модальном окне обнаружений
   loadDetectionsPage(page, allDetections) {
     const start = (page - 1) * this.detectionsPagination.itemsPerPage;
     const end = start + this.detectionsPagination.itemsPerPage;
@@ -256,7 +207,6 @@ class DefectsPage {
 
     this.renderDetectionsTable(pageDetections);
 
-    // Обновляем информацию о пагинации
     const paginationInfo = document.querySelector(
       ".detections-pagination__info",
     );
@@ -267,7 +217,7 @@ class DefectsPage {
     }
   }
 
-  // Вынести рендер таблицы в отдельный метод
+  // Таблица обнаружений
   renderDetectionsTable(detections) {
     const tableBody = document.querySelector(
       "#detections-modal .detections-table",
@@ -306,22 +256,18 @@ class DefectsPage {
       tableBody.appendChild(row);
     });
 
-    // Переинициализируем обработчики для кнопок "Показать"
+    // Переинициализация обработчиков кнопок просмотра изображений
     if (document.querySelector(".detections-table-row__link")) {
-      // Если ImageManager уже создан, используем его, иначе создаем новый
       if (!this.imageManager) {
         this.imageManager = new ImageManager();
       } else {
-        // Перепривязываем обработчики
         this.imageManager.attachEventHandlers();
       }
     }
   }
 
   initDetailButtons() {
-    console.log("initDetailButtons: инициализация кнопок");
     const detailBtns = document.querySelectorAll(".table-row__action-btn");
-    console.log("initDetailButtons: найдено кнопок:", detailBtns.length);
 
     detailBtns.forEach((btn) => {
       btn.removeEventListener("click", this.detailHandler);
@@ -331,59 +277,48 @@ class DefectsPage {
 
   async detailHandler(e) {
     e.preventDefault();
-    const defectId = e.currentTarget.dataset.id;
-    console.log("detailHandler: клик по дефекту", defectId);
+    const defectName = e.currentTarget.dataset.name;
 
-    await this.renderDetectionsModal(defectId);
-    this.initDetectionsExport(); // <-- Добавить эту строку
+    await this.renderDetectionsModal(defectName);
+    this.initDetectionsExport();
     this.detectionsModal.open();
-
-    console.log("Открыт дефект:", defectId);
   }
 
   initModals() {
-    console.log("initModals: инициализация модальных окон");
-
     // Модальное окно истории обнаружений
     this.detectionsModal = new BaseModal("detections-modal", {
       closeOnEsc: true,
       closeOnOverlay: true,
     });
 
-    // Очищаем графики при закрытии модального окна
+    // Уничтожение графиков при закрытии модального окна
     this.detectionsModal.setOnClose(() => {
       if (this.chartsManager) {
         this.chartsManager.destroyCharts();
       }
     });
 
-    // ИНИЦИАЛИЗАЦИЯ ПАГИНАЦИИ ДЛЯ МОДАЛЬНОГО ОКНА
+    // Пагинация модального окна обнаружений
     const detectionsPaginationContainer = document.querySelector(
       ".detections-pagination",
     );
-    console.log(
-      "detectionsPaginationContainer:",
-      detectionsPaginationContainer,
-    ); // <-- ДОБАВЬТЕ
 
     if (detectionsPaginationContainer) {
-      console.log("Создаем пагинацию для модального окна"); // <-- ДОБАВЬТЕ
       this.detectionsPagination = new Pagination(
         detectionsPaginationContainer,
         15,
         "detections-pagination",
       );
       this.detectionsPagination.setOnPageChange((page) => {
-        console.log("Страница в модальном окне:", page); // <-- ДОБАВЬТЕ
         if (this.currentDetections) {
           this.loadDetectionsPage(page, this.currentDetections);
         }
       });
     } else {
-      console.error("Контейнер пагинации .detections-pagination не найден!"); // <-- ДОБАВЬТЕ
+      console.error("Контейнер пагинации .detections-pagination не найден!");
     }
 
-    // Модальное окно подтверждения
+    // Модальное окно подтверждения исправления дефекта
     this.fixModal = new BaseModal("fix-confirm-modal", {
       closeOnEsc: true,
       closeOnOverlay: true,
@@ -405,12 +340,9 @@ class DefectsPage {
     const confirmBtn = document.querySelector(".alert-modal__btn--confirm");
     if (confirmBtn) {
       confirmBtn.addEventListener("click", async () => {
-        const defectId = this.detectionsModal.modal.dataset.currentDefect;
-        if (defectId) {
-          const response = await this.defectsService.markAsFixed(defectId);
-          if (response.success) {
-            console.log(response.message);
-          }
+        const defectName = this.detectionsModal.modal.dataset.currentDefect;
+        if (defectName) {
+          await this.defectsService.markAsFixed(defectName);
         }
         this.fixModal.close();
       });
@@ -523,7 +455,7 @@ class DefectsPage {
     }
   }
 
-  // Парсим дату из формата "дд.мм.гггг"
+  // Парсинг даты из формата "дд.мм.гггг"
   parseDate(str) {
     if (!str || str === "дд.мм.гггг") return null;
     const parts = str.split(".");
@@ -533,7 +465,7 @@ class DefectsPage {
     return isNaN(date.getTime()) ? null : date;
   }
 
-  // ── Фильтрация таблицы дефектов ──────────────────────────────────
+  //Фильтрация таблицы дефектов
   applyDefectsFilter() {
     const modal = "#filter-modal";
 
@@ -603,7 +535,7 @@ class DefectsPage {
     this.loadPage(1);
   }
 
-  // ── Фильтрация таблицы обнаружений ───────────────────────────────
+  //  Фильтрация таблицы обнаружений 
   applyDetectionsFilter() {
     const modal = "#detections-filter-modal";
 
@@ -676,25 +608,21 @@ class DefectsPage {
       this.renderDetectionsTable(this.currentDetections);
     }
   }
-  // Исправленная версия метода
+
+  // Экспорт таблицы дефектов
   initExport() {
-    console.log("initExport: инициализация экспорта");
+    this.exportService = new ExportService();
 
-    this.exportService = new ExportService(); // Сохраняем в свойство класса
-
-    // Находим ссылки для скачивания
     const excelLink = document.querySelector(".excel-link");
     const pdfLink = document.querySelector(".pdf-link");
     const csvLink = document.querySelector(".csv-link");
 
-    // Удаляем старые обработчики
     if (excelLink) {
       excelLink.removeEventListener("click", this.mainExcelHandler);
       this.mainExcelHandler = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const data = this.filteredDefects; // Используем отфильтрованные данные
-        this.exportService.exportData("excel", data, "defects_list");
+        this.exportService.exportData("excel", this.filteredDefects, "defects_list");
       };
       excelLink.addEventListener("click", this.mainExcelHandler);
     }
@@ -704,8 +632,7 @@ class DefectsPage {
       this.mainPdfHandler = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const data = this.filteredDefects;
-        this.exportService.exportData("pdf", data, "defects_list");
+        this.exportService.exportData("pdf", this.filteredDefects, "defects_list");
       };
       pdfLink.addEventListener("click", this.mainPdfHandler);
     }
@@ -715,52 +642,41 @@ class DefectsPage {
       this.mainCsvHandler = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const data = this.filteredDefects;
-        this.exportService.exportData("csv", data, "defects_list");
+        this.exportService.exportData("csv", this.filteredDefects, "defects_list");
       };
       csvLink.addEventListener("click", this.mainCsvHandler);
     }
   }
 
-  // Добавьте в класс DefectsPage
-
-  // Исправленная версия метода
+  // Экспорт таблицы обнаружений
   initDetectionsExport() {
-    console.log(
-      "initDetectionsExport: инициализация экспорта для модального окна",
-    );
-
     const exportService = new ExportService();
 
-    // Находим ссылки для скачивания в модальном окне
     const excelLink = document.querySelector(".detections-excel-link");
     const pdfLink = document.querySelector(".detections-pdf-link");
     const csvLink = document.querySelector(".detections-csv-link");
 
-    // Удаляем старые обработчики перед добавлением новых
+    const buildData = () =>
+      this.filteredDetections.map((d) => ({
+        name: this.detectionsModal.modal.dataset.currentDefect,
+        date: d.date,
+        time: d.time,
+        length: d.measurements.length,
+        width: d.measurements.width,
+        area: d.measurements.area,
+        type: this.getDefectType(this.detectionsModal.modal.dataset.currentDefect),
+        status: d.status,
+      }));
+
+    const fileName = () =>
+      `defect_${this.detectionsModal.modal.dataset.currentDefect}_detections`;
+
     if (excelLink) {
       excelLink.removeEventListener("click", this.excelHandler);
       this.excelHandler = (e) => {
         e.preventDefault();
-        e.stopPropagation(); // Предотвращаем всплытие события
-        const data = this.filteredDetections.map((d) => ({
-          id: this.detectionsModal.modal.dataset.currentDefect,
-          date: d.date,
-          time: d.time,
-          length: d.measurements.length,
-          width: d.measurements.width,
-          area: d.measurements.area,
-          type: this.getDefectType(
-            this.detectionsModal.modal.dataset.currentDefect,
-          ),
-          status: d.status,
-        }));
-        exportService.exportDetectionsData(
-          "excel",
-          data,
-          `defect_${this.detectionsModal.modal.dataset.currentDefect}_detections`,
-        );
-        console.log("Экспорт обнаружений в Excel");
+        e.stopPropagation();
+        exportService.exportDetectionsData("excel", buildData(), fileName());
       };
       excelLink.addEventListener("click", this.excelHandler);
     }
@@ -770,24 +686,7 @@ class DefectsPage {
       this.pdfHandler = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const data = this.filteredDetections.map((d) => ({
-          id: this.detectionsModal.modal.dataset.currentDefect,
-          date: d.date,
-          time: d.time,
-          length: d.measurements.length,
-          width: d.measurements.width,
-          area: d.measurements.area,
-          type: this.getDefectType(
-            this.detectionsModal.modal.dataset.currentDefect,
-          ),
-          status: d.status,
-        }));
-        exportService.exportDetectionsData(
-          "pdf",
-          data,
-          `defect_${this.detectionsModal.modal.dataset.currentDefect}_detections`,
-        );
-        console.log("Экспорт обнаружений в PDF");
+        exportService.exportDetectionsData("pdf", buildData(), fileName());
       };
       pdfLink.addEventListener("click", this.pdfHandler);
     }
@@ -797,38 +696,19 @@ class DefectsPage {
       this.csvHandler = (e) => {
         e.preventDefault();
         e.stopPropagation();
-        const data = this.filteredDetections.map((d) => ({
-          id: this.detectionsModal.modal.dataset.currentDefect,
-          date: d.date,
-          time: d.time,
-          length: d.measurements.length,
-          width: d.measurements.width,
-          area: d.measurements.area,
-          type: this.getDefectType(
-            this.detectionsModal.modal.dataset.currentDefect,
-          ),
-          status: d.status,
-        }));
-        exportService.exportDetectionsData(
-          "csv",
-          data,
-          `defect_${this.detectionsModal.modal.dataset.currentDefect}_detections`,
-        );
-        console.log("Экспорт обнаружений в CSV");
+        exportService.exportDetectionsData("csv", buildData(), fileName());
       };
       csvLink.addEventListener("click", this.csvHandler);
     }
   }
 
-  // Вспомогательный метод для получения типа дефекта
-  getDefectType(defectId) {
-    const defect = this.allDefects.find((d) => d.id === defectId);
+  // Получение типа дефекта по наименованию
+  getDefectType(defectName) {
+    const defect = this.allDefects.find((d) => d.name === defectName);
     return defect ? defect.type : "Неизвестно";
   }
 }
 
-// Инициализация
 document.addEventListener("DOMContentLoaded", () => {
-  console.log("DOMContentLoaded");
   window.defectsPage = new DefectsPage();
 });

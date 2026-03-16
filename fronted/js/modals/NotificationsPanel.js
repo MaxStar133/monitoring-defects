@@ -1,5 +1,6 @@
 import { BaseModal } from '../core/BaseModal.js';
 import { IndexService } from '../services/IndexService.js';
+import { getStatusClass } from '../services/DefectsService.js';
 
 export class NotificationsPanel extends BaseModal {
   constructor() {
@@ -55,11 +56,11 @@ export class NotificationsPanel extends BaseModal {
     list.innerHTML = this.notifications.map(n => `
       <div class="card">
         <div class="left">
-          <div class="id">${n.id}</div>
+          <div class="id">${n.name}</div>
           <div class="notification-date">${n.date} <span>${n.time}</span></div>
         </div>
         <div class="center">
-          <div class="status">${n.status}</div>
+          <div class="status status--${getStatusClass(n.status)}">${n.status}</div>
           <div class="type">${n.type}</div>
         </div>
         <div class="arrow">

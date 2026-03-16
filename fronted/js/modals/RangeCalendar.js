@@ -14,7 +14,7 @@ export class RangeCalendar extends PositionedModal {
       }
     );
 
-    // Дополнительные DOM элементы
+    // Дополнительные элементы
     this.calendarDays = document.getElementById("calendar-days");
     this.prevMonthBtn = document.getElementById("prev-month");
     this.nextMonthBtn = document.getElementById("next-month");
@@ -184,16 +184,18 @@ export class RangeCalendar extends PositionedModal {
     clickedDate.setHours(0, 0, 0, 0);
 
     if (!this.startDate || (this.startDate && this.endDate)) {
+      // Первый клик: устанавливаем начало диапазона
       this.startDate = clickedDate;
       this.endDate = null;
     } else if (this.startDate && !this.endDate) {
+      // Второй клик: устанавливаем конец, нормализуем порядок
       if (clickedDate < this.startDate) {
         this.endDate = this.startDate;
         this.startDate = clickedDate;
       } else {
         this.endDate = clickedDate;
       }
-      
+
       if (this.onDateRangeSelect) {
         this.onDateRangeSelect({
           start: this.formatDate(this.startDate),
@@ -256,7 +258,7 @@ export class RangeCalendar extends PositionedModal {
     this.renderCalendar();
   }
 
-  // Переопределяем open — не блокируем скролл, календарь работает как dropdown
+  // Открытие без блокировки скролла (работает как dropdown)
   open() {
     if (this.startDate) {
       this.currentDate = new Date(this.startDate);

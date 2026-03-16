@@ -171,11 +171,11 @@ export class StatsRangeCalendar extends PositionedModal {
     clickedDate.setHours(0, 0, 0, 0);
 
     if (!this.startDate || (this.startDate && this.endDate)) {
-      // First click: set start, clear end
+      // Первый клик: устанавливаем начало диапазона
       this.startDate = clickedDate;
       this.endDate = null;
     } else if (this.startDate && !this.endDate) {
-      // Second click: set end, normalize order
+      // Второй клик: устанавливаем конец, нормализуем порядок
       if (clickedDate < this.startDate) {
         this.endDate = this.startDate;
         this.startDate = clickedDate;
@@ -183,7 +183,6 @@ export class StatsRangeCalendar extends PositionedModal {
         this.endDate = clickedDate;
       }
 
-      // Close and fire callback
       this.close();
       if (this.onRangeSelected) {
         this.onRangeSelected(this.startDate, this.endDate);

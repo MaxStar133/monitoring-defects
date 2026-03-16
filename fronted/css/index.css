@@ -21,7 +21,7 @@
   gap: 16px;
   width: 1380px;
   height: 673px;
-  background: #ffffff;
+  background: var(--color-white);
   border: 1px solid var(--color-border);
   box-shadow: 0px 0px 20px rgba(29, 59, 255, 0.1);
   border-radius: 20px;
@@ -51,8 +51,8 @@
   gap: 14px;
   width: 1380px;
   height: 183px;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
   box-shadow: 0px 0px 20px rgba(29, 59, 255, 0.1);
   border-radius: 20px;
   flex: none;
@@ -155,7 +155,7 @@
   width: 323px;
   height: 95px;
   background: rgba(59, 106, 207, 0.1);
-  border: 1px solid #3b6acf;
+  border: 1px solid var(--color-blue);
   box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.1);
   border-radius: 20px;
   flex: none;
@@ -169,7 +169,7 @@
   font-size: 32px;
   line-height: 39px;
   text-align: right;
-  color: #333333;
+  color: var(--color-dark);
   flex: none;
   order: 0;
   flex-grow: 0;
@@ -182,7 +182,7 @@
   font-size: 20px;
   line-height: 24px;
   text-align: right;
-  color: #333333;
+  color: var(--color-dark);
   flex: none;
   order: 1;
   flex-grow: 0;
@@ -191,22 +191,22 @@
 /* ===== МОДИФИКАТОРЫ ДЛЯ РАЗНЫХ ТИПОВ ===== */
 .stat-card--total {
   background: rgba(59, 106, 207, 0.1);
-  border-color: #3b6acf;
+  border-color: var(--color-blue);
 }
 
 .stat-card--cracks {
   background: rgba(255, 0, 0, 0.1);
-  border-color: #ff0000;
+  border-color: var(--color-crack);
 }
 
 .stat-card--delamination {
   background: rgba(255, 142, 12, 0.1);
-  border-color: #ff8e0c;
+  border-color: var(--color-peeling);
 }
 
 .stat-card--rivets {
   background: rgba(33, 166, 0, 0.1);
-  border-color: #21a600;
+  border-color: var(--color-rivet);
 }
 
 /* Стили календаря перенесены в main.css */
@@ -240,7 +240,7 @@
   line-height: 19px;
   text-align: center;
   text-decoration-line: underline;
-  color: #3b6acf;
+  color: var(--color-blue);
 }
 
 .header__calibrate-btn:hover .header__calibrate-text {
@@ -280,8 +280,8 @@
   gap: 20px;
   width: 470px;
   height: 187px;
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
   box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.1);
   border-radius: 12px;
 }
@@ -308,7 +308,7 @@
   font-size: 20px;
   line-height: 24px;
   text-align: center;
-  color: #333333;
+  color: var(--color-dark);
   margin: 0;
   flex: none;
   order: 0;
@@ -325,7 +325,7 @@
   font-size: 16px;
   line-height: 19px;
   text-align: center;
-  color: #333333;
+  color: var(--color-dark);
   margin: 0;
   flex: none;
   order: 1;
@@ -338,7 +338,7 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 19px;
-  color: #333333;
+  color: var(--color-dark);
 }
 
 .calibrate-modal__actions {
@@ -376,20 +376,20 @@
 }
 
 .calibrate-modal__btn--cancel {
-  background: #ffffff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
   box-shadow: 0px 0px 20px rgba(29, 59, 255, 0.1);
-  color: #333333;
+  color: var(--color-dark);
 }
 
 .calibrate-modal__btn--cancel:hover {
-  background: #f6f8ff;
+  background: var(--color-bg);
 }
 
 .calibrate-modal__btn--confirm {
-  background: #3b6acf;
+  background: var(--color-blue);
   border: none;
-  color: #ffffff;
+  color: var(--color-white);
 }
 
 .calibrate-modal__btn--confirm:hover {

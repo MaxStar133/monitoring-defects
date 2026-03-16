@@ -34,7 +34,6 @@ document.addEventListener("DOMContentLoaded", async function () {
     });
     window.calendar = calendar;
 
-    // Загрузить статистику за сегодня при старте
     loadStats(formatDate(new Date()));
   }
 

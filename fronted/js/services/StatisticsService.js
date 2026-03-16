@@ -1,5 +1,3 @@
-// js/services/StatisticsService.js
-
 const mockStatistics = {
   "01.01.2026": { total: 24, cracks: 8,  delamination: 5,  rivets: 11 },
   "02.01.2026": { total: 12, cracks: 4,  delamination: 3,  rivets: 5  },
@@ -48,7 +46,6 @@ export class StatisticsService {
             result[dateStr] = data;
           }
         }
-        // If no data found for range, return empty object
         resolve(result);
       }, 200);
     });

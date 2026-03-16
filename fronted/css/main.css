@@ -31,14 +31,14 @@ body {
     background-color: var(--color-bg);
     min-height: 100vh;
     padding: 10px;
-    overflow-x: auto; /* Добавляем горизонтальный скролл */
+    overflow-x: auto; 
 }
 
 /* ========== ШАПКА ========== */
 .header {
-  min-width: 1380px; /* Фиксированная минимальная ширина */
-  max-width: 1380px; /* Фиксированная максимальная ширина */
-  width: 1380px; /* Фиксированная ширина */
+  min-width: 1380px; 
+  max-width: 1380px; 
+  width: 1380px; 
   margin: 0 auto;
 }
 
@@ -50,7 +50,7 @@ body {
   padding: 8px 8px 8px 20px;
   gap: 10px;
 
-  width: 1380px; /* Фиксированная ширина */
+  width: 1380px; 
   height: 60px;
 
   background: var(--color-white);
@@ -142,7 +142,7 @@ body {
   height: 44px;
 
   background: var(--color-white);
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  border: 1px solid var(--color-border);
   box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.1);
   border-radius: 12px;
 
@@ -344,9 +344,9 @@ body {
 .notifications-app {
     width: 400px;
     height: 600px;
-    background: #ffffff;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 20px 0 0 20px; 
+    background: var(--color-white);
+    border: 1px solid var(--color-border);
+    border-radius: 20px 0 0 20px;
     padding: 20px 16px;
     box-shadow: -4px 0 20px rgba(29, 59, 255, 0.15);
 
@@ -377,7 +377,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background: rgba(59, 106, 207, 0.05);
+    background: var(--color-notification-bg);
     border-radius: 50%;
     flex-shrink: 0;
     z-index: 12;
@@ -395,8 +395,8 @@ body {
     right: -2px;
     width: 14px;
     height: 14px;
-    background: #ff0000;
-    color: #ffffff;
+    background: var(--color-crack);
+    color: var(--color-white);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -411,7 +411,7 @@ body {
     font-family: "Inter", sans-serif;
     font-size: 18px;
     font-weight: 600;
-    color: #333333;
+    color: var(--color-dark);
     margin: 0;
     position: absolute;
     left: 50%;
@@ -423,7 +423,7 @@ body {
 
 /* Кнопка "Очистить все" */
 .clear {
-    color: #3b6acf;
+    color: var(--color-blue);
     font-family: "Inter", sans-serif;
     font-size: 14px;
     font-weight: 400;
@@ -466,7 +466,7 @@ body {
     width: 100%;
     min-height: 56px;
     
-    background: rgba(59, 106, 207, 0.05);
+    background: var(--color-notification-bg);
     border: 1px solid rgba(51, 51, 51, 0.1);
     border-radius: 16px;
     
@@ -519,7 +519,7 @@ body {
     font-weight: 400;
     font-size: 16px;
     line-height: 19px;
-    color: #333333;
+    color: var(--color-dark);
     flex: none;
     order: 0;
     flex-grow: 0;
@@ -541,7 +541,7 @@ body {
 }
 
 .notification-date span {
-    color: #333333;
+    color: var(--color-dark);
 }
 
 /* Центральная часть со статусом и типом */
@@ -568,12 +568,15 @@ body {
     font-size: 16px;
     line-height: 19px;
     text-align: center;
-    color: #FF0000;
     flex: none;
     order: 0;
     flex-grow: 0;
     white-space: nowrap;
 }
+
+.status--critical { color: var(--color-crack); }
+.status--warning  { color: var(--color-peeling); }
+.status--normal   { color: var(--color-rivet); }
 
 .type {
     width: 75px;
@@ -583,7 +586,7 @@ body {
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
-    color: #333333;
+    color: var(--color-dark);
     flex: none;
     order: 1;
     flex-grow: 0;
@@ -645,7 +648,6 @@ body {
     background: rgba(59, 106, 207, 0.5);
 }
 
-/* Удаляем все медиа-запросы для header, оставляем только для уведомлений */
 @media (max-width: 768px) {
   .notifications-app {
     width: 100%;
@@ -695,7 +697,7 @@ body {
 .calendar-modal__container {
   position: fixed;
   width: 356px;
-  background: #ffffff;
+  background: var(--color-white);
   border-radius: 12px;
   padding: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
@@ -716,7 +718,7 @@ body {
   font-family: "Inter", sans-serif;
   font-weight: 600;
   font-size: 16px;
-  color: #333333;
+  color: var(--color-dark);
 }
 
 .calendar-header__arrow {
@@ -725,19 +727,19 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: #f6f8ff;
-  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s;
 }
 
 .calendar-header__arrow:hover {
-  background: #3b6acf;
+  background: var(--color-blue);
 }
 
 .calendar-header__arrow:hover svg path {
-  stroke: #ffffff;
+  stroke: var(--color-white);
 }
 
 .calendar-divider {
@@ -747,7 +749,7 @@ body {
   margin-bottom: 16px;
 }
 
-/* Заголовки дней недели — без column-gap, чтобы совпадать с сеткой дней */
+/* Заголовки дней недели */
 .calendar-weekdays {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
@@ -766,14 +768,14 @@ body {
   justify-content: center;
 }
 
-/* Сетка дней — без column-gap для бесшовной подсветки диапазона */
+/* Сетка дней */
 .calendar-days {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   row-gap: 4px;
 }
 
-/* Базовый стиль дня: заполняет всю колонку по ширине */
+/* Базовый стиль дня*/
 .calendar-day {
   height: 40px;
   display: flex;
@@ -794,7 +796,7 @@ body {
   pointer-events: none;
 }
 
-/* Круг (hover / выбрано / сегодня) через ::before */
+/* Круг (hover / выбрано / сегодня) */
 .calendar-day::before {
   content: '';
   position: absolute;
@@ -813,12 +815,12 @@ body {
 }
 
 /* Цвета текста по принадлежности к месяцу */
-.calendar-day.current-month { color: #333333; }
+.calendar-day.current-month { color: var(--color-dark); }
 .calendar-day.other-month   { color: #b1b5bd; }
 
 /* Сегодняшняя дата */
 .calendar-day.today {
-  color: #3b6acf;
+  color: var(--color-blue);
   font-weight: 700;
 }
 .calendar-day.today::before {
@@ -827,81 +829,80 @@ body {
 
 /* Одиночная выбранная дата / начало-конец диапазона */
 .calendar-day.selected {
-  color: #ffffff !important;
+  color: var(--color-white) !important;
 }
 .calendar-day.selected::before {
-  background: #3b6acf;
+  background: var(--color-blue);
 }
 .calendar-day.selected:hover::before {
-  background: #3b6acf;
+  background: var(--color-blue);
 }
 
 /* ── Диапазон дат ── */
 
-/* Промежуточные даты: фон на всю ширину колонки (без column-gap — нет щелей) */
+/* Промежуточные даты*/
 .calendar-day.in-range {
   background: rgba(59, 106, 207, 0.1);
-  color: #333333;
+  color: var(--color-dark);
 }
 .calendar-day.in-range.other-month {
   color: #b1b5bd;
 }
-/* Не показываем hover-круг внутри диапазона */
+
 .calendar-day.in-range:hover::before {
   background: transparent;
 }
 
-/* Первая ячейка строки (Пн): скругление слева */
+/* Первая ячейка строки */
 .calendar-day.in-range:nth-child(7n+1) {
   border-radius: 30px 0 0 30px;
 }
-/* Последняя ячейка строки (Вс): скругление справа */
+/* Последняя ячейка строки */
 .calendar-day.in-range:nth-child(7n) {
   border-radius: 0 30px 30px 0;
 }
 
-/* Начало диапазона: левая половина прозрачная, правая — полоса */
+/* Начало диапазона */
 .calendar-day.range-start {
   background: linear-gradient(to right, transparent 50%, rgba(59, 106, 207, 0.1) 50%);
-  color: #ffffff !important;
+  color: var(--color-white) !important;
 }
 .calendar-day.range-start::before {
-  background: #3b6acf;
+  background: var(--color-blue);
 }
 .calendar-day.range-start:hover::before {
-  background: #3b6acf;
+  background: var(--color-blue);
 }
 
-/* Конец диапазона: левая половина — полоса, правая прозрачная */
+/* Конец диапазона */
 .calendar-day.range-end {
   background: linear-gradient(to left, transparent 50%, rgba(59, 106, 207, 0.1) 50%);
-  color: #ffffff !important;
+  color: var(--color-white) !important;
 }
 .calendar-day.range-end::before {
-  background: #3b6acf;
+  background: var(--color-blue);
 }
 .calendar-day.range-end:hover::before {
-  background: #3b6acf;
+  background: var(--color-blue);
 }
 
-/* Одна дата = начало и конец: только круг, без полосы */
+/* Одна дата = начало и конец */
 .calendar-day.range-start.range-end {
   background: transparent;
 }
 
-/* Начало диапазона в последней ячейке строки (Вс): нет полосы вправо */
+/* Начало диапазона в последней ячейке строки */
 .calendar-day.range-start:nth-child(7n) {
   background: transparent;
 }
-/* Конец диапазона в первой ячейке строки (Пн): нет полосы влево */
+/* Конец диапазона в первой ячейке строки */
 .calendar-day.range-end:nth-child(7n+1) {
   background: transparent;
 }
 
-/* Сегодняшняя дата попадает в диапазон → синий круг */
 .calendar-day.in-range.today::before {
-  background: #3b6acf;
+  background: var(--color-blue);
 }
 .calendar-day.in-range.today {
-  color: #ffffff !important;
+  color: var(--color-white) !important;
 }

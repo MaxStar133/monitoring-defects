@@ -24,7 +24,7 @@ class StatisticsPage {
     await this.loadStatistics();
   }
 
-  // ===== МОДАЛЬНЫЕ ОКНА =====
+  // Модальные окна
   initModals() {
     this.heatmapModal = new BaseModal("heatmapModal", {
       closeOnEsc: true,
@@ -52,21 +52,20 @@ class StatisticsPage {
     }
   }
 
-  // ===== УВЕДОМЛЕНИЯ =====
+  // Панель уведомлений
   initNotifications() {
     if (document.getElementById("notificationsPanel")) {
       this.notifications = new NotificationsPanel();
     }
   }
 
-  // ===== КАЛЕНДАРЬ С ДИАПАЗОНОМ =====
+  // Календарь с диапазоном дат
   initCalendar() {
     this.rangeCalendar = new StatsRangeCalendar((start, end) => {
       this.updateDateDisplay(start, end);
       this.loadStatisticsForRange(start, end);
     });
 
-    // Set initial date display
     this.updateDateDisplay(this.rangeCalendar.startDate, this.rangeCalendar.endDate);
   }
 
@@ -83,7 +82,7 @@ class StatisticsPage {
     return `${d}.${m}.${date.getFullYear()}`;
   }
 
-  // ===== КНОПКА ОБНОВИТЬ =====
+  // Кнопка обновления
   initRefreshButton() {
     const btn = document.querySelector(".stats-btn--update");
     if (!btn) return;
@@ -96,7 +95,7 @@ class StatisticsPage {
     });
   }
 
-  // ===== ПОКАЗ ЗАГРУЗКИ =====
+  // Состояние загрузки
   showLoading() {
     document.querySelectorAll(".stat-card").forEach(c => c.classList.add("loading"));
     document.querySelectorAll(".frame-image").forEach(c => c.classList.add("loading"));
@@ -113,14 +112,14 @@ class StatisticsPage {
     if (btn) btn.classList.remove("loading");
   }
 
-  // ===== ЗАГРУЗКА СТАТИСТИКИ (начальная, для диапазона по умолчанию) =====
+  // Загрузка статистики за диапазон по умолчанию
   async loadStatistics() {
     const start = this.rangeCalendar?.startDate ?? new Date(2026, 0, 1);
     const end = this.rangeCalendar?.endDate ?? new Date(2026, 0, 15);
     await this.loadStatisticsForRange(start, end);
   }
 
-  // ===== ЗАГРУЗКА СТАТИСТИКИ ДЛЯ ДИАПАЗОНА =====
+  // Загрузка статистики за произвольный диапазон
   async loadStatisticsForRange(startDate, endDate) {
     this.showLoading();
 
@@ -155,7 +154,7 @@ class StatisticsPage {
     this.updateStatsGrid(cracks, delamination, rivets);
   }
 
-  // ===== ЛИНЕЙНЫЙ ГРАФИК =====
+  // Линейный график
   buildLineChart(dates, cracks, delamination, rivets) {
     const ctx = document.getElementById("defectsLineChart");
 
@@ -206,7 +205,7 @@ class StatisticsPage {
     });
   }
 
-  // ===== КРУГОВАЯ ДИАГРАММА =====
+  // Круговая диаграмма
   buildPieChart(cracks, delamination, rivets) {
     const totalCracks = cracks.reduce((a, b) => a + b, 0);
     const totalDelamination = delamination.reduce((a, b) => a + b, 0);
@@ -247,7 +246,7 @@ class StatisticsPage {
     });
   }
 
-  // ===== ОБНОВЛЕНИЕ КАРТОЧЕК =====
+  // Карточки со сводной статистикой
   updateStatsGrid(cracks, delamination, rivets) {
     const totalCracks = cracks.reduce((a, b) => a + b, 0);
     const totalDelamination = delamination.reduce((a, b) => a + b, 0);

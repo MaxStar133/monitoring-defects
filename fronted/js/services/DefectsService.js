@@ -1,5 +1,5 @@
+export { getStatusClass };
 
-// Хелпер для получения CSS класса статуса
 function getStatusClass(status) {
     switch(status) {
         case 'Критичный': return 'critical';
@@ -11,7 +11,7 @@ function getStatusClass(status) {
 
 const mockUniqueDefects = [
     {
-        id: "D-016",
+        name: "D-016",
         firstDetection: {
             date: "15.01.2026",
             time: "14:30:12",
@@ -22,7 +22,7 @@ const mockUniqueDefects = [
         status: "Критичный"
     },
     {
-        id: "D-015",
+        name: "D-015",
         firstDetection: {
             date: "01.01.2026",
             time: "14:30:12",
@@ -33,7 +33,7 @@ const mockUniqueDefects = [
         status: "Критичный"
     },
     {
-        id: "D-014",
+        name: "D-014",
         firstDetection: {
             date: "01.01.2026",
             time: "14:11:11",
@@ -44,7 +44,7 @@ const mockUniqueDefects = [
         status: "Внимание"
     },
     {
-        id: "D-013",
+        name: "D-013",
         firstDetection: {
             date: "01.01.2026",
             time: "14:08:12",
@@ -55,7 +55,7 @@ const mockUniqueDefects = [
         status: "Наблюдение"
     },
     {
-        id: "D-012",
+        name: "D-012",
         firstDetection: {
             date: "01.01.2026",
             time: "12:30:17",
@@ -66,7 +66,7 @@ const mockUniqueDefects = [
         status: "Наблюдение"
     },
     {
-        id: "D-011",
+        name: "D-011",
         firstDetection: {
             date: "01.01.2026",
             time: "11:30:15",
@@ -77,7 +77,7 @@ const mockUniqueDefects = [
         status: "Наблюдение"
     },
     {
-        id: "D-010",
+        name: "D-010",
         firstDetection: {
             date: "01.01.2026",
             time: "08:30:17",
@@ -88,7 +88,7 @@ const mockUniqueDefects = [
         status: "Наблюдение"
     },
     {
-        id: "D-009",
+        name: "D-009",
         firstDetection: {
             date: "01.01.2026",
             time: "05:26:16",
@@ -99,7 +99,7 @@ const mockUniqueDefects = [
         status: "Наблюдение"
     },
     {
-        id: "D-008",
+        name: "D-008",
         firstDetection: {
             date: "01.01.2026",
             time: "03:30:17",
@@ -110,7 +110,7 @@ const mockUniqueDefects = [
         status: "Наблюдение"
     },
     {
-        id: "D-007",
+        name: "D-007",
         firstDetection: {
             date: "01.01.2026",
             time: "01:30:15",
@@ -121,7 +121,7 @@ const mockUniqueDefects = [
         status: "Наблюдение"
     },
     {
-        id: "D-006",
+        name: "D-006",
         firstDetection: {
             date: "01.01.2026",
             time: "00:32:15",
@@ -132,7 +132,7 @@ const mockUniqueDefects = [
         status: "Наблюдение"
     },
     {
-        id: "D-005",
+        name: "D-005",
         firstDetection: {
             date: "01.01.2026",
             time: "00:26:15",
@@ -143,7 +143,7 @@ const mockUniqueDefects = [
         status: "Наблюдение"
     },
     {
-        id: "D-004",
+        name: "D-004",
         firstDetection: {
             date: "01.01.2026",
             time: "00:22:55",
@@ -154,7 +154,7 @@ const mockUniqueDefects = [
         status: "Наблюдение"
     },
     {
-        id: "D-003",
+        name: "D-003",
         firstDetection: {
             date: "01.01.2026",
             time: "00:12:25",
@@ -165,7 +165,7 @@ const mockUniqueDefects = [
         status: "Наблюдение"
     },
     {
-        id: "D-002",
+        name: "D-002",
         firstDetection: {
             date: "01.01.2026",
             time: "00:07:35",
@@ -176,7 +176,7 @@ const mockUniqueDefects = [
         status: "Наблюдение"
     },
     {
-        id: "D-001",
+        name: "D-001",
         firstDetection: {
             date: "01.01.2026",
             time: "00:01:55",
@@ -190,7 +190,7 @@ const mockUniqueDefects = [
 
 const mockDefectDetails = {
     "D-015": {
-        id: "D-015",
+        name: "D-015",
         type: "Отслоение",
         detections: [
             {
@@ -276,7 +276,7 @@ const mockDefectDetails = {
         }
     },
     "D-014": {
-        id: "D-014",
+        name: "D-014",
         type: "Трещина",
         detections: [
             {
@@ -340,7 +340,7 @@ const mockDefectDetails = {
         }
     },
     "D-013": {
-        id: "D-013",
+        name: "D-013",
         type: "Заклепка",
         detections: [
             {
@@ -778,7 +778,6 @@ const mockDefectDetails = {
 
 export class DefectsService {
     async getUniqueDefects() {
-        // TODO: заменить на реальный API
         // return await fetch('/api/defects').then(res => res.json());
         
         return new Promise(resolve => {
@@ -788,18 +787,17 @@ export class DefectsService {
         });
     }
     
-    async getDefectDetails(defectId) {
-        // TODO: заменить на реальный API
-        // return await fetch(`/api/defects/${defectId}`).then(res => res.json());
-        
-        return new Promise((resolve, reject) => {
+    async getDefectDetails(defectName) {
+        // return await fetch(`/api/defects/${defectName}`).then(res => res.json());
+
+        return new Promise((resolve) => {
             setTimeout(() => {
-                const details = mockDefectDetails[defectId];
+                const details = mockDefectDetails[defectName];
                 if (details) {
                     resolve(details);
                 } else {
                     resolve({
-                        id: defectId,
+                        name: defectName,
                         type: "Неизвестно",
                         detections: [],
                         statistics: {
@@ -812,25 +810,22 @@ export class DefectsService {
             }, 100);
         });
     }
-    
-    async markAsFixed(defectId) {
-        // TODO: заменить на реальный API
-        // return await fetch(`/api/defects/${defectId}/fix`, {
+
+    async markAsFixed(defectName) {
+        // return await fetch(`/api/defects/${defectName}/fix`, {
         //     method: 'POST',
         //     headers: { 'Content-Type': 'application/json' }
         // }).then(res => res.json());
-        
+
         return new Promise(resolve => {
             setTimeout(() => {
                 resolve({
                     success: true,
                     message: "Дефект отмечен как исправлен",
-                    defectId: defectId
+                    name: defectName
                 });
             }, 100);
         });
     }
 }
 
-// Хелпер для использования в других файлах
-export { getStatusClass };

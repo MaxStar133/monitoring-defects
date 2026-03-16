@@ -30,7 +30,6 @@ export class BaseModal {
       });
     }
   }
-  // Добавить этот метод
   setOnClose(callback) {
     this.onCloseCallback = callback;
   }
@@ -45,7 +44,7 @@ export class BaseModal {
     this.modal.classList.remove("active");
     document.body.classList.remove("modal-open");
     if (this.onCloseCallback) {
-      this.onCloseCallback(); // Вызываем callback при закрытии
+      this.onCloseCallback();
     }
   }
 
@@ -58,7 +57,6 @@ export class BaseModal {
   }
 
   destroy() {
-    // Метод для очистки событий
     this.modal.removeEventListener("click", this.close);
     document.removeEventListener("keydown", this.close);
   }

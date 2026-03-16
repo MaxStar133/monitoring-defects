@@ -26,7 +26,6 @@ export class CalibrateModal extends BaseModal {
   }
 
   handleConfirmClick = () => {
-    console.log("Калибровка подтверждена");
     this.close();
   }
 

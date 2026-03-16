@@ -26,8 +26,8 @@ export class Calendar extends PositionedModal {
 
     // Состояние календаря
     this.currentDate = new Date();
-    this.selectedDate = new Date(); // Выбранная пользователем дата
-    this.today = new Date(); // Сегодняшняя дата для подсветки
+    this.selectedDate = new Date();
+    this.today = new Date();
 
     this.currentDate.setHours(0, 0, 0, 0);
     this.selectedDate.setHours(0, 0, 0, 0);
@@ -73,7 +73,6 @@ export class Calendar extends PositionedModal {
     );
   }
 
-  // Проверка, является ли дата сегодняшней
   isToday(date) {
     return this.isSameDate(date, this.today);
   }
