@@ -1,3 +1,21 @@
+const mockHeatmapData = {
+  beltLength: 1200,
+  segments: [
+    { start: 0,    end: 130,  density: 'high'   },
+    { start: 130,  end: 230,  density: 'medium'  },
+    { start: 230,  end: 370,  density: 'none'    },
+    { start: 370,  end: 555,  density: 'none'    },
+    { start: 555,  end: 645,  density: 'high'    },
+    { start: 645,  end: 730,  density: 'none'    },
+    { start: 730,  end: 775,  density: 'medium'  },
+    { start: 775,  end: 820,  density: 'none'    },
+    { start: 820,  end: 900,  density: 'none'    },
+    { start: 900,  end: 980,  density: 'none'    },
+    { start: 980,  end: 1060, density: 'low'     },
+    { start: 1060, end: 1200, density: 'none'    },
+  ]
+};
+
 const mockStatistics = {
   "01.01.2026": { total: 24, cracks: 8,  delamination: 5,  rivets: 11 },
   "02.01.2026": { total: 12, cracks: 4,  delamination: 3,  rivets: 5  },
@@ -48,6 +66,12 @@ export class StatisticsService {
         }
         resolve(result);
       }, 200);
+    });
+  }
+
+  async getHeatmapData() {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(mockHeatmapData), 200);
     });
   }
 
