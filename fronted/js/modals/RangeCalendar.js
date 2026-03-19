@@ -6,7 +6,7 @@ export class RangeCalendar extends PositionedModal {
       "calendar-modal", 
       triggerId, 
       ".calendar-modal__container", 
-      356, 
+      356,
       399,
       {
         closeOnEsc: true,
@@ -37,6 +37,13 @@ export class RangeCalendar extends PositionedModal {
       "Июль", "Август", "Сентябрь", "Октябрь", "Ноябрь", "Декабрь",
     ];
 
+    this.monthDropdown = document.getElementById('calendar-month-dropdown');
+    this.yearDropdown  = document.getElementById('calendar-year-dropdown');
+    this.monthText     = document.getElementById('calendar-month-text');
+    this.yearText      = document.getElementById('calendar-year-text');
+    this.monthList     = document.getElementById('calendar-month-list');
+    this.yearList      = document.getElementById('calendar-year-list');
+
     this.initCalendar();
   }
 
@@ -53,8 +60,84 @@ export class RangeCalendar extends PositionedModal {
   }
 
   updateMonthYear() {
-    this.currentMonthYearSpan.textContent = 
-      `${this.getMonthNameNominative(this.currentDate)} ${this.currentDate.getFullYear()}`;
+    const month = this.currentDate.getMonth();
+    const year  = this.currentDate.getFullYear();
+    this.currentMonthYearSpan.textContent = `${this.monthsNominative[month]} ${year}`;
+    if (this.monthText) this.monthText.textContent = this.monthsNominative[month];
+    if (this.yearText)  this.yearText.textContent  = year;
+    this._highlightDropdownItems();
+  }
+
+  _highlightDropdownItems() {
+    const month = this.currentDate.getMonth();
+    const year  = this.currentDate.getFullYear();
+    this.monthList?.querySelectorAll('.calendar-dropdown__item').forEach(el => {
+      el.classList.toggle('active', +el.dataset.value === month);
+    });
+    this.yearList?.querySelectorAll('.calendar-dropdown__item').forEach(el => {
+      el.classList.toggle('active', +el.dataset.value === year);
+    });
+  }
+
+  initDropdowns() {
+    this.monthList.innerHTML = this.monthsNominative.map((name, i) =>
+      `<div class="calendar-dropdown__item" data-value="${i}">${name}</div>`
+    ).join('');
+
+    const curYear = new Date().getFullYear();
+    let yearsHtml = '';
+    for (let y = curYear - 10; y <= curYear + 10; y++) {
+      yearsHtml += `<div class="calendar-dropdown__item" data-value="${y}">${y}</div>`;
+    }
+    this.yearList.innerHTML = yearsHtml;
+
+    this.monthList.addEventListener('click', (e) => {
+      const item = e.target.closest('.calendar-dropdown__item');
+      if (!item) return;
+      this.currentDate.setMonth(+item.dataset.value);
+      this.updateMonthYear();
+      this.renderCalendar();
+      if (this.positionManager) this.positionManager.updatePosition();
+      this.monthDropdown.classList.remove('active');
+    });
+
+    this.yearList.addEventListener('click', (e) => {
+      const item = e.target.closest('.calendar-dropdown__item');
+      if (!item) return;
+      this.currentDate.setFullYear(+item.dataset.value);
+      this.updateMonthYear();
+      this.renderCalendar();
+      if (this.positionManager) this.positionManager.updatePosition();
+      this.yearDropdown.classList.remove('active');
+    });
+
+    this.monthDropdown.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = this.monthDropdown.classList.contains('active');
+      this.yearDropdown.classList.remove('active');
+      this.monthDropdown.classList.toggle('active', !isOpen);
+      if (!isOpen) this._scrollToActive(this.monthList);
+    });
+
+    this.yearDropdown.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isOpen = this.yearDropdown.classList.contains('active');
+      this.monthDropdown.classList.remove('active');
+      this.yearDropdown.classList.toggle('active', !isOpen);
+      if (!isOpen) this._scrollToActive(this.yearList);
+    });
+
+    document.addEventListener('click', () => {
+      this.monthDropdown?.classList.remove('active');
+      this.yearDropdown?.classList.remove('active');
+    });
+  }
+
+  _scrollToActive(list) {
+    requestAnimationFrame(() => {
+      const active = list.querySelector('.calendar-dropdown__item.active');
+      if (active) active.scrollIntoView({ block: 'center' });
+    });
   }
 
   isSameDate(date1, date2) {
@@ -287,6 +370,10 @@ export class RangeCalendar extends PositionedModal {
     }
     window.addEventListener("scroll", this.handleScroll);
     window.addEventListener("resize", this.handleResize);
+
+    if (this.monthDropdown && this.yearDropdown) {
+      this.initDropdowns();
+    }
 
     this.updateMonthYear();
     this.renderCalendar();

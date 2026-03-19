@@ -15,7 +15,48 @@ const mockUniqueDefects = [
         firstDetection: {
             date: "15.01.2026",
             time: "14:30:12",
-            length: 150,
+            length: 350,
+            width: 250
+        },
+        type: "Отслоение",
+        status: "Критичный"
+    },
+     {
+        name: "D-016",
+        firstDetection: {
+            date: "15.01.2026",
+            time: "14:30:12",
+            length: 350,
+            width: 250
+        },
+        type: "Отслоение",
+        status: "Критичный"
+    }, {
+        name: "D-016",
+        firstDetection: {
+            date: "15.01.2026",
+            time: "14:30:12",
+            length: 350,
+            width: 250
+        },
+        type: "Отслоение",
+        status: "Критичный"
+    }, {
+        name: "D-016",
+        firstDetection: {
+            date: "15.01.2026",
+            time: "14:30:12",
+            length: 350,
+            width: 250
+        },
+        type: "Отслоение",
+        status: "Критичный"
+    }, {
+        name: "D-016",
+        firstDetection: {
+            date: "15.01.2026",
+            time: "14:30:12",
+            length: 350,
             width: 250
         },
         type: "Отслоение",

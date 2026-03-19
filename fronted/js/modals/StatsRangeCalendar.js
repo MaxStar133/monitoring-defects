@@ -19,9 +19,18 @@ export class StatsRangeCalendar extends PositionedModal {
     if (!this.modal) return;
 
     this.currentDate = new Date();
-    this.startDate = new Date(2026, 0, 1);
-    this.endDate = new Date(2026, 0, 15);
     this.today = new Date();
+
+    const now = new Date();
+    const dayOfWeek = now.getDay();
+    const mondayOffset = dayOfWeek === 0 ? -6 : 1 - dayOfWeek;
+    const monday = new Date(now);
+    monday.setDate(now.getDate() + mondayOffset);
+    const sunday = new Date(monday);
+    sunday.setDate(monday.getDate() + 6);
+
+    this.startDate = monday;
+    this.endDate = sunday;
     this.onRangeSelected = onRangeSelected;
 
     this.currentDate.setHours(0, 0, 0, 0);
@@ -171,11 +180,11 @@ export class StatsRangeCalendar extends PositionedModal {
     clickedDate.setHours(0, 0, 0, 0);
 
     if (!this.startDate || (this.startDate && this.endDate)) {
-      // Первый клик: устанавливаем начало диапазона
+
       this.startDate = clickedDate;
       this.endDate = null;
     } else if (this.startDate && !this.endDate) {
-      // Второй клик: устанавливаем конец, нормализуем порядок
+
       if (clickedDate < this.startDate) {
         this.endDate = this.startDate;
         this.startDate = clickedDate;

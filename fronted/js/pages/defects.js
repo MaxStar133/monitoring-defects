@@ -1,5 +1,4 @@
 import { PositionedModal } from "../core/PositionedModal.js";
-import { Dropdown } from "../core/Dropdown.js";
 import { BaseModal } from "../core/BaseModal.js";
 import { ImageManager } from "../modals/ImageManager.js";
 import { NotificationsPanel } from "../modals/NotificationsPanel.js";
@@ -369,7 +368,7 @@ class DefectsPage {
         "filter-modal",
         "filter-btn",
         ".filter-modal",
-        400,
+        420,
         500,
       );
 
@@ -403,7 +402,7 @@ class DefectsPage {
         "detections-filter-modal",
         "detections-filter-btn",
         ".detections-filter-modal",
-        400,
+        420,
         400,
       );
 
@@ -431,19 +430,6 @@ class DefectsPage {
       }
     }
 
-    // Выпадающие списки
-    if (document.getElementById("status-select")) {
-      new Dropdown("status-select", "selected-status", ".filter-dropdown__item");
-    }
-
-    if (document.getElementById("detections-status-select")) {
-      new Dropdown(
-        "detections-status-select",
-        "detections-selected-status",
-        ".detections-filter-dropdown__item",
-      );
-    }
-
     // Управление изображениями
     if (document.querySelector(".detections-table-row__link")) {
       this.imageManager = new ImageManager();
@@ -451,7 +437,13 @@ class DefectsPage {
 
     // Панель уведомлений
     if (document.getElementById("notificationsPanel")) {
-      new NotificationsPanel();
+      new NotificationsPanel({
+        onCardClick: async (defectName) => {
+          await this.renderDetectionsModal(defectName);
+          this.initDetectionsExport();
+          this.detectionsModal.open();
+        }
+      });
     }
   }
 
@@ -470,7 +462,7 @@ class DefectsPage {
     const modal = "#filter-modal";
 
     // Типы
-    const checkedTypes = [...document.querySelectorAll(`${modal} .checkbox-input:checked`)]
+    const checkedTypes = [...document.querySelectorAll(`${modal} .checkbox-input:not(.status-checkbox-input):checked`)]
       .map((cb) => cb.closest(".filter-checkbox").querySelector(".checkbox-text").textContent.trim());
 
     // Дата
@@ -482,8 +474,8 @@ class DefectsPage {
     );
 
     // Статус
-    const selectedStatus = document.getElementById("selected-status")?.textContent?.trim();
-    const filterByStatus = selectedStatus && selectedStatus !== "Все";
+    const checkedStatuses = [...document.querySelectorAll(`${modal} .status-checkbox-input:checked`)]
+      .map(cb => cb.dataset.value);
 
     // Координаты
     const inputs = [...document.querySelectorAll(`${modal} .coord-input`)];
@@ -503,7 +495,7 @@ class DefectsPage {
         }
       }
 
-      if (filterByStatus && d.status !== selectedStatus) return false;
+      if (checkedStatuses.length > 0 && !checkedStatuses.includes(d.status)) return false;
 
       if (lengthFrom !== null && d.firstDetection.length < lengthFrom) return false;
       if (lengthTo   !== null && d.firstDetection.length > lengthTo)   return false;
@@ -525,8 +517,7 @@ class DefectsPage {
     document.querySelectorAll(`${modal} .date-picker__text`).forEach((el) => (el.textContent = "дд.мм.гггг"));
     this.filterCalendar.clearRange("filter");
 
-    const statusEl = document.getElementById("selected-status");
-    if (statusEl) statusEl.textContent = "Все";
+    document.querySelectorAll(`${modal} .status-checkbox-input`).forEach(cb => (cb.checked = false));
 
     document.querySelectorAll(`${modal} .coord-input`).forEach((inp) => (inp.value = ""));
 
@@ -546,8 +537,8 @@ class DefectsPage {
       document.querySelector(`${modal} .date-picker:last-child .date-picker__text`)?.textContent?.trim()
     );
 
-    const selectedStatus = document.getElementById("detections-selected-status")?.textContent?.trim();
-    const filterByStatus = selectedStatus && selectedStatus !== "Все";
+    const checkedStatuses = [...document.querySelectorAll(`${modal} .detections-status-checkbox-input:checked`)]
+      .map(cb => cb.dataset.value);
 
     const inputs = [...document.querySelectorAll(`${modal} .coord-input`)];
     const lengthFrom = inputs[0]?.value !== "" ? parseFloat(inputs[0].value) : null;
@@ -566,7 +557,7 @@ class DefectsPage {
         }
       }
 
-      if (filterByStatus && det.status !== selectedStatus) return false;
+      if (checkedStatuses.length > 0 && !checkedStatuses.includes(det.status)) return false;
 
       if (lengthFrom !== null && det.measurements.length < lengthFrom) return false;
       if (lengthTo   !== null && det.measurements.length > lengthTo)   return false;
@@ -594,8 +585,7 @@ class DefectsPage {
     document.querySelectorAll(`${modal} .date-picker__text`).forEach((el) => (el.textContent = "дд.мм.гггг"));
     this.filterCalendar.clearRange("detections-filter");
 
-    const statusEl = document.getElementById("detections-selected-status");
-    if (statusEl) statusEl.textContent = "Все";
+    document.querySelectorAll(`${modal} .detections-status-checkbox-input`).forEach(cb => (cb.checked = false));
 
     document.querySelectorAll(`${modal} .coord-input`).forEach((inp) => (inp.value = ""));
 

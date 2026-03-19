@@ -3,7 +3,7 @@ import { IndexService } from '../services/IndexService.js';
 import { getStatusClass } from '../services/DefectsService.js';
 
 export class NotificationsPanel extends BaseModal {
-  constructor() {
+  constructor({ onCardClick } = {}) {
     super('notificationsPanel', {
       closeOnEsc: true,
       closeOnOverlay: true
@@ -14,6 +14,7 @@ export class NotificationsPanel extends BaseModal {
 
     if (!this.button || !this.panel) return;
 
+    this.onCardClick = onCardClick || null;
     this.indexService = new IndexService();
     this.notifications = [];
 
@@ -54,7 +55,7 @@ export class NotificationsPanel extends BaseModal {
     }
 
     list.innerHTML = this.notifications.map(n => `
-      <div class="card">
+      <div class="card${this.onCardClick ? ' card--clickable' : ''}" data-name="${n.name}">
         <div class="left">
           <div class="id">${n.name}</div>
           <div class="notification-date">${n.date} <span>${n.time}</span></div>
@@ -71,6 +72,19 @@ export class NotificationsPanel extends BaseModal {
         </div>
       </div>
     `).join('');
+
+    if (this.onCardClick) {
+      list.querySelectorAll('.card').forEach(card => {
+        card.addEventListener('click', () => {
+          const name = card.dataset.name;
+          this.notifications = this.notifications.filter(n => n.name !== name);
+          this.renderList();
+          this.updateBadge();
+          this.close();
+          this.onCardClick(name);
+        });
+      });
+    }
   }
 
   updateBadge() {

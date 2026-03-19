@@ -673,7 +673,7 @@
   padding: 16px;
   gap: 16px;
 
-  width: 400px;
+  width: 420px;
   background: var(--color-white);
   border: 1px solid var(--color-border);
   box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.25);
@@ -682,9 +682,6 @@
   transform: scale(0.9) translateX(20px);
   transition: transform 0.3s ease;
 
-  position: absolute;
-  top: 170px;
-  right: 258px;
 }
 
 .filter-overlay.active .filter-modal {
@@ -701,7 +698,7 @@ body.modal-open {
   align-items: flex-start;
   padding: 0px;
   gap: 16px;
-  width: 368px;
+  width: 388px;
   flex: none;
   order: 0;
   align-self: stretch;
@@ -815,12 +812,10 @@ body.modal-open {
 .filter-checkboxes {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
   align-items: center;
   padding: 0px;
-  gap: 8px;
-  width: 368px;
-  height: 35px;
+  gap: 4px;
+  width: 388px;
   flex: none;
   order: 1;
   align-self: stretch;
@@ -831,7 +826,7 @@ body.modal-open {
   display: flex;
   flex-direction: row;
   align-items: center;
-  padding: 8px;
+  padding: 4px 6px;
   gap: 8px;
   height: 35px;
 }
@@ -1097,10 +1092,11 @@ body.modal-open {
 .filter-actions {
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   padding: 0px;
   gap: 10px;
-  width: 368px;
+  width: 388px;
   height: 44px;
   flex: none;
   order: 1;
@@ -2374,7 +2370,7 @@ body.modal-open {
   padding: 16px;
   gap: 16px;
 
-  width: 400px;
+  width: 420px;
   background: var(--color-white);
   border: 1px solid var(--color-border);
   box-shadow: 0px 0px 8px rgba(29, 59, 255, 0.25);
@@ -2398,7 +2394,7 @@ body.modal-open {
   align-items: flex-start;
   padding: 0px;
   gap: 16px;
-  width: 368px;
+  width: 388px;
   flex: none;
   order: 0;
   align-self: stretch;
@@ -2485,8 +2481,46 @@ body.modal-open {
 }
 
 /* ===== БЛОК С КАРТИНКОЙ ===== */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+    clip-path: inset(0 0 100% 0);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0 0 0% 0);
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 1;
+    transform: translateY(0);
+    clip-path: inset(0 0 0% 0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(-12px);
+    clip-path: inset(0 0 100% 0);
+  }
+}
+
 .detections-image-row {
   width: 100%;
+  animation: slideDown 0.3s ease forwards;
+}
+
+.detections-image-row--animating {
+  opacity: 0;
+  transform: translateY(-12px);
+  clip-path: inset(0 0 100% 0);
+  animation: none;
+}
+
+.detections-image-row--closing {
+  animation: slideUp 0.3s ease forwards;
 }
 
 /* Контейнер для строки с данными и фото */

@@ -18,7 +18,6 @@ export class FilterCalendar {
         this.rangeCalendar = new RangeCalendar('dummy-trigger', (range) => {
             if (this.activeDateRange.source) {
                 this.updateDateDisplay(this.activeDateRange.source, range.start, range.end);
-                // Сохраняем выбранный диапазон
                 this.savedRanges[this.activeDateRange.source] = {
                     startDate: this.rangeCalendar.startDate,
                     endDate: this.rangeCalendar.endDate
@@ -68,7 +67,6 @@ export class FilterCalendar {
 
         this.positionManager.updatePosition();
 
-        // Восстанавливаем ранее выбранный диапазон для этого источника
         const saved = this.savedRanges[this.activeDateRange.source];
         if (saved && saved.startDate && saved.endDate) {
             this.rangeCalendar.setRange(saved.startDate, saved.endDate);

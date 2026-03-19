@@ -476,6 +476,10 @@ body {
     z-index: 2;
 }
 
+.card--clickable {
+    cursor: pointer;
+}
+
 .card:hover {
     background: rgba(59, 106, 207, 0.08);
     border-color: rgba(59, 106, 207, 0.3);
@@ -697,6 +701,7 @@ body {
 .calendar-modal__container {
   position: fixed;
   width: 356px;
+  min-height: 400px;
   background: var(--color-white);
   border-radius: 12px;
   padding: 20px;
@@ -705,6 +710,104 @@ body {
   top: 0;
   left: 0;
   pointer-events: auto;
+}
+
+/* Дропдауны месяца и года */
+.calendar-dropdowns {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.calendar-dropdown {
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  gap: 8px;
+  height: 40px;
+  background: #F6F8FF;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  border-radius: 12px;
+  cursor: pointer;
+  user-select: none;
+  flex: 1;
+  box-sizing: border-box;
+  transition: border-color 0.15s;
+}
+
+.calendar-dropdown:hover {
+  border-color: var(--color-blue);
+}
+
+.calendar-dropdown__text {
+  font-family: "Inter", sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 24px;
+  color: #333333;
+  flex: none;
+}
+
+.calendar-dropdown__chevron-wrap {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 24px;
+  height: 24px;
+  flex: none;
+  transition: transform 0.2s;
+}
+
+.calendar-dropdown.active .calendar-dropdown__chevron-wrap {
+  transform: rotate(180deg);
+}
+
+.calendar-dropdown__list {
+  position: absolute;
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+  max-height: 180px;
+  overflow-y: auto;
+  z-index: 10;
+  display: none;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border) transparent;
+}
+
+.calendar-dropdown.active .calendar-dropdown__list {
+  display: block;
+}
+
+.calendar-dropdown__item {
+  display: flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 10px;
+  font-family: "Inter", sans-serif;
+  font-size: 13px;
+  color: var(--color-dark);
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.calendar-dropdown__item:hover {
+  background: var(--color-bg);
+}
+
+.calendar-dropdown__item.active {
+  font-weight: 600;
+  color: var(--color-blue);
+  background: rgba(29, 59, 255, 0.05);
 }
 
 .calendar-header {
@@ -886,7 +989,7 @@ body {
   background: var(--color-blue);
 }
 
-/* Одна дата = начало и конец */
+/* Одна дата */
 .calendar-day.range-start.range-end {
   background: transparent;
 }

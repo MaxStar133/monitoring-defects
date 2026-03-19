@@ -26,6 +26,8 @@ export class ModalPosition {
     this.content.style.position = "fixed";
     this.content.style.top = top + "px";
     this.content.style.left = left + "px";
+    this.content.style.right = "auto";
+    this.content.style.bottom = "auto";
   }
 }
 

@@ -56,7 +56,7 @@ export class ExportService {
   // Экспорт в XLSX
   exportToXLSX(data, filename) {
     const worksheetData = [
-      ['ID', 'Дата', 'Время', 'Длина (м)', 'Ширина (мм)', 'Тип', 'Статус'],
+      ['Дефект', 'Дата', 'Время', 'Длина (м)', 'Ширина (мм)', 'Тип', 'Статус'],
       ...data.map(item => [
         item.name,
         item.firstDetection.date,
@@ -71,7 +71,7 @@ export class ExportService {
     const ws = XLSX.utils.aoa_to_sheet(worksheetData);
 
     ws['!cols'] = [
-      { wch: 10 }, // ID
+      { wch: 10 }, // Дефект
       { wch: 12 }, // Дата
       { wch: 10 }, // Время
       { wch: 12 }, // Длина
@@ -123,7 +123,7 @@ export class ExportService {
     doc.text(`Всего записей: ${data.length}`, 20, 37);
 
     const tableData = data.map(item => [
-      item.id,
+      item.name,
       item.firstDetection.date,
       item.firstDetection.time,
       `${item.firstDetection.length} м`,
@@ -134,7 +134,7 @@ export class ExportService {
 
     doc.autoTable({
       startY: 45,
-      head: [['ID', 'Дата', 'Время', 'Длина', 'Ширина', 'Тип', 'Статус']],
+      head: [['Дефект', 'Дата', 'Время', 'Длина', 'Ширина', 'Тип', 'Статус']],
       body: tableData,
       theme: 'grid',
       headStyles: {
@@ -186,10 +186,10 @@ export class ExportService {
 
   // Генерация CSV контента с правильным экранированием
   generateCSVContent(data) {
-    const headers = ['ID', 'Дата', 'Время', 'Длина (м)', 'Ширина (мм)', 'Тип', 'Статус'];
+    const headers = ['Дефект', 'Дата', 'Время', 'Длина (м)', 'Ширина (мм)', 'Тип', 'Статус'];
     
     const rows = data.map(item => [
-      item.id,
+      item.name,
       item.firstDetection.date,
       item.firstDetection.time,
       item.firstDetection.length,
@@ -232,7 +232,7 @@ export class ExportService {
 generatePrintHTML(data) {
   const rows = data.map(item => `
     <tr>
-      <td>${item.id}</td>
+      <td>${item.name}</td>
       <td>${item.firstDetection.date} ${item.firstDetection.time}</td>
       <td>${item.firstDetection.length} м</td>
       <td>${item.firstDetection.width} мм</td>
@@ -365,7 +365,7 @@ generatePrintHTML(data) {
         <table>
           <thead>
             <tr>
-              <th>ID</th>
+              <th>Дефект</th>
               <th>Дата и время</th>
               <th>Длина (м)</th>
               <th>Ширина (мм)</th>
@@ -425,7 +425,7 @@ exportDetectionsToExcel(data, filename) {
   }
 }
 
-// Экспорт обнаружений в XLSX (без колонки "Тип")
+// Экспорт обнаружений в XLSX
 exportDetectionsToXLSX(data, filename) {
   const defectType = data[0]?.type || 'Неизвестно';
   const defectName = data[0]?.name || '';
@@ -480,7 +480,7 @@ exportDetectionsToPDF(data, filename) {
   }
 }
 
-// Экспорт обнаружений в PDF с jsPDF (без колонки "Тип") - книжный формат А4
+// Экспорт обнаружений в PDF с jsPDF
 exportDetectionsToJSPDF(data, filename) {
   const { jsPDF } = window.jspdf;
   const doc = new jsPDF({
@@ -498,7 +498,7 @@ exportDetectionsToJSPDF(data, filename) {
     doc.setFont('helvetica', 'normal');
   }
   
-  // Получаем тип дефекта
+  // Получение типа дефекта
   const defectType = data[0]?.type || 'Неизвестно';
   const defectName = data[0]?.name || '';
   

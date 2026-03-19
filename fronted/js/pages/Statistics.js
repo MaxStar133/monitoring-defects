@@ -114,8 +114,8 @@ class StatisticsPage {
 
   // Загрузка статистики за диапазон по умолчанию
   async loadStatistics() {
-    const start = this.rangeCalendar?.startDate ?? new Date(2026, 0, 1);
-    const end = this.rangeCalendar?.endDate ?? new Date(2026, 0, 15);
+    const start = this.rangeCalendar?.startDate ?? null;
+    const end = this.rangeCalendar?.endDate ?? null;
     await this.loadStatisticsForRange(start, end);
   }
 

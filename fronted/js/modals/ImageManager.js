@@ -1,6 +1,5 @@
 // js/modals/ImageManager.js
 
-// Module-level reference so re-instantiation cleanly removes the old listener
 let activeClickHandler = null;
 
 export class ImageManager {
@@ -12,7 +11,7 @@ export class ImageManager {
         document.addEventListener('click', activeClickHandler);
     }
 
-    // Kept for backward compatibility with Defects.js
+    // Совместимость с Defects.js
     attachEventHandlers() {}
     init() {}
 
@@ -31,55 +30,80 @@ export class ImageManager {
         }
     }
 
+    _closeExistingImage(callback) {
+        const existingRow = document.querySelector('.detections-image-row');
+        if (!existingRow) {
+            callback && callback();
+            return;
+        }
+
+        const prevRow = existingRow.previousElementSibling;
+        if (prevRow) {
+            const activeLink = prevRow.querySelector('.detections-table-row__link.hide-image');
+            if (activeLink) {
+                activeLink.textContent = 'Показать';
+                activeLink.classList.remove('hide-image');
+            }
+        }
+
+        existingRow.classList.add('detections-image-row--closing');
+        existingRow.addEventListener('animationend', () => {
+            existingRow.remove();
+            callback && callback();
+        }, { once: true });
+    }
+
     _showImage(link) {
         const currentRow = link.closest('.detections-table-row');
         if (!currentRow) return;
 
-        // Already showing — skip
         const next = currentRow.nextElementSibling;
         if (next && next.classList.contains('detections-image-row')) return;
 
         const imageUrl = link.dataset.image || '../images/detection-defect.png';
 
-        // Build image row (only the frame — original row stays untouched)
-        const imageRow = document.createElement('div');
-        imageRow.className = 'detections-image-row';
-        // CSS sets order:1 on .detections-table-row; default order:0 would push
-        // imageRow to the top of the flex table regardless of DOM position.
-        imageRow.style.order = '1';
-        imageRow.innerHTML = `
-            <div class="detections-image-frame">
-                <div class="detections-image-wrapper">
-                    <img src="${imageUrl}" alt="Дефект" class="detections-image">
+        const insertImage = () => {
+            const imageRow = document.createElement('div');
+            imageRow.className = 'detections-image-row detections-image-row--animating';
+            imageRow.style.order = '1';
+            imageRow.innerHTML = `
+                <div class="detections-image-frame">
+                    <div class="detections-image-wrapper">
+                        <img src="${imageUrl}" alt="Дефект" class="detections-image">
+                    </div>
                 </div>
-            </div>
-        `;
+            `;
 
-        // Swap link text in place so the row never leaves the DOM
-        link.textContent = 'Скрыть';
-        link.classList.add('hide-image');
+            link.textContent = 'Скрыть';
+            link.classList.add('hide-image');
 
-        currentRow.after(imageRow);
+            currentRow.after(imageRow);
 
-        // Scroll so the clicked row stays visible; imageRow appears right below it.
-        // block:'nearest' = no scroll if row is already fully visible.
-        currentRow.scrollIntoView({ behavior: 'instant', block: 'nearest' });
+            requestAnimationFrame(() => {
+                imageRow.classList.remove('detections-image-row--animating');
+            });
+
+            currentRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        };
+
+        // Закрываем уже открытую картинку, потом вставляем новую
+        this._closeExistingImage(insertImage);
     }
 
     _hideImage(link) {
         const currentRow = link.closest('.detections-table-row');
         if (!currentRow) return;
 
-        // Remove image row
         const imageRow = currentRow.nextElementSibling;
         if (imageRow && imageRow.classList.contains('detections-image-row')) {
-            imageRow.remove();
+            link.textContent = 'Показать';
+            link.classList.remove('hide-image');
+
+            imageRow.classList.add('detections-image-row--closing');
+            imageRow.addEventListener('animationend', () => {
+                imageRow.remove();
+                currentRow.scrollIntoView({ behavior: 'instant', block: 'nearest' });
+            }, { once: true });
         }
-
-        // Restore link text
-        link.textContent = 'Показать';
-        link.classList.remove('hide-image');
-
-        currentRow.scrollIntoView({ behavior: 'instant', block: 'nearest' });
     }
 }
