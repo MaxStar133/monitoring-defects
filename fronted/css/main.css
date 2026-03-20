@@ -189,32 +189,10 @@ body {
   object-fit: contain;
 }
 
-/* ===== СМЕНА ИКОНОК ПРИ НАВЕДЕНИИ ===== */
+/* ===== СМЕНА ЦВЕТА ИКОНОК ПРИ НАВЕДЕНИИ ===== */
 
-/* Для кнопки СТАТИСТИКА */
-.header__button--statistics:hover .header__button-icon {
-  content: url("../images/statistics-icon-active.svg");
-  width: 24px;
-  height: 24px;
-}
-/* Для кнопки ГЛАВНАЯ */
-.header__button--home-before:hover .header__button-icon {
-  content: url("../images/home-icon-active.svg");
-  width: 24px;
-  height: 24px;
-}
-
-.header__button--home-after:hover .header__button-icon {
-  content: url("../images/home-icon-active.svg");
-  width: 24px;
-  height: 24px;
-}
-
-/* Для кнопки ДЕФЕКТЫ */
-.header__button--defects:hover .header__button-icon {
-  content: url("../images/defects-icon-active.svg");
-  width: 24px;
-  height: 24px;
+.header__button:hover .header__button-icon {
+  filter: brightness(0) saturate(100%) invert(34%) sepia(97%) saturate(517%) hue-rotate(187deg) brightness(93%) contrast(88%);
 }
 
 /* ===== ЭФФЕКТЫ ПРИ НАВЕДЕНИИ ===== */
@@ -284,11 +262,9 @@ body {
   display: block;
 }
 
-/* Смена иконки при наведении */
+/* Смена цвета иконки при наведении */
 .header__notifications:hover .header__icon {
-  content: url("../images/bell-icon-active.svg");
-  width: 24px;
-  height: 24px;
+  filter: brightness(0) saturate(100%) invert(34%) sepia(97%) saturate(517%) hue-rotate(187deg) brightness(93%) contrast(88%);
 }
 
 /* Красный бейдж */

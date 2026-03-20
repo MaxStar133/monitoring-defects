@@ -3,7 +3,6 @@ import { NotificationsPanel } from "../modals/NotificationsPanel.js";
 import { StatisticsService } from "../services/StatisticsService.js";
 import { StatsRangeCalendar } from "../modals/StatsRangeCalendar.js";
 import { BeltHeatmap } from "../charts/BeltHeatmap.js";
-import { BeltSchema } from "../charts/BeltSchema.js";
 
 class StatisticsPage {
 
@@ -12,7 +11,6 @@ class StatisticsPage {
     this.lineChart = null;
     this.pieChart = null;
     this.beltHeatmap = new BeltHeatmap('belt-heatmap');
-    this.beltSchema  = new BeltSchema('belt-schema');
 
     this.init();
   }
@@ -59,7 +57,11 @@ class StatisticsPage {
   // Панель уведомлений
   initNotifications() {
     if (document.getElementById("notificationsPanel")) {
-      this.notifications = new NotificationsPanel();
+      this.notifications = new NotificationsPanel({
+        onCardClick: (defectName) => {
+          window.location.href = `defects.html?defect=${encodeURIComponent(defectName)}`;
+        }
+      });
     }
   }
 
@@ -159,7 +161,6 @@ class StatisticsPage {
 
     const heatmapData = await this.statisticsService.getHeatmapData();
     this.beltHeatmap.render(heatmapData);
-    this.beltSchema.render();
   }
 
   // Линейный график

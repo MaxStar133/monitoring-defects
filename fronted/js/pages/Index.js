@@ -43,6 +43,10 @@ document.addEventListener("DOMContentLoaded", async function () {
   }
 
   if (document.getElementById("notificationsPanel")) {
-    new NotificationsPanel();
+    new NotificationsPanel({
+      onCardClick: (defectName) => {
+        window.location.href = `pages/defects.html?defect=${encodeURIComponent(defectName)}`;
+      }
+    });
   }
 });

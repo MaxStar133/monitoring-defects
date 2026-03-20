@@ -358,6 +358,24 @@
     background: transparent;
 }
 
+.belt-schema-wrap {
+    position: relative;
+}
+
+.belt-schema-belt {
+    display: block;
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 1;
+}
+
+.belt-schema-roller {
+    position: absolute;
+    width: 4.59%;
+    aspect-ratio: 1;
+}
+
 .heatmap-image--width {
     height: auto;
     border-radius: 0;

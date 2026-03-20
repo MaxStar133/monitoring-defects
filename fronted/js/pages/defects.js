@@ -36,6 +36,15 @@ class DefectsPage {
     this.initModals();
     this.initFilters();
     this.initExport();
+
+    const params = new URLSearchParams(window.location.search);
+    const defectFromUrl = params.get("defect");
+    if (defectFromUrl) {
+      await this.renderDetectionsModal(defectFromUrl);
+      this.initDetectionsExport();
+      this.detectionsModal.open();
+      history.replaceState(null, "", window.location.pathname);
+    }
   }
 
   async loadData() {

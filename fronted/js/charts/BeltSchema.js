@@ -35,9 +35,10 @@ export class BeltSchema {
   render() {
     if (!this.canvas) return;
 
+    const PAD  = 10; // отступ сверху и снизу в px
     const dpr  = window.devicePixelRatio || 1;
     const cssW = this.canvas.parentElement.clientWidth || DESIGN_W;
-    const cssH = Math.round(cssW * (DESIGN_H / DESIGN_W));
+    const cssH = Math.round(cssW * (DESIGN_H / DESIGN_W)) + PAD * 2;
 
     this.canvas.style.width  = cssW + 'px';
     this.canvas.style.height = cssH + 'px';
@@ -48,23 +49,21 @@ export class BeltSchema {
     ctx.save();
     ctx.scale(dpr, dpr);
     ctx.clearRect(0, 0, cssW, cssH);
+    ctx.translate(0, PAD); // сдвиг вниз на padding
 
     const sx = cssW / DESIGN_W;
-    const sy = cssH / DESIGN_H;
+    const sy = (cssH - PAD * 2) / DESIGN_H;
 
-    // --- 1. Дефекты (под роликами) ---
-    this._drawDefects(ctx, sx, sy);
-
-    // --- 2. Контур ленты ---
-    this._drawBelt(ctx, sx, sy, cssW, cssH);
-
-    // --- 3. Ролики ---
+    // --- 1. Ролики ---
     this._drawRollers(ctx, sx, sy);
+
+    // --- 2. Контур ленты (поверх роликов) ---
+    this._drawBelt(ctx, sx, sy);
 
     ctx.restore();
   }
 
-  _drawBelt(ctx, sx, sy, W, H) {
+  _drawBelt(ctx, sx, sy) {
     // Вычисляем центры роликов
     const r = ROLLER_D / 2;
     const rollers = ROLLERS.map(ro => ({
@@ -88,28 +87,31 @@ export class BeltSchema {
 
     ctx.beginPath();
 
-    // Верх: от верхней точки r0 до верхней точки r5
+    // Верхняя ветвь: от верхней точки r0 до верхней точки r5
     ctx.moveTo(r0.cx, r0.cy - r0.ry);
     ctx.lineTo(r5.cx, r5.cy - r5.ry);
 
-    // Обходим r5 по правой дуге (верх → низ)
+    // Правый ведущий ролик: верх → низ (по правой стороне)
     ctx.arc(r5.cx, r5.cy, r5.rx, -Math.PI / 2, Math.PI / 2, false);
 
-    // Нижняя ветвь: r5.bottom → к r4, r3, r2, r1 → r0
-    // Касательная от нижней точки r5 к нижней точке r4
-    ctx.lineTo(r4.cx + r4.rx, r4.cy + r4.ry);
-    ctx.arc(r4.cx, r4.cy, r4.rx, 0, Math.PI, false);
+    // Нижняя ветвь к r4 (от нижней точки r5 к правому экватору r4)
+    ctx.lineTo(r4.cx + r4.rx, r4.cy);
+    // Поверх r4 (CCW сверху) — нижний ролик правой пары
+    ctx.arc(r4.cx, r4.cy, r4.rx, 0, Math.PI, true);
 
-    ctx.lineTo(r3.cx + r3.rx, r3.cy + r3.ry);
+    // Под r3 (CW снизу) — верхний ролик правой пары
+    ctx.lineTo(r3.cx + r3.rx, r3.cy);
     ctx.arc(r3.cx, r3.cy, r3.rx, 0, Math.PI, false);
 
-    ctx.lineTo(r2.cx + r2.rx, r2.cy + r2.ry);
+    // Под r2 — r2 внутри нижней петли
+    ctx.lineTo(r2.cx + r2.rx, r2.cy);
     ctx.arc(r2.cx, r2.cy, r2.rx, 0, Math.PI, false);
 
-    ctx.lineTo(r1.cx + r1.rx, r1.cy + r1.ry);
-    ctx.arc(r1.cx, r1.cy, r1.rx, 0, Math.PI, false);
+    // Над r1 — r1 внутри верхней петли
+    ctx.lineTo(r1.cx + r1.rx, r1.cy);
+    ctx.arc(r1.cx, r1.cy, r1.rx, 0, Math.PI, true);
 
-    // Замыкаем через r0 (левая дуга низ → верх)
+    // Левый ведущий ролик: снизу → вверх (по левой стороне)
     ctx.lineTo(r0.cx, r0.cy + r0.ry);
     ctx.arc(r0.cx, r0.cy, r0.rx, Math.PI / 2, -Math.PI / 2, false);
 

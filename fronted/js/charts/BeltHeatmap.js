@@ -36,15 +36,14 @@ export class BeltHeatmap {
     const ctx   = this.ctx;
     ctx.scale(dpr, dpr);
 
-    const W     = cssW;
     const beltY = RULER_H;
-    const scale = W / beltLength;
+    const scale = cssW / beltLength;
 
-    ctx.clearRect(0, 0, W, cssH);
+    ctx.clearRect(0, 0, cssW, cssH);
 
     // Фон ленты
     ctx.fillStyle = DENSITY_COLORS.none;
-    ctx.fillRect(0, beltY, W, BELT_H);
+    ctx.fillRect(0, beltY, cssW, BELT_H);
 
     // Сегменты
     segments.forEach(seg => {
@@ -54,11 +53,11 @@ export class BeltHeatmap {
       ctx.fillRect(x, beltY, w, BELT_H);
     });
 
-    this._drawRuler(ctx, 0,                  W, beltLength, scale, 'top');
-    this._drawRuler(ctx, RULER_H + BELT_H,   W, beltLength, scale, 'bottom');
+    this._drawRuler(ctx, 0,                cssW, beltLength, scale, 'top');
+    this._drawRuler(ctx, RULER_H + BELT_H, cssW, beltLength, scale, 'bottom');
   }
 
-  _drawRuler(ctx, y, W, beltLength, scale, position) {
+  _drawRuler(ctx, y, _W, beltLength, scale, position) {
     ctx.strokeStyle = '#000';
     ctx.lineWidth = 1;
 
