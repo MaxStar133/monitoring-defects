@@ -51,14 +51,12 @@ export class Pagination {
     }
 
     render() {
-        // Счётчик результатов
         if (this.infoEl) {
             const start = (this.currentPage - 1) * this.itemsPerPage + 1;
             const end = Math.min(this.currentPage * this.itemsPerPage, this.totalItems);
             this.infoEl.textContent = `Результаты ${start}-${end} из ${this.totalItems}`;
         }
 
-        // Кнопки назад / вперёд
         if (this.prevBtn) {
             this.prevBtn.disabled = this.currentPage === 1;
             this.prevBtn.style.opacity = this.currentPage === 1 ? '0.5' : '1';
@@ -71,7 +69,6 @@ export class Pagination {
             this.nextBtn.style.cursor = this.currentPage === this.totalPages ? 'not-allowed' : 'pointer';
         }
 
-        // Кнопки страниц
         if (this.controlsEl) {
             const oldPages = this.controlsEl.querySelectorAll(`.${this.classPrefix}__page, .${this.classPrefix}__dots`);
             oldPages.forEach(el => el.remove());
@@ -87,7 +84,6 @@ export class Pagination {
                 startPage = Math.max(1, endPage - maxVisiblePages + 1);
             }
 
-            // Первая страница и многоточие
             if (startPage > 1) {
                 const firstPage = this.createPageButton(1);
                 pagesContainer.appendChild(firstPage);
@@ -100,7 +96,6 @@ export class Pagination {
                 }
             }
 
-            // Страницы диапазона
             for (let i = startPage; i <= endPage; i++) {
                 const pageBtn = this.createPageButton(i);
                 if (i === this.currentPage) {
@@ -109,7 +104,6 @@ export class Pagination {
                 pagesContainer.appendChild(pageBtn);
             }
 
-            // Последняя страница и многоточие
             if (endPage < this.totalPages) {
                 if (endPage < this.totalPages - 1) {
                     const dots = document.createElement('span');

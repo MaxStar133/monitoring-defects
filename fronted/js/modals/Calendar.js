@@ -15,7 +15,6 @@ export class Calendar extends PositionedModal {
     );
     this.onDateSelected = options.onDateSelected || null;
 
-    // Дополнительные  элементы
     this.selectedDateSpan = document.getElementById("selected-date");
     this.currentMonthYearSpan = document.getElementById("current-month-year");
     this.calendarDays = document.getElementById("calendar-days");
@@ -24,7 +23,6 @@ export class Calendar extends PositionedModal {
 
     if (!this.modal) return;
 
-    // Состояние календаря
     this.currentDate = new Date();
     this.selectedDate = new Date();
     this.today = new Date();
@@ -88,7 +86,6 @@ export class Calendar extends PositionedModal {
   }
 
   initDropdowns() {
-    // Список месяцев
     this.monthList.innerHTML = this.monthsNominative.map((name, i) =>
       `<div class="calendar-dropdown__item" data-value="${i}">${name}</div>`
     ).join('');
@@ -101,7 +98,6 @@ export class Calendar extends PositionedModal {
     }
     this.yearList.innerHTML = yearsHtml;
 
-    // Клики по месяцам
     this.monthList.addEventListener('click', (e) => {
       const item = e.target.closest('.calendar-dropdown__item');
       if (!item) return;
@@ -112,7 +108,6 @@ export class Calendar extends PositionedModal {
       this.monthDropdown.classList.remove('active');
     });
 
-    // Клики по годам
     this.yearList.addEventListener('click', (e) => {
       const item = e.target.closest('.calendar-dropdown__item');
       if (!item) return;
@@ -123,7 +118,6 @@ export class Calendar extends PositionedModal {
       this.yearDropdown.classList.remove('active');
     });
 
-    // Открытие/закрытие
     this.monthDropdown.addEventListener('click', (e) => {
       e.stopPropagation();
       const isOpen = this.monthDropdown.classList.contains('active');

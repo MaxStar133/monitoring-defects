@@ -313,7 +313,6 @@
 /* ===== ТЕПЛОВЫЕ КАРТЫ ===== */
 .heatmap-frame {
     width:1380px;
-    height:430px;
 
     display:flex;
     flex-direction:column;
@@ -360,6 +359,9 @@
 
 .belt-schema-wrap {
     position: relative;
+    width: 100%;
+    height: auto;
+    overflow: visible;
 }
 
 .belt-schema-belt {
@@ -374,6 +376,19 @@
     position: absolute;
     width: 4.59%;
     aspect-ratio: 1;
+}
+
+.belt-marker-tooltip {
+    position: fixed;
+    background: #333;
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-family: Inter, sans-serif;
+    pointer-events: none;
+    z-index: 9999;
+    white-space: nowrap;
 }
 
 .heatmap-image--width {
@@ -444,6 +459,14 @@
     font-size:16px;
     color:var(--color-blue);
     text-decoration:underline;
+}
+
+/* ===== ПУСТОЕ СОСТОЯНИЕ ===== */
+.frame-image--empty::after {
+  content: attr(data-empty);
+  font-family: 'Inter', sans-serif;
+  font-size: 16px;
+  color: #aaa;
 }
 
 /* ===== ЗАГРУЗКА ===== */

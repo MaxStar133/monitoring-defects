@@ -14,7 +14,6 @@ export class RangeCalendar extends PositionedModal {
       }
     );
 
-    // Дополнительные элементы
     this.calendarDays = document.getElementById("calendar-days");
     this.prevMonthBtn = document.getElementById("prev-month");
     this.nextMonthBtn = document.getElementById("next-month");
@@ -22,7 +21,6 @@ export class RangeCalendar extends PositionedModal {
 
     if (!this.modal) return;
 
-    // Состояние календаря
     this.currentDate = new Date();
     this.startDate = null;
     this.endDate = null;
@@ -267,11 +265,9 @@ export class RangeCalendar extends PositionedModal {
     clickedDate.setHours(0, 0, 0, 0);
 
     if (!this.startDate || (this.startDate && this.endDate)) {
-      // Первый клик: устанавливаем начало диапазона
       this.startDate = clickedDate;
       this.endDate = null;
     } else if (this.startDate && !this.endDate) {
-      // Второй клик: устанавливаем конец, нормализуем порядок
       if (clickedDate < this.startDate) {
         this.endDate = this.startDate;
         this.startDate = clickedDate;

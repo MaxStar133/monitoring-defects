@@ -1,3 +1,16 @@
+const mockSchemaData = {
+  beltLength: 1200,
+  zeroPosition: 400,
+  segments: [
+    { start: 0,   end: 130, density: 'high'   },
+    { start: 130, end: 230, density: 'medium' },
+    { start: 400, end: 580, density: 'high'   },
+    { start: 650, end: 750, density: 'medium' },
+    { start: 900, end: 980, density: 'high'   },
+    { start: 980, end: 1060, density: 'low'   },
+  ]
+};
+
 const mockHeatmapData = {
   beltLength: 1200,
   segments: [
@@ -39,6 +52,7 @@ const mockStatistics = {
   "20.01.2026": { total: 13, cracks: 4,  delamination: 3,  rivets: 6  },
 };
 
+// Парсинг даты из строки формата ДД.ММ.ГГГГ
 function parseDate(str) {
   const [d, m, y] = str.split(".");
   const date = new Date(+y, +m - 1, +d);
@@ -48,12 +62,14 @@ function parseDate(str) {
 
 export class StatisticsService {
 
+  // Все данные статистики
   async getStatistics() {
     return new Promise((resolve) => {
       setTimeout(() => resolve(mockStatistics), 200);
     });
   }
 
+  // Статистика за диапазон дат
   async getStatisticsForRange(startDate, endDate) {
     return new Promise((resolve) => {
       setTimeout(() => {
@@ -69,9 +85,17 @@ export class StatisticsService {
     });
   }
 
+  // Данные тепловой карты ленты
   async getHeatmapData() {
     return new Promise((resolve) => {
       setTimeout(() => resolve(mockHeatmapData), 200);
+    });
+  }
+
+  // Данные схемы ленты
+  async getSchemaData() {
+    return new Promise((resolve) => {
+      setTimeout(() => resolve(mockSchemaData), 200);
     });
   }
 

@@ -1,5 +1,6 @@
 export { getStatusClass };
 
+// CSS-класс для статуса дефекта
 function getStatusClass(status) {
     switch(status) {
         case 'Критичный': return 'critical';
@@ -818,6 +819,7 @@ const mockDefectDetails = {
 };
 
 export class DefectsService {
+    // Список уникальных дефектов
     async getUniqueDefects() {
         // return await fetch('/api/defects').then(res => res.json());
         
@@ -828,6 +830,7 @@ export class DefectsService {
         });
     }
     
+    // Детальная информация о дефекте по имени
     async getDefectDetails(defectName) {
         // return await fetch(`/api/defects/${defectName}`).then(res => res.json());
 
@@ -852,6 +855,7 @@ export class DefectsService {
         });
     }
 
+    // Отметить дефект как исправленный
     async markAsFixed(defectName) {
         // return await fetch(`/api/defects/${defectName}/fix`, {
         //     method: 'POST',

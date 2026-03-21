@@ -11,7 +11,7 @@ export class ImageManager {
         document.addEventListener('click', activeClickHandler);
     }
 
-    // Совместимость с Defects.js
+
     attachEventHandlers() {}
     init() {}
 
@@ -86,7 +86,6 @@ export class ImageManager {
             currentRow.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         };
 
-        // Закрываем уже открытую картинку, потом вставляем новую
         this._closeExistingImage(insertImage);
     }
 

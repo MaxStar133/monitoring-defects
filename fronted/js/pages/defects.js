@@ -8,7 +8,6 @@ import { DefectsService, getStatusClass } from "../services/DefectsService.js";
 import { ExportService } from "../services/ExportService.js";
 import { DetectionCharts } from "../charts/DetectionCharts.js";
 
-// Главный класс страницы
 class DefectsPage {
   constructor() {
     this.defectsService = new DefectsService();
@@ -24,7 +23,6 @@ class DefectsPage {
   }
 
   async init() {
-    // Пагинация главной таблицы
     const paginationContainer = document.querySelector(".pagination");
     if (paginationContainer) {
       this.pagination = new Pagination(paginationContainer, 15);
@@ -90,7 +88,6 @@ class DefectsPage {
       const row = document.createElement("div");
       row.className = "table-row";
 
-      // Класс последней строки на последней странице
       if (isLastPage && index === defects.length - 1) {
         row.classList.add("table-row--last");
       }
@@ -126,19 +123,16 @@ class DefectsPage {
       this.currentDetections = details.detections;
       this.filteredDetections = [...details.detections];
 
-      // Текущий дефект в модальном окне
       const modal = document.getElementById("detections-modal");
       if (modal) {
         modal.dataset.currentDefect = defectName;
       }
 
-      // Заголовок модального окна
       const headerId = document.querySelector(".detections-header__id");
       const headerType = document.querySelector(".detections-header__type");
       if (headerId) headerId.textContent = details.name;
       if (headerType) headerType.textContent = details.type;
 
-      // Статистика роста дефекта
       if (details.statistics && details.statistics.firstDetection) {
         const statItems = document.querySelectorAll(
           ".detections-statistics__item",
@@ -174,7 +168,6 @@ class DefectsPage {
         }
       }
 
-      // Графики динамики обнаружений
       if (!this.chartsManager) {
         this.chartsManager = new DetectionCharts();
       }
@@ -188,7 +181,6 @@ class DefectsPage {
         }
       }, 100);
 
-      // Пагинация таблицы обнаружений
       if (this.detectionsPagination) {
         this.detectionsPagination.setTotalItems(details.detections.length);
         this.loadDetectionsPage(1, details.detections);
@@ -207,7 +199,6 @@ class DefectsPage {
     }
   }
 
-  // Загрузка страницы в модальном окне обнаружений
   loadDetectionsPage(page, allDetections) {
     const start = (page - 1) * this.detectionsPagination.itemsPerPage;
     const end = start + this.detectionsPagination.itemsPerPage;
@@ -225,7 +216,6 @@ class DefectsPage {
     }
   }
 
-  // Таблица обнаружений
   renderDetectionsTable(detections) {
     const tableBody = document.querySelector(
       "#detections-modal .detections-table",
@@ -264,7 +254,6 @@ class DefectsPage {
       tableBody.appendChild(row);
     });
 
-    // Переинициализация обработчиков кнопок просмотра изображений
     if (document.querySelector(".detections-table-row__link")) {
       if (!this.imageManager) {
         this.imageManager = new ImageManager();
@@ -293,20 +282,17 @@ class DefectsPage {
   }
 
   initModals() {
-    // Модальное окно истории обнаружений
     this.detectionsModal = new BaseModal("detections-modal", {
       closeOnEsc: true,
       closeOnOverlay: true,
     });
 
-    // Уничтожение графиков при закрытии модального окна
     this.detectionsModal.setOnClose(() => {
       if (this.chartsManager) {
         this.chartsManager.destroyCharts();
       }
     });
 
-    // Пагинация модального окна обнаружений
     const detectionsPaginationContainer = document.querySelector(
       ".detections-pagination",
     );
@@ -326,7 +312,6 @@ class DefectsPage {
       console.error("Контейнер пагинации .detections-pagination не найден!");
     }
 
-    // Модальное окно подтверждения исправления дефекта
     this.fixModal = new BaseModal("fix-confirm-modal", {
       closeOnEsc: true,
       closeOnOverlay: true,
@@ -356,7 +341,6 @@ class DefectsPage {
       });
     }
 
-    // Модальное окно параметров
     const paramsModal = new BaseModal("params-modal", {
       closeOnEsc: true,
       closeOnOverlay: true,
@@ -371,7 +355,6 @@ class DefectsPage {
   initFilters() {
     this.filterCalendar = new FilterCalendar();
 
-    // ── Фильтр дефектов ──────────────────────────────────────────
     if (document.getElementById("filter-btn")) {
       this.filterModal = new PositionedModal(
         "filter-modal",
@@ -405,7 +388,6 @@ class DefectsPage {
       }
     }
 
-    // ── Фильтр обнаружений ────────────────────────────────────────
     if (document.getElementById("detections-filter-btn")) {
       this.detectionsFilterModal = new PositionedModal(
         "detections-filter-modal",
@@ -439,12 +421,10 @@ class DefectsPage {
       }
     }
 
-    // Управление изображениями
     if (document.querySelector(".detections-table-row__link")) {
       this.imageManager = new ImageManager();
     }
 
-    // Панель уведомлений
     if (document.getElementById("notificationsPanel")) {
       new NotificationsPanel({
         onCardClick: async (defectName) => {
@@ -456,7 +436,6 @@ class DefectsPage {
     }
   }
 
-  // Парсинг даты из формата "дд.мм.гггг"
   parseDate(str) {
     if (!str || str === "дд.мм.гггг") return null;
     const parts = str.split(".");
@@ -466,15 +445,12 @@ class DefectsPage {
     return isNaN(date.getTime()) ? null : date;
   }
 
-  //Фильтрация таблицы дефектов
   applyDefectsFilter() {
     const modal = "#filter-modal";
 
-    // Типы
     const checkedTypes = [...document.querySelectorAll(`${modal} .checkbox-input:not(.status-checkbox-input):checked`)]
       .map((cb) => cb.closest(".filter-checkbox").querySelector(".checkbox-text").textContent.trim());
 
-    // Дата
     const startDate = this.parseDate(
       document.querySelector(`${modal} .date-picker:first-child .date-picker__text`)?.textContent?.trim()
     );
@@ -482,11 +458,9 @@ class DefectsPage {
       document.querySelector(`${modal} .date-picker:last-child .date-picker__text`)?.textContent?.trim()
     );
 
-    // Статус
     const checkedStatuses = [...document.querySelectorAll(`${modal} .status-checkbox-input:checked`)]
       .map(cb => cb.dataset.value);
 
-    // Координаты
     const inputs = [...document.querySelectorAll(`${modal} .coord-input`)];
     const lengthFrom = inputs[0]?.value !== "" ? parseFloat(inputs[0].value) : null;
     const lengthTo   = inputs[1]?.value !== "" ? parseFloat(inputs[1].value) : null;
@@ -535,7 +509,6 @@ class DefectsPage {
     this.loadPage(1);
   }
 
-  //  Фильтрация таблицы обнаружений 
   applyDetectionsFilter() {
     const modal = "#detections-filter-modal";
 
@@ -608,7 +581,6 @@ class DefectsPage {
     }
   }
 
-  // Экспорт таблицы дефектов
   initExport() {
     this.exportService = new ExportService();
 
@@ -647,7 +619,6 @@ class DefectsPage {
     }
   }
 
-  // Экспорт таблицы обнаружений
   initDetectionsExport() {
     const exportService = new ExportService();
 
@@ -701,7 +672,6 @@ class DefectsPage {
     }
   }
 
-  // Получение типа дефекта по наименованию
   getDefectType(defectName) {
     const defect = this.allDefects.find((d) => d.name === defectName);
     return defect ? defect.type : "Неизвестно";

@@ -1,4 +1,4 @@
-// js/charts/BeltHeatmap.js
+// Тепловая карта дефектов ленты по ширине (canvas)
 
 const DENSITY_COLORS = {
   none:   '#274ea6',
@@ -14,9 +14,16 @@ const TICK_MINOR = 30;
 
 export class BeltHeatmap {
   constructor(canvasId) {
-    this.canvas = document.getElementById(canvasId);
+    this.canvas   = document.getElementById(canvasId);
     if (!this.canvas) return;
-    this.ctx = this.canvas.getContext('2d');
+    this.ctx      = this.canvas.getContext('2d');
+    this._tooltip = null;
+    this._segments    = [];
+    this._scale       = 1;
+    this._beltY       = RULER_H;
+    this._beltH       = BELT_H;
+    this.canvas.addEventListener('mousemove',  (e) => this._onMove(e));
+    this.canvas.addEventListener('mouseleave', ()  => this._hideTooltip());
   }
 
   render(data) {
@@ -39,13 +46,14 @@ export class BeltHeatmap {
     const beltY = RULER_H;
     const scale = cssW / beltLength;
 
+    this._segments = segments;
+    this._scale    = scale;
+
     ctx.clearRect(0, 0, cssW, cssH);
 
-    // Фон ленты
     ctx.fillStyle = DENSITY_COLORS.none;
     ctx.fillRect(0, beltY, cssW, BELT_H);
 
-    // Сегменты
     segments.forEach(seg => {
       const x = seg.start * scale;
       const w = (seg.end - seg.start) * scale;
@@ -53,11 +61,49 @@ export class BeltHeatmap {
       ctx.fillRect(x, beltY, w, BELT_H);
     });
 
-    this._drawRuler(ctx, 0,                cssW, beltLength, scale, 'top');
-    this._drawRuler(ctx, RULER_H + BELT_H, cssW, beltLength, scale, 'bottom');
+    this._drawRuler(ctx, 0,                beltLength, scale, 'top');
+    this._drawRuler(ctx, RULER_H + BELT_H, beltLength, scale, 'bottom');
   }
 
-  _drawRuler(ctx, y, _W, beltLength, scale, position) {
+  _onMove(e) {
+    const rect  = this.canvas.getBoundingClientRect();
+    const x     = e.clientX - rect.left;
+    const y     = e.clientY - rect.top;
+
+    if (y < this._beltY || y > this._beltY + this._beltH) {
+      this._hideTooltip();
+      return;
+    }
+
+    const mm  = x / this._scale;
+    const seg = this._segments.find(s => s.density !== 'none' && mm >= s.start && mm <= s.end);
+    if (seg) {
+      this._showTooltip(e, `${seg.start} – ${seg.end} мм`);
+    } else {
+      this._hideTooltip();
+    }
+  }
+
+  _showTooltip(e, text) {
+    if (!this._tooltip) {
+      this._tooltip           = document.createElement('div');
+      this._tooltip.className = 'belt-marker-tooltip';
+      document.body.appendChild(this._tooltip);
+    }
+    this._tooltip.textContent = text;
+    this._tooltip.style.left  = (e.clientX + 14) + 'px';
+    this._tooltip.style.top   = (e.clientY - 36) + 'px';
+  }
+
+  _hideTooltip() {
+    if (this._tooltip) {
+      this._tooltip.remove();
+      this._tooltip = null;
+    }
+  }
+
+  // Рисует линейку с делениями сверху или снизу ленты
+  _drawRuler(ctx, y, beltLength, scale, position) {
     ctx.strokeStyle = '#000';
     ctx.lineWidth = 1;
 
