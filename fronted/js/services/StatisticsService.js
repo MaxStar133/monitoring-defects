@@ -52,7 +52,7 @@ const mockStatistics = {
   "20.01.2026": { total: 13, cracks: 4,  delamination: 3,  rivets: 6  },
 };
 
-// Парсинг даты из строки формата ДД.ММ.ГГГГ
+// Парсинг даты
 function parseDate(str) {
   const [d, m, y] = str.split(".");
   const date = new Date(+y, +m - 1, +d);

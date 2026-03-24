@@ -1,6 +1,5 @@
 export { getStatusClass };
 
-// CSS-класс для статуса дефекта
 function getStatusClass(status) {
     switch(status) {
         case 'Критичный': return 'critical';

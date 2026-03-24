@@ -10,13 +10,7 @@
   font-display: swap;
 }
 
-@font-face {
-  font-family: "Gotham Pro";
-  src: url("../fonts/gothampro_regular.ttf") format("truetype");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+
 
 /* ========== ОБНУЛЕНИЕ ========== */
 * {
@@ -27,7 +21,7 @@
 
 /* ========== БАЗОВЫЕ СТИЛИ ========== */
 body {
-    font-family: 'Gotham Pro', 'Segoe UI', Arial, sans-serif;
+    font-family: 'Inter', 'Segoe UI', Arial, sans-serif;
     background-color: var(--color-bg);
     min-height: 100vh;
     padding: 10px;
